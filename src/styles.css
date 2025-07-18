@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+.my-flex {
+    display: flex;
+    align-items: center;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+input,
+textarea {
+    border: none;
+    outline: none;
+}
+
+select {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    margin-block: 5px 20px;
+}
+
+h2 {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+.mat-mdc-notch-piece.mdc-notched-outline__notch {
+    border-inline: none;
+}
+
+.my-button {
+    padding: 10px 20px;
+    gap: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 90%;
+    background-color: black;
+    color: #fff;
+    font-weight: 400;
+    text-transform: capitalize;
+    transition-property: background-color, outline;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    &:hover {
+        background-color: #444;
+    }
+
+    &:focus {
+        outline: 1px solid #333;
+    }
+
+    &.red {
+        background-color: var(--color-red-500);
+        border-color: var(--color-red-500);
+        color: white;
+    }
+}
+
+.my-button.secondary {
+    background-color: transparent;
+    color: #000;
+
+    &:hover {
+        outline: 1px solid #000;
+    }
+
+    &.red {
+        border-color: var(--color-red-500);
+        color: var(--color-red-500);
+    }
+}

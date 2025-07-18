@@ -1,0 +1,35 @@
+<h1>Attendance History</h1>
+<p>View you attendance records and filter by status</p>
+
+
+<h3 class="my-3.5">Status</h3>
+<select class="border py-3 px-5 rounded-[5px]">
+    <option>Filter by status</option>
+    @for (status of statuses; track $index) {
+    <option value="{{ status }}">{{ status }}</option>
+    }
+</select>
+
+<div class="overflow-x-auto mt-3 mb-5">
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Sign-in Time</th>
+                <th>Sign-out Time</th>
+                <th>Duration</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (data of attendances(); track data._id) {
+            <tr>
+                <td>{{ data.day }}</td>
+                <td>{{ data.in || 'null'}}</td>
+                <td>{{ data.out || 'null' }}</td>
+                <td>{{ data.duration || 'null' }}</td>
+                <td>{{ data.status || 'null' }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
