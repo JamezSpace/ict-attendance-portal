@@ -24,6 +24,6 @@ export class NavBar {
   }
 
   get isHomeRoute(): boolean {
-    return this.router.url === '/';
+    return this.router.url === '/' || this.router.url === '/auth';
   }
 }
