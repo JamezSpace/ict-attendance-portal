@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+:root {
+    color-scheme: light dark;
+    --primary: #0078d4;
+    --secondary: #00b6ed;
+    --accent: hsl(267, 30%, 50%);
+    --neutral-foreground: #1a1c2c;
+    --neutral-background: #f9f9f9;
+}
+
 .my-flex {
     display: flex;
     align-items: center;
@@ -8,6 +17,16 @@
 html,
 body {
     height: 100%;
+    color: light-dark(var(--neutral-foreground), var(--neutral-background));
+    background-color: light-dark(var(--neutral-background), var(--neutral-foreground));
+}
+
+body.light {
+  color-scheme: light;
+}
+
+body.dark {
+  color-scheme: dark;
 }
 
 input,
@@ -43,6 +62,14 @@ h1 {
 h2 {
     font-size: 1.2em;
     line-height: 1.2em;
+}
+
+.big-text {
+    font-size: 1.75em;
+}
+
+.semi-big-text {
+    font-size: 1.25em;
 }
 
 .mat-mdc-notch-piece.mdc-notched-outline__notch {

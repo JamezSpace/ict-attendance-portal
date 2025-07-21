@@ -1,4 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { Attendance } from '../../interfaces/attendance.interface';
+import { DashboardService } from '../../services/dashboard/dashboard-service';
 
 @Component({
   selector: 'app-attendance-history',
@@ -6,17 +8,13 @@ import { Component, signal } from '@angular/core';
   templateUrl: './attendance-history.html',
   styleUrl: './attendance-history.css'
 })
-export class AttendanceHistory {
+export class AttendanceHistory implements OnInit{
+  private dashboardService = inject(DashboardService);
   statuses = ['late', 'on time', 'absent']
 
-  attendances = signal([
-    {
-      _id: 1,
-      day: 'monday',
-      in: new Date().toLocaleDateString(),
-      out: new Date().toLocaleDateString(),
-      duration: '3 hours',
-      status: 'on time'
-    }
-  ])
+  attendances = this.dashboardService.attendances
+
+  async ngOnInit () {
+    await this.dashboardService.getAttendance();
+  }
 }

@@ -3,6 +3,8 @@ import { Auth } from './pages/auth/auth';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { DashboardHome } from './components/dashboard-home/dashboard-home';
 import { AttendanceHistory } from './components/attendance-history/attendance-history';
+import { Visitors } from './components/visitors/visitors';
+import { authGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
     {
@@ -12,6 +14,7 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         component: Dashboard,
+        canActivate: [authGuard],
         children: [
             {
                 path: '',
@@ -20,7 +23,15 @@ export const routes: Routes = [
             {
                 path: 'attendance',
                 component: AttendanceHistory
-            }
+            },
+            {
+                path: 'visitors',
+                component: Visitors
+            },
+            // {
+            //     path: 'me',
+            //     component: 
+            // }
         ]
     },
 ];

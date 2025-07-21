@@ -1,0 +1,68 @@
+<h1 class="capitalize big-text">My Guests</h1>
+
+<h2 class="capitalize mb-2.5">Generate visitor's passcard</h2>
+
+<form action="">
+    <mat-form-field appearance="outline">
+        <mat-label>Guest name</mat-label>
+        <input type="text" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Guest email</mat-label>
+        <input type="email" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Guest Type</mat-label>
+        <mat-select (selectionChange)="toggleSelectedValue($event)">
+            @for (guest_type of guestTypes; track $index) {
+                <mat-option [value]="guest_type.value" class="capitalize">{{guest_type.viewValue}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    @if (selectedTeenager()) {
+        <div class="flex gap-3 max-w-1/2">
+            <mat-form-field appearance="outline">
+                <mat-label>Region</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Province</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+        </div>
+    }
+    <button class="my-button">Submit</button>
+</form>
+ 
+<h2 class="mt-10 mb-2.5">Guests History</h2>
+<div class="overflow-x-auto pb-30 min-h-20">
+    <table class="relative">
+        <thead>
+            <tr>
+                <th>sn</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+            </tr>
+        </thead>
+        @for (guest of guests(); track $index) {
+        <tbody>
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ guest.name}}</td>
+                <td>{{ guest.phone }}</td>
+                <td>{{ guest.status }}</td>
+                <td>{{ guest.time_in || 'null' }}</td>
+                <td>{{ guest.time_out || 'null' }}</td>
+            </tr>
+        </tbody>
+        }
+        @empty {
+        <div class="text-center w-full py-2 px-5 absolute">
+            <p class="text-gray-700">nothing here</p>
+        </div>
+        }
+    </table>
+</div>

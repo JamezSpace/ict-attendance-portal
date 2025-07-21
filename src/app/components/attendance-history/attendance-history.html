@@ -10,8 +10,8 @@
     }
 </select>
 
-<div class="overflow-x-auto mt-3 mb-5">
-    <table>
+<div class="overflow-x-auto mt-8 mb-5 min-h-20">
+    <table class="relative">
         <thead>
             <tr>
                 <th>Day</th>
@@ -22,14 +22,20 @@
             </tr>
         </thead>
         <tbody>
-            @for (data of attendances(); track data._id) {
+            @for (data of attendances(); track $index) {
             <tr>
                 <td>{{ data.day }}</td>
-                <td>{{ data.in || 'null'}}</td>
+                <td>{{ data.in || 'null' }}</td>
                 <td>{{ data.out || 'null' }}</td>
                 <td>{{ data.duration || 'null' }}</td>
                 <td>{{ data.status || 'null' }}</td>
             </tr>
+            } @empty {
+            <tr>
+                <td colspan="5" class="text-center text-gray-700">nothing here</td>
+            </tr>
             }
         </tbody>
+
     </table>
+</div>
