@@ -24,10 +24,6 @@
     pointer-events: none;
 }
 
-.my-rounded {
-    border-radius: 8px;
-}
-
 .sign-in-btn {
     background-color: var(--accent);
 

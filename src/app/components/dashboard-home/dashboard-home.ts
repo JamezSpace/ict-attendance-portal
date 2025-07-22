@@ -1,10 +1,11 @@
 import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../services/dashboard/dashboard-service';
+import { TasksOverview } from "../tasks-overview/tasks-overview";
 
 @Component({
   selector: 'app-dashboard-home',
-  imports: [],
+  imports: [TasksOverview],
   templateUrl: './dashboard-home.html',
   styleUrl: './dashboard-home.css'
 })

@@ -1,0 +1,53 @@
+.section-descriptor {
+    text-transform: capitalize;
+    font-size: 110%;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 50vw;
+}
+
+.bg-accent {
+    background-color: hsl(from var(--accent) h s calc(l + 30));
+}
+
+.bg-green {
+    background: linear-gradient(to right,
+     hsl(140, 50%, 50%, 0.85),
+     hsl(140, 50%, 50%, 0.85)
+     ), url('/completed_task.png');
+    background-size: 10% cover ;
+    background-repeat: no-repeat;
+    background-position: 50% 45%;
+    color: var(--neutral-background);
+
+    &:hover {
+        background-size: 100%;
+        background-position: 10% 50%;
+    }
+}
+
+.card {
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+    flex: 1;
+
+    &:nth-of-type(2):hover {
+        background-color: hsl(from var(--accent) h s calc(l + 20));
+    }
+
+}
+
+@media screen and (max-width: 48rem) {
+    .row {
+        max-width: 100%;
+
+        &:nth-of-type(2) .card {
+            flex: 1 0 calc(50vw - 40px);
+        }
+    }
+}

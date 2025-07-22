@@ -1,0 +1,33 @@
+<h2 class="mt-10 mb-3.5">Tasks</h2>
+
+@if (total_tasks()) {
+<div class="flex flex-col gap-5">
+    <div class="row">
+        <section class="px-4 py-6 min-w-2xs card custom-box-shadow">
+            <p class="section-descriptor">total Tasks</p>
+            <p class="maxi-text mt-8 font-medium">
+                {{ total_tasks() }}
+            </p>
+        </section>
+    </div>
+    <div class="row">
+        <section class="px-4 py-6 card bg-green">
+            <p class="section-descriptor">tasks completed</p>
+            <p class="maxi-text mt-8 font-medium">
+                {{ completed_tasks() }}
+            </p>
+        </section>
+        <section class="px-4 py-6 card bg-accent">
+            <p class="section-descriptor">unfulfilled tasks</p>
+            <p class="maxi-text mt-8 font-medium">
+                {{ completed_tasks() }}
+            </p>
+        </section>
+    </div>
+</div>
+} @else {
+<article class="flex flex-col items-center gap-6">
+    <img src="blank_todo.svg" alt="just a blank to-do list" class="w-20">
+    <p class="opacity-75">No task assigned to you yet...</p>
+</article>
+}

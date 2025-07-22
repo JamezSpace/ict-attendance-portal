@@ -11,6 +11,25 @@ export class NavBar {
   private router = inject(Router)
   @ViewChild('expandedNavBar') side_nav !: ElementRef<HTMLDivElement>;
 
+  nav_menus = [
+    {
+        route: '/dashboard',
+        name: 'overview'
+    },
+    {
+        route: '/dashboard/attendance',
+        name: 'attendance'
+    },
+    {
+        route: '/dashboard/visitors',
+        name: 'my visitors'
+    },
+    {
+        route: '/dashboard/me',
+        name: 'my profile'
+    }
+  ]
+
   toggleNavBarVisibility() {
     this.side_nav.nativeElement.classList.toggle('opened');
   }

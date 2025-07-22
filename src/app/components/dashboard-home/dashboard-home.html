@@ -15,24 +15,8 @@
     </button>
 </div>
 
-<section class="my-rounded border px-5 py-3">
-    <h2 class="semi-big-text mb-3">Tasks</h2>
-    <div class="my-flex justify-between">
+<app-tasks-overview />
 
-    
-    <div class="left">
-        <p class="capitalize font-500 mb-3">your stat</p>
-    </div>
-    <div class="right">
-        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-            <path fill="currentColor"
-                d="M5.616 21q-.691 0-1.153-.462T4 19.385V6.615q0-.69.463-1.152T5.616 5h1.769V2.77h1.077V5h7.154V2.77h1V5h1.769q.69 0 1.153.463T20 6.616v12.769q0 .69-.462 1.153T18.384 21zm0-1h12.769q.23 0 .423-.192t.192-.424v-8.768H5v8.769q0 .23.192.423t.423.192" />
-        </svg>
-    </div>
-    </div>
-</section>
-
-<br>
-<p class="capitalize cursor-pointer py-2.5 inline-block underline underline-offset-2 font-medium nav-link" (click)="navigateToAttendance()">view my
+<p class="capitalize cursor-pointer py-2.5 mt-16 inline-block underline underline-offset-2 font-medium nav-link" (click)="navigateToAttendance()">view my
     attendance
     history</p>
