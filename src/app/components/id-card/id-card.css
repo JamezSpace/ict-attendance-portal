@@ -1,13 +1,105 @@
+:host {
+    --passport-container-height: 40vh;
+}
+
+#id-card {
+    --cr80-standard-width: 2.125in;
+    --cr80-standard-height: 3.375in;
+
+    width: calc(var(--cr80-standard-width) * 2);
+    height: calc(var(--cr80-standard-height) * 2);
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+
 .image-bg {
     background: url('/id-card-bg.JPG');
     background-size: cover;
     margin-inline: auto;
     color: #fff;
+    position: relative;
+    display: grid;
+    grid-template-rows: "logo"
+     "workers-text"
+      "passport-section" 
+      "information-section" 
+      "footer";
 
-    .box {
-        border: 5px solid #fff;
-        width: 90%;
-        height: 40vh;
+    & > img {
+        grid-area: logo;
+    }
+
+    & > h3 {
+        grid-area: workers-text;
+    }
+
+    & > .box-container {
+        grid-area: passport-section;
+    }
+
+    & > .information-section {
+        grid-area: information-section;
+    }
+
+    & > p {
+        grid-area: footer;
     }
 }
 
+.box-container {
+    position: relative;
+    width: 100%;
+
+    .passport-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 1;
+    }
+
+    .pseudo-box {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 0;
+    }
+
+    .gender-box {
+        position: absolute;
+        right: 0;
+        top: calc(var(--passport-container-height) - 30px);
+        z-index: 2;
+    }
+}
+
+.passport-container {
+    border: 3.5px solid #fff;
+    border-radius: 5px;
+    width: 90%;
+    height: var(--passport-container-height);
+}
+
+.passport-container>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pseudo-box {
+    border-radius: 5px;
+    border: 3.5px solid #fff;
+    width: 90%;
+    height: 40vh;
+    background-color: var(--accent);
+}
+
+.gender-box {
+    border: 5px solid #fff;
+    border-radius: 5px;
+    font-size: 2em;
+    text-transform: uppercase;
+    background-color: var(--accent);
+    padding: 15px;
+}
