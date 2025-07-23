@@ -1,24 +1,42 @@
-<div class="image-bg px-10 py-3.5 flex flex-col items-center" id="id-card">
-    <img src="/logo.PNG" alt="" class="w-30">
+<div class="py-5 flex flex-wrap gap-3.5">
+    <section class="flex flex-col items-center">
+        <div class="image-bg front-part px-10 py-3.5 flex flex-col items-center mb-7.5" id="id-card" #frontPage>
+            <img src="/logo.PNG" alt="" class="w-25">
 
-    <h3 class="uppercase my-4">workers id card</h3>
+            <h3 class="uppercase mt-4 mb-2">workers id card</h3>
 
-    <article class="box-container">
-        <div class="passport-container">
-            <img src="/passport.jpg" alt="person's passport or face card">
+            <article class="box-container">
+                <div class="passport-container">
+                    <img src="/passport.jpg" alt="person's passport or face card">
+                </div>
+                <div class="pseudo-box"></div>
+                <div class="gender-box">{{ genderInitial }}</div>
+            </article>
+
+            <article class="information-section">
+                <p>
+                    Name: <span class="capitalize">{{ user_profile?.name }}</span>
+                </p>
+                <p>
+                    Subunit: <span class="capitalize">{{ user_profile?.subunit }}</span>
+                </p>
+                <p>
+                    Province: <span class="uppercase">{{ user_profile?.province }}</span>
+                </p>
+                <p>
+                    Region: <span class="uppercase">{{ user_profile?.region }}</span>
+                </p>
+            </article>
+
+            <p>a certified member of DTCE techies</p>
         </div>
-        <div class="pseudo-box"></div>
-        <div class="gender-box">{{ genderInitial }}</div>
-    </article>
+        <h3 class="uppercase">front part</h3>
+    </section>
+    <section class="flex flex-col items-center">
+        <div class="image-bg back-part mb-7.5" id="id-card">
 
-    <article class="information-section">
-        <h2 class="capitalize">James Samuel</h2>
-        <h2>technical</h2>
-        <div class="flex justify-between">
-            <p>lp10</p>
-            <p>rg37</p>
         </div>
-    </article>
-
-    <p>a certified member of DTCE techies</p>
+        <h3 class="uppercase">back part</h3>
+    </section>
+    <button class="my-button self-start" (click)="exportAsPDF()">print id card</button>
 </div>

@@ -1,13 +1,13 @@
 :host {
     --passport-container-height: 40vh;
+    --cr80-standard-width: 2.125in;
+    --cr80-standard-height: 3.375in;
+    --scaling : 2;
 }
 
 #id-card {
-    --cr80-standard-width: 2.125in;
-    --cr80-standard-height: 3.375in;
-
-    width: calc(var(--cr80-standard-width) * 2);
-    height: calc(var(--cr80-standard-height) * 2);
+    width: calc(var(--cr80-standard-width) * var(--scaling));
+    height: calc(var(--cr80-standard-height) * var(--scaling));
     position: relative;
     font-family: Arial, sans-serif;
 }
@@ -18,24 +18,32 @@
     background-size: cover;
     margin-inline: auto;
     color: #fff;
+}
+
+.front-part {
     position: relative;
     display: grid;
-    grid-template-rows: "logo"
+    grid-template-areas: "logo"
      "workers-text"
       "passport-section" 
       "information-section" 
       "footer";
+    grid-template-rows: 10% 8% 47% 30% 5%;
 
     & > img {
         grid-area: logo;
+        justify-self: center;
     }
 
     & > h3 {
         grid-area: workers-text;
+        align-self: flex-start;
+        justify-self: center;
     }
 
     & > .box-container {
         grid-area: passport-section;
+        align-self: flex-start;
     }
 
     & > .information-section {
@@ -44,6 +52,9 @@
 
     & > p {
         grid-area: footer;
+        justify-self: center;
+        align-self: self-end;
+        font-size: 90%;
     }
 }
 
@@ -61,24 +72,27 @@
 
     .pseudo-box {
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 34px;
+        top: 7px;
         z-index: 0;
     }
 
     .gender-box {
         position: absolute;
-        right: 0;
-        top: calc(var(--passport-container-height) - 30px);
+        right: 25px;
+        top: calc(var(--passport-container-height) - 25px);
+        /* top: calc(var(--cr80-standard-height) * var(--scaling) / 3.5); */
         z-index: 2;
     }
 }
 
 .passport-container {
-    border: 3.5px solid #fff;
+    border: 2px solid #fff;
     border-radius: 5px;
-    width: 90%;
+    /* width: 60%; */
+    width: 75%;
     height: var(--passport-container-height);
+    /* height: 1fr; */
 }
 
 .passport-container>img {
@@ -89,17 +103,31 @@
 
 .pseudo-box {
     border-radius: 5px;
-    border: 3.5px solid #fff;
-    width: 90%;
+    border: 2px solid #fff;
+    width: 75%;
     height: 40vh;
     background-color: var(--accent);
 }
 
 .gender-box {
-    border: 5px solid #fff;
+    border: 2px solid #fff;
     border-radius: 5px;
-    font-size: 2em;
+    font-size: 1.75em;
     text-transform: uppercase;
     background-color: var(--accent);
-    padding: 15px;
+    padding: 10px;
+}
+
+.information-section {
+    width: 75%;
+    margin-inline: auto;
+
+    & > p {
+        margin-bottom: 3.5%;
+        font-size: 1.2em;
+    }
+
+    &> p span {
+        font-weight: bold;
+    }
 }
