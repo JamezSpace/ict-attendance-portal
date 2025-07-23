@@ -3,6 +3,7 @@ import { Environment } from '../../environments/environment';
 import { Attendance } from '../../interfaces/attendance.interface';
 import { Guests } from '../../interfaces/visitors.interface';
 import { Tasks } from '../../interfaces/tasks.interfaces';
+import { UserProfile } from '../../interfaces/profile.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,7 @@ export class DashboardService {
     attendances = signal<Attendance[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])
+    profile_data = signal<UserProfile | null>(null)
 
     async getAttendance() {
         try {
@@ -87,6 +89,27 @@ export class DashboardService {
                 this.tasks.set(result.data);
             } else {
                 console.error('Failed to fetch tasks:', result.message);
+            }
+        } catch (error: any) {
+            console.error(error);
+        }
+    }
+
+    async getProfileData() {
+        try {
+            const response = await fetch(`${Environment.backend_url}/profile`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${this.accessToken}`
+                }
+            })
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                this.profile_data.set(result.data);
+            } else {
+                console.error('Failed to fetch profile data:', result.message);
             }
         } catch (error: any) {
             console.error(error);

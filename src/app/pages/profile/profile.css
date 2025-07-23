@@ -1,0 +1,41 @@
+article.grid {
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+}
+
+.field {
+    flex: 1;
+    
+    & > label {
+        text-transform: capitalize;
+        color: #666;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    & > p:not(.email) {
+        text-transform: uppercase;
+    }
+
+    & > input {
+        padding: 5px 8px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        width: 100%;
+    }
+}
+
+.grid-container {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: "left right";
+
+    .personal {
+        grid-area: left;
+    }
+
+    .personal-expanded {
+        grid-area: right;
+    }
+}
+

@@ -1,0 +1,13 @@
+.image-bg {
+    background: url('/id-card-bg.JPG');
+    background-size: cover;
+    margin-inline: auto;
+    color: #fff;
+
+    .box {
+        border: 5px solid #fff;
+        width: 90%;
+        height: 40vh;
+    }
+}
+

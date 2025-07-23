@@ -1,1 +1,65 @@
-<p>profile works!</p>
+<h1 class="capitalize">profile</h1>
+<p class="mt-2">View all your personal details here</p>
+
+<div class="grid-container">
+    <section class="personal flex flex-col items-center gap-3.5 pl-5 pr-10 py-2 rounded-2xl my-2">
+        <img src="/user.svg" alt="profile picture of user" class="aspect-square w-60">
+        <div class="right py-3.5 w-full text-center">
+            @if (user_profile()) {
+            <h2 class="mb-3 capitalize big-text">{{ user_profile()?.name }}</h2>
+            <p class="capitalize">{{ user_profile()?.role }}</p>
+            }
+        </div>
+    </section>
+
+    <section class="personal-expanded py-10">
+        <div class="flex justify-between items-start">
+            <h2 class="capitalize mb-8.5">personal information</h2>
+            <button class="p-2 rounded-[50%] border border-transparent hover:border-black" (click)="toggleEditMode()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"><path d="M9.533 11.15A1.82 1.82 0 0 0 9 12.438V15h2.578c.483 0 .947-.192 1.289-.534l7.6-7.604a1.82 1.82 0 0 0 0-2.577l-.751-.751a1.82 1.82 0 0 0-2.578 0z"/><path d="M21 12c0 4.243 0 6.364-1.318 7.682S16.242 21 12 21s-6.364 0-7.682-1.318S3 16.242 3 12s0-6.364 1.318-7.682S7.758 3 12 3"/></g></svg>
+            </button>
+        </div>
+        <article class="grid gap-x-3.5 gap-y-5">
+            <div class="field">
+                <label for="">name</label>
+                @if (editMode()) {
+                <input type="text" [value]="user_profile()?.name">
+                } @else {
+                <p>{{ user_profile()?.name }}</p>
+                }
+            </div>
+            <div class="field">
+                <label for="">email address</label>
+                <p class="email">{{ user_profile()?.email }}</p>
+            </div>
+            <div class="field">
+                <label for="">province</label>
+                @if (editMode()) {
+                <input type="text" [value]="user_profile()?.province">
+                } @else {
+                <p>{{ user_profile()?.province }}</p>
+                }
+            </div>
+            <div class="field">
+                <label for="">region</label>
+                @if (editMode()) {
+                <input type="text" [value]="user_profile()?.region">
+                } @else {
+                <p>{{ user_profile()?.region }}</p>
+                }
+            </div>
+            <div class="field">
+                <label for="">subunit</label>
+                
+                <p>{{ user_profile()?.subunit }}</p>
+            </div>
+            <div class="field">
+                <label for="">role</label>
+                
+                <p>{{ user_profile()?.role }}</p>
+            </div>
+        </article>
+        <button class="my-button mt-14 w-full" (click)="generateId()">Generate My ID card</button>
+    </section>
+
+</div>
