@@ -1,11 +1,13 @@
-<h1 class="big-text">Welcome back,
-    <span class="capitalize">{{ username() }}</span>
+<h1 class="big-text pt-7">Welcome back,
+    <span class="capitalize">{{ username() }}</span>!
 </h1>
 
 <section class="">
     <!-- <p>This is Day {{ todayDay }} of the convention</p> -->
-    
-    <h2>This is Day 3 of the convention</h2>
+
+    <h2>This is Day 3 of the
+        <span class="uppercase primary">convention</span>
+    </h2>
 </section>
 
 <div class="sign-in-status my-5 pattern h-50 my-rounded relative">
@@ -17,6 +19,7 @@
 
 <app-tasks-overview />
 
-<p class="capitalize cursor-pointer py-2.5 mt-16 inline-block underline underline-offset-2 font-medium nav-link" (click)="navigateToAttendance()">view my
+<p class="capitalize cursor-pointer py-2.5 mt-16 inline-block underline underline-offset-2 font-medium nav-link"
+    (click)="navigateToAttendance()">view my
     attendance
     history</p>

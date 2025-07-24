@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
 
 :root {
     color-scheme: light dark;
-    --primary: #0078d4;
-    --secondary: #00b6ed;
+    --primary: hsl(240, 100%, 36%);
+    --primary-shade-1: #bdbdff;
+    --secondary: hsl(0, 96%, 43%);
+    --secondary-shade-1: #fec8c8;
     --accent: hsl(267, 30%, 50%);
     --neutral-foreground: #1a1c2c;
     --neutral-background: #f9f9f9;
@@ -19,7 +22,9 @@ body {
     height: 100%;
     color: light-dark(var(--neutral-foreground), var(--neutral-background));
     background-color: light-dark(var(--neutral-background), var(--neutral-foreground));
-    color-scheme: light;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 input,
@@ -73,13 +78,15 @@ h2 {
 }
 
 .my-button {
+    --bg-color: var(--primary);
+
     padding: 10px 20px;
     gap: 8px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid var(--bg-color);
+    border-radius: 0.5rem;
     font-size: 90%;
-    background-color: black;
-    color: #fff;
+    background-color: var(--bg-color);
+    color: var(--neutral-background);
     font-weight: 400;
     text-transform: capitalize;
     transition-property: background-color, outline;
@@ -87,7 +94,9 @@ h2 {
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 
     &:hover {
-        background-color: #444;
+        --bg-color: hsl(from var(--primary) h s calc(l - 10));
+
+        background-color: var(--bg-color);
     }
 
     &:focus {

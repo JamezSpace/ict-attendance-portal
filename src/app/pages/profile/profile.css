@@ -27,7 +27,7 @@ article.grid {
 .grid-container {
     display: grid;
     gap: 15px;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: calc(30% - 7.5px) calc(70% - 7.5px);
     grid-template-areas: "left right";
 
     .personal {

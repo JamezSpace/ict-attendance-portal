@@ -1,9 +1,10 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [ RouterModule ],
+  imports: [RouterModule, MatMenuModule],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css'
 })
@@ -13,33 +14,34 @@ export class NavBar {
 
   nav_menus = [
     {
-        route: '/dashboard',
-        name: 'overview'
+      route: '/dashboard',
+      name: 'overview'
     },
     {
-        route: '/dashboard/attendance',
-        name: 'attendance'
+      route: '/dashboard/attendance',
+      name: 'attendance'
     },
     {
-        route: '/dashboard/visitors',
-        name: 'my visitors'
+      route: '/dashboard/visitors',
+      name: 'my visitors'
     },
     {
-        route: '/dashboard/me',
-        name: 'my profile'
+      route: '/dashboard/me',
+      name: 'my profile'
     }
   ]
 
-  toggleNavBarVisibility() {
-    this.side_nav.nativeElement.classList.toggle('opened');
-  }
-
   logout() {
     // call service mothod to logout
-    
 
-    // close nav bar afterwards
-    this.toggleNavBarVisibility()
+  }
+
+  toggleProfileView() {
+
+  }
+
+  toggleNavBarVisibility() {
+    this.side_nav.nativeElement.classList.toggle('opened')
   }
 
   get isHomeRoute(): boolean {

@@ -50,10 +50,10 @@ export class DashboardHome {
 
   signedIn = signal(true);
   signInStatusText = computed(() => {
-    return this.signedIn() ? 'You signed in today at 8:12AM' : "You haven't signed in yet"
+    return this.signedIn() ? 'You clocked in today at 8:12AM' : "You haven't clocked in yet"
   })
   signInActionText = computed(() => {
-    return this.signedIn() ? 'sign out' : 'sign in'
+    return this.signedIn() ? 'clock out' : 'clock in'
   })
   // officeTiming = {
   //   start_time: new Date().toLocaleTimeString('en-NG', {

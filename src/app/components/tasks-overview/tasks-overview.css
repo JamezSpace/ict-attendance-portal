@@ -7,27 +7,33 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    max-width: 50vw;
+    /* max-width: 50vw; */
 }
 
-.bg-accent {
-    background-color: hsl(from var(--accent) h s calc(l + 30));
-}
-
-.bg-green {
-    background: linear-gradient(to right,
-     hsl(140, 50%, 50%, 0.85),
-     hsl(140, 50%, 50%, 0.85)
-     ), url('/completed_task.png');
-    background-size: 10% cover ;
-    background-repeat: no-repeat;
-    background-position: 50% 45%;
-    color: var(--neutral-background);
-
-    &:hover {
-        background-size: 100%;
-        background-position: 10% 50%;
+.bg-primary {
+    &:first-of-type {
+        background-color: var(--secondary-shade-1);
+        background-size: 10% cover;
+        background-repeat: no-repeat;
+        background-position: 50% 45%;
+        color: var(--neutral-foreground);
     }
+
+    &:nth-of-type(2) {
+        background-color: var(--primary-shade-1);
+        color: var(--neutral-foreground);
+    }
+
+    &:first-of-type:hover {
+        background-color: var(--secondary);
+        color: var(--neutral-background);
+    }
+
+    &:nth-of-type(2):hover {
+        background-color: var(--primary);
+        color: var(--neutral-background);
+    }
+
 }
 
 .card {
@@ -35,11 +41,6 @@
     cursor: pointer;
     transition: background-color 200ms ease;
     flex: 1;
-
-    &:nth-of-type(2):hover {
-        background-color: hsl(from var(--accent) h s calc(l + 20));
-    }
-
 }
 
 @media screen and (max-width: 48rem) {

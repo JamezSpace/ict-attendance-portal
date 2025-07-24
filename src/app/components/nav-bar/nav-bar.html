@@ -1,4 +1,4 @@
-<header class="my-flex justify-between px-5 mb-10 custom-box-shadow">
+<header class="my-flex justify-between px-5 custom-box-shadow">
     <a href="/dashboard" class="my-flex">
         <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
         <span>Attendance Tracker</span>
@@ -11,8 +11,11 @@
                     d="M5.5 18.77q-.213 0-.356-.145T5 18.268t.144-.356t.356-.143h1.116V9.846q0-1.96 1.24-3.447T11 4.546V4q0-.417.291-.708q.291-.292.707-.292t.709.292T13 4v.546q1.904.365 3.144 1.853t1.24 3.447v7.923H18.5q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm6.497 2.615q-.668 0-1.14-.475t-.472-1.14h3.23q0 .67-.475 1.142q-.476.472-1.143.472M7.616 17.77h8.769V9.846q0-1.823-1.281-3.104T12 5.462t-3.104 1.28t-1.28 3.104z" />
             </svg>
         </button>
-        <button (click)="toggleNavBarVisibility()" class="p-2.5 cursor-pointer"
-            [class.pointer-events-none]="isHomeRoute" [class.opacity-50]="isHomeRoute" [disabled]="isHomeRoute">
+        <button (click)="toggleProfileView()" class="p-2.5 cursor-pointer" [class.pointer-events-none]="isHomeRoute"
+            [class.opacity-50]="isHomeRoute" [disabled]="isHomeRoute" [matMenuTriggerFor]="profileMenu">
+            <img src="/passport.jpg" alt="user profile passport" class="aspect-square h-9 object-cover rounded-full">
+        </button>
+        <button (click)="toggleNavBarVisibility()" class="hidden max-md:inline-flex">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.5" d="M4 8.5h16m-16 7h16" />
@@ -21,13 +24,16 @@
     </div>
 </header>
 
-<div class="side-nav" #expandedNavBar>
-    <nav class="flex flex-col items-center">
+<div class="side-nav min-md:border-b min-md:border-gray-200" #expandedNavBar>
+    <nav class="inline-flex gap-5 max-md:flex max-md:flex-col max-md:mx-auto max-md:w-3/5">
         @for (nav of nav_menus; track $index) {
-            <a href="" [routerLink]="nav.route" routerLinkActive="active" class="capitalize" (click)="toggleNavBarVisibility()">{{ nav.name }}</a>
+        <a href="" [routerLink]="nav.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+            class="capitalize"
+            (click)="toggleNavBarVisibility()">{{ nav.name }}</a>
         }
-        
-        <a href="" routerLink="/" routerLinkActive="active" (click)="logout()" class="mt-8 text-red-500 font-medium">Log
-            Out</a>
     </nav>
 </div>
+
+<mat-menu #profileMenu="matMenu" class="py-1.5">
+    <button class="capitalize w-full logout_btn py-2" (click)="logout()">logout</button>
+</mat-menu>

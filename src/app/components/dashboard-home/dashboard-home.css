@@ -25,10 +25,10 @@
 }
 
 .sign-in-btn {
-    background-color: var(--accent);
+    background-color: var(--primary);
 
     &:hover {
-        background-color: hsl(from var(--accent) h s calc(l - 10));
+        background-color: hsl(from var(--primary) h s calc(l - 10));
     }
 }
 
@@ -40,4 +40,8 @@
         color: var(--accent);
         text-underline-offset: 5px;
     }
+}
+
+.primary {
+    color: var(--primary);
 }
