@@ -39,3 +39,13 @@ article.grid {
     }
 }
 
+@media screen and (max-width: 40rem) {
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    article.grid {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+}

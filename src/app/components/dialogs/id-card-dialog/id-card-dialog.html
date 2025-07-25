@@ -1,0 +1,65 @@
+<div class="p-5 max-sm:py-10">
+    <div id="print-card" class="flex flex-wrap items-center gap-3.5" #printCard>
+        <section class="flex flex-col gap-2 items-center">
+            <div class="image-bg front-part px-10 py-3.5 flex flex-col items-center" id="id-card" #front>
+                <img src="/logo.PNG" alt="" class="w-25">
+
+                <h3 class="uppercase mt-4 mb-2">workers id card</h3>
+
+                <article class="box-container">
+                    <div class="passport-container">
+                        <img src="/passport.jpg" alt="person's passport or face card">
+                    </div>
+                    <div class="pseudo-box"></div>
+                    <div class="gender-box">{{ genderInitial }}</div>
+                </article>
+
+                <article class="information-section">
+                    <p class="text-center uppercase mt-5">{{ data.role }}</p>
+                    <p>
+                        Name: <span class="capitalize">{{ data.name }}</span>
+                    </p>
+                    <p>
+                        Subunit: <span class="capitalize">{{ data.subunit }}</span>
+                    </p>
+                    <p>
+                        Province: <span class="uppercase">{{ data.province }}</span>
+                    </p>
+                    <p>
+                        Region: <span class="uppercase">{{ data.region }}</span>
+                    </p>
+                </article>
+
+                <p>a certified member of DTCE techies</p>
+            </div>
+            <h3 class="uppercase">front part</h3>
+        </section>
+        <section class="flex flex-col gap-2 items-center">
+            <div class="image-bg back-part mb-7.5" id="id-card" #back>
+                <img src="/logo.PNG" alt="" class="w-25">
+
+                <p class="px-10">Members ID cards are non-transferrable and remain the property of RCCG DTCE iCT.
+                    <br><br>
+                    Members are expected to uphold the core values of RCCG Technology Department and promote ICT
+                    advancement
+                    <br><br>
+                    For verification, scan the QR code or visit the official website
+                </p>
+
+                <img src="" alt="qr code of the department">
+
+                <section id="coordinators-sign">
+                    <img src="/coord-signature.png" alt="pst john kusimo's, coordinators signature"
+                        class="w-35 justify-self-center">
+                    <hr class="my-2">
+                    <p class="text-center">
+                        <span class="font-medium">Coordinator</span>
+                        , DTCE iCT
+                    </p>
+                </section>
+            </div>
+            <h3 class="uppercase">back part</h3>
+        </section>
+    </div>
+    <button class="my-button self-start" (click)="exportAsPDF()">print id card</button>
+</div>

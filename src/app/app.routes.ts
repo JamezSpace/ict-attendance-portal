@@ -6,7 +6,6 @@ import { AttendanceHistory } from './components/attendance-history/attendance-hi
 import { Visitors } from './components/visitors/visitors';
 import { authGuard } from './guard/auth-guard';
 import { Profile } from './pages/profile/profile';
-import { IdCard } from './components/id-card/id-card';
 
 export const routes: Routes = [
     {
@@ -33,10 +32,6 @@ export const routes: Routes = [
             {
                 path: 'me',
                 component: Profile
-            },
-            {
-                path: 'id',
-                component: IdCard
             }
         ]
     },

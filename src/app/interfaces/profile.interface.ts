@@ -2,9 +2,10 @@ export interface UserProfile {
     _id: string;
     name: string;
     email: string;
+    gender: 'male' | 'female';
     role: 'member' | 'executive' | 'official';
-    subunit?: string;
     region: string;
     province: string;
-    gender: 'male' | 'female';
+    subunit?: string;
+    passport_url: string;
 }

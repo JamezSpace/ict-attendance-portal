@@ -12,7 +12,7 @@ html {
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
     ),
-    typography: Roboto,
+    typography: "Outfit",
     density: 0,
   ));
 
@@ -22,6 +22,11 @@ html {
     container-vertical-padding: 10px,
     // filled-with-label-container-padding-top: 0,
     // filled-with-label-container-padding-bottom: 0
+  ));
+
+  @include mat.dialog-overrides((
+    container-min-width: 80vw,
+    // container-small-max-width: 100vw
   ));
 
   // Default the application to a light color theme. This can be changed to

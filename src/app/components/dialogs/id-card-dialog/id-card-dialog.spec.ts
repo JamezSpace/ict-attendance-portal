@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IdCard } from './id-card';
+import { IdCardDialog } from './id-card-dialog';
 
-describe('IdCard', () => {
-  let component: IdCard;
-  let fixture: ComponentFixture<IdCard>;
+describe('IdCardDialog', () => {
+  let component: IdCardDialog;
+  let fixture: ComponentFixture<IdCardDialog>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IdCard]
+      imports: [IdCardDialog]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(IdCard);
+    fixture = TestBed.createComponent(IdCardDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

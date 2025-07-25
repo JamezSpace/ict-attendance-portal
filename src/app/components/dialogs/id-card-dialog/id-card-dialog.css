@@ -2,14 +2,15 @@
     --passport-container-height: 40vh;
     --cr80-standard-width: 2.125in;
     --cr80-standard-height: 3.375in;
-    --scaling : 2;
+    --scaling: 2;
 }
 
 #id-card {
     width: calc(var(--cr80-standard-width) * var(--scaling));
     height: calc(var(--cr80-standard-height) * var(--scaling));
     position: relative;
-    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    align-content: center;
 }
 
 
@@ -21,36 +22,35 @@
 }
 
 .front-part {
-    position: relative;
     display: grid;
     grid-template-areas: "logo"
-     "workers-text"
-      "passport-section" 
-      "information-section" 
-      "footer";
+        "workers-text"
+        "passport-section"
+        "information-section"
+        "footer";
     grid-template-rows: 10% 8% 47% 30% 5%;
 
-    & > img {
+    &>img {
         grid-area: logo;
         justify-self: center;
     }
 
-    & > h3 {
+    &>h3 {
         grid-area: workers-text;
         align-self: flex-start;
         justify-self: center;
     }
 
-    & > .box-container {
+    &>.box-container {
         grid-area: passport-section;
         align-self: flex-start;
     }
 
-    & > .information-section {
+    &>.information-section {
         grid-area: information-section;
     }
 
-    & > p {
+    &>p {
         grid-area: footer;
         justify-self: center;
         align-self: self-end;
@@ -122,12 +122,47 @@
     width: 75%;
     margin-inline: auto;
 
-    & > p {
+    &>p {
         margin-bottom: 3.5%;
         font-size: 1.2em;
+
+        &:first-of-type {
+            margin-bottom: 5%;
+        }
     }
 
-    &> p span {
+    &>p span {
         font-weight: bold;
+    }
+}
+
+.back-part {
+    margin-block: auto;
+    display: grid;
+    grid-template-areas: "logo"
+        "regular-text"
+        "department-qr-code"
+        "coordinators-sign";
+    grid-template-rows: 10% 35% 30% 15%;
+
+    &>img:first-of-type {
+        grid-area: logo;
+        justify-self: center;
+    }
+
+    &>p {
+        grid-area: regular-text;
+        justify-self: center;
+        align-content: center;
+    }
+
+    &>img:nth-of-type(2) {
+        grid-area: department-qr-code;
+        justify-self: center;
+    }
+
+    & > section {
+        grid-area: coordinators-sign;
+        justify-self: center;
     }
 }
