@@ -1,0 +1,28 @@
+.nav-links-container {
+
+    &>h2 {
+        text-transform: capitalize;
+        margin-bottom: 5px;
+    }
+
+    &> a {
+        display: block;
+        padding: 1.5px 5px;
+    }
+
+    &:nth-of-type(2) a {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+}
+
+.sm-container {
+
+    .sm {
+        display: inline-block;
+        padding: 5px ;
+        border-radius: 50%;
+        border: 1px solid #000;
+    }
+}

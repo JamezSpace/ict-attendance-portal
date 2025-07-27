@@ -1,25 +1,37 @@
 import { Routes } from '@angular/router';
+import { AttendanceHistory } from './pages/users/attendance-history/attendance-history';
+import { DashboardHome as UserDashboardHome } from './components/users/dashboard-home/dashboard-home';
+import { DashboardHome as AdminDashboardHome } from './components/admin/dashboard-home/dashboard-home';
+import { Visitors as UserVisitors } from './pages/users/visitors/visitors';
+import { Visitors as AdminVisitors } from './pages/admin/visitors/visitors';
+import { Dashboard as AdminDashboard } from './pages/admin/dashboard/dashboard';
 import { Auth } from './pages/auth/auth';
-import { Dashboard } from './pages/dashboard/dashboard';
-import { DashboardHome } from './components/dashboard-home/dashboard-home';
-import { AttendanceHistory } from './components/attendance-history/attendance-history';
-import { Visitors } from './components/visitors/visitors';
+import { Dashboard as UserDashboard } from './pages/users/dashboard/dashboard';
+import { Profile } from './pages/users/profile/profile';
 import { authGuard } from './guard/auth-guard';
-import { Profile } from './pages/profile/profile';
+import { Users } from './pages/admin/users/users';
+import { Teams } from './pages/admin/teams/teams';
+import { Tasks } from './pages/admin/tasks/tasks';
+import { Attendance } from './pages/admin/attendance/attendance';
+import { Index } from './pages/index';
 
 export const routes: Routes = [
+    {
+        path: '',
+        component: Index
+    },
     {
         path: 'auth',
         component: Auth
     },
     {
         path: 'dashboard',
-        component: Dashboard,
+        component: UserDashboard,
         // canActivate: [authGuard],
         children: [
             {
                 path: '',
-                component: DashboardHome
+                component: UserDashboardHome
             },
             {
                 path: 'attendance',
@@ -27,7 +39,7 @@ export const routes: Routes = [
             },
             {
                 path: 'visitors',
-                component: Visitors
+                component: UserVisitors
             },
             {
                 path: 'me',
@@ -35,4 +47,35 @@ export const routes: Routes = [
             }
         ]
     },
+    {
+        path: 'admin',
+        component: AdminDashboard,
+        // canActivate: [authGuard],
+        children: [
+            {
+                path: '',
+                component: AdminDashboardHome
+            },
+            {
+                path: 'users',
+                component: Users
+            },
+            {
+                path: 'visitors',
+                component: AdminVisitors
+            },
+            {
+                path: 'teams',
+                component: Teams
+            },
+            {
+                path: 'tasks',
+                component: Tasks
+            },
+            {
+                path: 'attendance',
+                component: Attendance
+            }
+        ]
+    }
 ];

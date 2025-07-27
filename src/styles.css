@@ -103,29 +103,56 @@ h2 {
         outline: 1px solid #333;
     }
 
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
     &.red {
-        background-color: var(--color-red-500);
-        border-color: var(--color-red-500);
+        background-color: var(--secondary);
+        border-color: var(--secondary);
         color: white;
+    }
+
+    &.red:hover {
+        background-color: hsl(from var(--secondary) h s calc(l - 10));
     }
 }
 
 .my-button.secondary {
     background-color: transparent;
-    color: #000;
+    color: var(--primary);
 
     &:hover {
-        outline: 1px solid #000;
+        outline: 1px solid var(--primary);
     }
 
     &.red {
-        border-color: var(--color-red-500);
-        color: var(--color-red-500);
+        border-color: var(--seconary);
+        color: var(--seconary);
     }
 }
 
 .my-rounded {
     border-radius: 8px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th {
+        text-align: left;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 }
 
 .custom-box-shadow {

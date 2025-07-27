@@ -1,7 +1,7 @@
 <header class="my-flex justify-between px-5 custom-box-shadow">
     <a href="/dashboard" class="my-flex">
         <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
-        <span>Attendance Tracker</span>
+        <span>iCT Systems</span>
     </a>
     <div class="right my-flex gap-3 5">
         <button [class.hidden]="isHomeRoute">
@@ -12,7 +12,7 @@
             </svg>
         </button>
         <button (click)="toggleProfileView()" class="p-2.5 cursor-pointer" [class.pointer-events-none]="isHomeRoute"
-            [class.opacity-50]="isHomeRoute" [disabled]="isHomeRoute" [matMenuTriggerFor]="profileMenu">
+            [class.hidden]="isHomeRoute" [disabled]="isHomeRoute" [matMenuTriggerFor]="profileMenu">
             <img src="/passport.jpg" alt="user profile passport" class="aspect-square h-9 object-cover rounded-full">
         </button>
         <button (click)="toggleNavBarVisibility()" class="hidden max-md:inline-flex">
@@ -24,7 +24,7 @@
     </div>
 </header>
 
-<div class="side-nav min-md:border-b min-md:border-gray-200" #expandedNavBar>
+<div class="side-nav min-md:border-b min-md:border-gray-200" [class.hidden]="isHomeRoute" #expandedNavBar>
     <nav class="inline-flex gap-5 max-md:flex max-md:flex-col max-md:mx-auto max-md:w-3/5">
         @for (nav of nav_menus; track $index) {
         <a href="" [routerLink]="nav.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"

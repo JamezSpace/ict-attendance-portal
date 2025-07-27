@@ -1,0 +1,36 @@
+<header class="my-flex justify-between px-5 custom-box-shadow">
+    <a href="/" class="my-flex">
+        <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
+        <span>RCCG DTCE iCT</span>
+    </a>
+    <div class="right my-flex gap-3.5 justify-between w-3/4 max-md:justify-end">
+        <nav class="w-3/5 pl-5 flex justify-between max-md:hidden">
+            <a href="">about</a>
+            <a href="">sub units</a>
+            <a href="">resources</a>
+            <a href="">community</a>
+            <a href="">support</a>
+        </nav>
+        
+        <div class="actions">
+            <button class="my-button" (click)="navigateToAuthPage()">login</button>
+        </div>
+
+        <button (click)="toggleNavBarVisibility()" class="hidden max-md:inline-flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.5" d="M4 8.5h16m-16 7h16" />
+            </svg>
+        </button>
+    </div>
+</header>
+
+<div class="side-nav min-md:border-b min-md:border-gray-200 py-7  fixed top-[48px] w-full bg-white" #expandedNavBar>
+    <nav class="hidden gap-5 text-center max-md:flex max-md:flex-col max-md:mx-auto max-md:w-3/5">
+        <a href="" (click)="toggleNavBarVisibility()">about</a>
+        <a href="" (click)="toggleNavBarVisibility()">sub units</a>
+        <a href="" (click)="toggleNavBarVisibility()">resources</a>
+        <a href="" (click)="toggleNavBarVisibility()">community</a>
+        <a href="" (click)="toggleNavBarVisibility()">support</a>
+    </nav>
+</div>

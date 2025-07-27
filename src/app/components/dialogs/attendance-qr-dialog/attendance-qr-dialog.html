@@ -1,0 +1,13 @@
+<div class="p-5">
+    @if (printNow()) {
+        <h1 class="capitalize mb-2 text-center">DTCE ICT Attendance QR code</h1>    
+
+        <qrcode [qrdata]="data.qrValue" [width]="512" [errorCorrectionLevel]="'M'"></qrcode>
+    } @else {
+        <h1 class="capitalize mb-3.5 text-center">Here's the QR code</h1>
+
+        <qrcode [qrdata]="data.qrValue" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        
+        <button class="my-button mt-3.5 w-full" (click)="printQr()">print page</button>
+    } 
+</div>

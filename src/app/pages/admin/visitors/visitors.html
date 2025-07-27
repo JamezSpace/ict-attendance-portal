@@ -1,0 +1,52 @@
+<h1 class="capitalize pt-7">guests</h1>
+<div class="my-flex gap-3">
+    <mat-form-field appearance="outline">
+        <mat-label>Day</mat-label>
+        <mat-select [(value)]="selectedDay">
+            <mat-option>- -</mat-option>
+            <mat-option value="day-1">Day 1</mat-option>
+            <mat-option value="day-2">Day 2</mat-option>
+            <mat-option value="day-3">Day 3</mat-option>
+            <mat-option value="day-4">Day 4</mat-option>
+            <mat-option value="day-5">Day 5</mat-option>
+            <mat-option value="day-6">Day 6</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedStatus">
+            <mat-option>- -</mat-option>
+            <mat-option value="opened">Opened</mat-option>
+            <mat-option value="closed">Closed</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<table>
+    <thead>
+        <th>id</th>
+        <th>name</th>
+        <th>status</th>
+        <th>phone</th>
+        <th>time in</th>
+        <th>time out</th>
+    </thead>
+    <tbody>
+        @for (guest of guests(); track $index) {
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ guest.name }}</td>
+                <td>{{ guest.status }}</td>
+                <td>{{ guest.phone }}</td>
+                <td>{{ guest.time_in }}</td>
+                <td>{{ guest.time_out }}</td>
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="7" class="text-gray-700">
+                    <p class="text-center my-5">nothing here</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

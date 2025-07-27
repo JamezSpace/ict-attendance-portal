@@ -1,0 +1,38 @@
+<h1 class="capitalize pt-7">users</h1>
+<mat-form-field appearance="outline" class="w-full">
+    <mat-label>Search Users</mat-label>
+    <input matInput placeholder="type the user name">
+    <mat-icon matIconPrefix>search</mat-icon>
+</mat-form-field>
+
+<h2 class="mb-2.5">All Users</h2>
+<table>
+    <thead>
+        <th>id</th>
+        <th>name</th>
+        <th>email</th>
+        <th>Gender</th>
+        <th>role</th>
+        <th>region</th>
+        <th>province</th>
+    </thead>
+    <tbody>
+        @for (user of users(); track $index) {
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.region }}</td>
+                <td>{{ user.province }}</td>
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="7" class="text-gray-700">
+                    <p class="text-center my-5">nothing here</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

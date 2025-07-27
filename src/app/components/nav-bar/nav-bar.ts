@@ -1,50 +1,108 @@
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+
+interface NavMenu {
+    route: string;
+    name: string;
+}
 
 @Component({
-  selector: 'app-nav-bar',
-  imports: [RouterModule, MatMenuModule],
-  templateUrl: './nav-bar.html',
-  styleUrl: './nav-bar.css'
+    selector: 'app-nav-bar',
+    imports: [RouterModule, MatMenuModule],
+    templateUrl: './nav-bar.html',
+    styleUrl: './nav-bar.css'
 })
 export class NavBar {
-  private router = inject(Router)
-  @ViewChild('expandedNavBar') side_nav !: ElementRef<HTMLDivElement>;
+    private router = inject(Router)
+    @ViewChild('expandedNavBar') side_nav !: ElementRef<HTMLDivElement>;
 
-  nav_menus = [
-    {
-      route: '/dashboard',
-      name: 'overview'
-    },
-    {
-      route: '/dashboard/attendance',
-      name: 'attendance'
-    },
-    {
-      route: '/dashboard/visitors',
-      name: 'my visitors'
-    },
-    {
-      route: '/dashboard/me',
-      name: 'my profile'
+    //   nav_menus = [
+    //     {
+    //       route: '/dashboard',
+    //       name: 'overview'
+    //     },
+    //     {
+    //       route: '/dashboard/attendance',
+    //       name: 'attendance'
+    //     },
+    //     {
+    //       route: '/dashboard/visitors',
+    //       name: 'my visitors'
+    //     },
+    //     {
+    //       route: '/dashboard/me',
+    //       name: 'my profile'
+    //     }
+    //   ]
+
+    @Input('dashboard')
+    dashboard: string = 'user';
+
+    get nav_menus(): NavMenu[] {
+        if (this.dashboard === 'user')
+            return [
+                {
+                    route: '/dashboard',
+                    name: 'overview'
+                },
+                {
+                    route: '/dashboard/attendance',
+                    name: 'attendance'
+                },
+                {
+                    route: '/dashboard/visitors',
+                    name: 'my visitors'
+                },
+                {
+                    route: '/dashboard/me',
+                    name: 'my profile'
+                }
+            ]
+        else 
+            return [
+                {
+                    route: '/admin',
+                    name: 'Overview'
+                },
+                {
+                    route: '/admin/users',
+                    name: 'users'
+                },
+                {
+                    route: '/admin/visitors',
+                    name: 'guests'
+                },
+                {
+                    route: '/admin/teams',
+                    name: 'teams'
+                },
+                {
+                    route: '/admin/tasks',
+                    name: 'tasks'
+                },
+                {
+                    route: '/admin/attendance',
+                    name: 'attendance'
+                }
+            ]
     }
-  ]
 
-  logout() {
-    // call service mothod to logout
 
-  }
+    logout() {
+        // call service mothod to logout
 
-  toggleProfileView() {
+    }
 
-  }
+    toggleProfileView() {
 
-  toggleNavBarVisibility() {
-    this.side_nav.nativeElement.classList.toggle('opened')
-  }
+    }
 
-  get isHomeRoute(): boolean {
-    return this.router.url === '/' || this.router.url === '/auth';
-  }
+    toggleNavBarVisibility() {
+        this.side_nav.nativeElement.classList.toggle('opened')
+    }
+
+    get isHomeRoute(): boolean {
+        return this.router.url === '/' || this.router.url === '/auth';
+    }
 }

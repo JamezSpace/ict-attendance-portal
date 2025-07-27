@@ -1,0 +1,12 @@
+<div class="p-5 py-7">
+    <h2 class="mb-5">Delete this room</h2>
+
+    <p class="mb-5">
+        Would you like to delete this roomspace "{{ data.name }}"?
+    </p>
+
+    <div class="flex gap-3.5 justify-self-end">
+        <button mat-dialog-close class="my-button secondary">Cancel</button>
+        <button mat-dialog-close cdkFocusInitial class="my-button red" (click)="deleteRoom()">Delete</button>
+    </div>
+</div>

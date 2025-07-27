@@ -1,0 +1,31 @@
+<div class="p-5 px-7">
+    <h1>Add Attendance Room Space</h1>
+
+    <form>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Room-Space Name</mat-label>
+            <input matInput placeholder="type the room-space name" [(ngModel)]="roomspace_name" name="roomspace_name">
+        </mat-form-field>
+
+        <mat-checkbox class="mb-5" (change)="toggleLocationAttached()">Use current location!</mat-checkbox>
+
+        <div class="flex justify-between">
+            <button class="my-button red">
+                cancel
+            </button>
+            @if (locationAttached() && roomspace_name().length > 2) {
+                <button class="my-button" (click)="addRoom()">
+                    @if (loading()) {
+                        <mat-spinner [diameter]="15"></mat-spinner>
+                    } @else {
+                        save room
+                    }
+                </button>
+            } @else {
+                <button class="my-button disabled">
+                    save room
+                </button>
+            }
+        </div>
+    </form>
+</div>

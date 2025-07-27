@@ -1,0 +1,90 @@
+<h2 class="pt-7 capitalize mb-5">attendance room spaces</h2>
+<button class="my-button mb-3" (click)="createAttendanceRoomSpace()">add a new attendance room space</button>
+<table>
+    <thead>
+        <th>id</th>
+        <th>room name</th>
+        <th>latitude</th>
+        <th>longitude</th>
+        <th>actions</th>
+    </thead>
+    <tbody>
+        @for (room of rooms(); track $index) {
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ room.name }}</td>
+                <td>{{ room.lat }}</td>
+                <td>{{ room.long }}</td>
+                <td class="flex gap-2">
+                    <button class="my-button secondary" (click)="generateQrCode(room)">generate qr code</button>
+                    <button class="my-button red" (click)="deleteRoomSpace(room)">delete this room space</button>
+                </td>
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="5" class="text-gray-700">
+                    <p class="text-center my-5">no attendance room space created</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2 class="mt-7 mb-3.5 capitalize">attendance records</h2>
+<mat-form-field appearance="outline" class="w-full">
+    <mat-label>Search Users</mat-label>
+    <input matInput placeholder="type the user name">
+    <mat-icon matIconPrefix>search</mat-icon>
+</mat-form-field>
+
+<div class="my-flex gap-3">
+    <mat-form-field appearance="outline">
+        <mat-label>Day</mat-label>
+        <mat-select [(value)]="selectedDay">
+            <mat-option>- -</mat-option>
+            <mat-option value="day-1">Day 1</mat-option>
+            <mat-option value="day-2">Day 2</mat-option>
+            <mat-option value="day-3">Day 3</mat-option>
+            <mat-option value="day-4">Day 4</mat-option>
+            <mat-option value="day-5">Day 5</mat-option>
+            <mat-option value="day-6">Day 6</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedStatus">
+            <mat-option>- -</mat-option>
+            <mat-option value="in-time">In Time</mat-option>
+            <mat-option value="late">Late</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<table>
+    <thead>
+        <th>id</th>
+        <th>day</th>
+        <th>In Time</th>
+        <th>out time</th>
+        <th>duration</th>
+        <th>status</th>
+    </thead>
+    <tbody>
+        @for (attendance of attendances(); track $index) {
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ attendance.day }}</td>
+                <td>{{ attendance.in }}</td>
+                <td>{{ attendance.out }}</td>
+                <td>{{ attendance.duration }}</td>
+                <td>{{ attendance.status }}</td>
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="7" class="text-gray-700">
+                    <p class="text-center my-5">nothing here</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
