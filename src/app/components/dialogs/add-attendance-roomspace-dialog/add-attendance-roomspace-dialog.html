@@ -10,7 +10,7 @@
         <mat-checkbox class="mb-5" (change)="toggleLocationAttached()">Use current location!</mat-checkbox>
 
         <div class="flex justify-between">
-            <button class="my-button red">
+            <button class="my-button red" (click)="onNoClick()">
                 cancel
             </button>
             @if (locationAttached() && roomspace_name().length > 2) {

@@ -23,15 +23,10 @@ export class Users implements OnInit {
     }
 
     openDialog(): void {
-        const dialogRef = this.dialog.open(NewUserDialog, {
-            data: { name: this.name(), animal: this.animal() },
-        });
+        const dialogRef = this.dialog.open(NewUserDialog);
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            if (result !== undefined) {
-                this.animal.set(result);
-            }
+            console.log('The new user dialog was closed');
         });
     }
 }

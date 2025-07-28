@@ -70,3 +70,7 @@
         margin-block: 10px 5px;
     }
 }
+
+.subscribe-newsletter {
+    background-color: var(--primary-shade-1);
+}
