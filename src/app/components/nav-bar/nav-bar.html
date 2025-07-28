@@ -1,8 +1,16 @@
 <header class="my-flex justify-between px-5 custom-box-shadow">
-    <a href="/dashboard" class="my-flex">
-        <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
-        <span>iCT Systems</span>
-    </a>
+    @if (!isHomeRoute) {
+        <a href="/dashboard" class="my-flex">
+            <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
+            <span>RCCG DTCE iCT</span>
+        </a>
+    }
+    @else {
+        <a href="/" class="my-flex">
+            <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
+            <span>RCCG DTCE iCT</span>
+        </a>
+    }
     <div class="right my-flex gap-3 5">
         <button [class.hidden]="isHomeRoute">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

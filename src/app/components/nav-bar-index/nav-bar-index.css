@@ -1,3 +1,8 @@
 nav a {
     text-transform: capitalize;
+    cursor: pointer;
+}
+
+.bg-normal {
+    background-color: var(--neutral-background);
 }

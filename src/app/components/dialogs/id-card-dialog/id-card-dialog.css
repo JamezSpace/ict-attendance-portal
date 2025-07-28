@@ -1,8 +1,8 @@
 :host {
-    --passport-container-height: 40vh;
+    --passport-container-height: 38vh;
     --cr80-standard-width: 2.125in;
     --cr80-standard-height: 3.375in;
-    --scaling: 2;
+    --scaling: 1.75;
 }
 
 #id-card {
@@ -28,7 +28,7 @@
         "passport-section"
         "information-section"
         "footer";
-    grid-template-rows: 10% 8% 47% 30% 5%;
+    grid-template-rows: 10% 8% 45% 32% 5%;
 
     &>img {
         grid-area: logo;
@@ -72,7 +72,7 @@
 
     .pseudo-box {
         position: absolute;
-        right: 34px;
+        right: 30px;
         top: 7px;
         z-index: 0;
     }
@@ -105,7 +105,7 @@
     border-radius: 5px;
     border: 2px solid #fff;
     width: 75%;
-    height: 40vh;
+    height: var(--passport-container-height);
     background-color: var(--accent);
 }
 
@@ -119,15 +119,19 @@
 }
 
 .information-section {
-    width: 75%;
-    margin-inline: auto;
+    width: 100%;
+    /* margin-inline: auto; */
 
     &>p {
         margin-bottom: 3.5%;
         font-size: 1.2em;
 
         &:first-of-type {
-            margin-bottom: 5%;
+            margin-bottom: 8.5%;
+        }
+
+        &:not(:first-of-type) {
+            padding-inline: 10%;
         }
     }
 

@@ -1,15 +1,15 @@
 <header class="my-flex justify-between px-5 custom-box-shadow">
-    <a href="/" class="my-flex">
+    <a href="/" class="my-flex whitespace-nowrap">
         <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
         <span>RCCG DTCE iCT</span>
     </a>
     <div class="right my-flex gap-3.5 justify-between w-3/4 max-md:justify-end">
         <nav class="w-3/5 pl-5 flex justify-between max-md:hidden">
-            <a href="">about</a>
-            <a href="">sub units</a>
-            <a href="">resources</a>
-            <a href="">community</a>
-            <a href="">support</a>
+            <a (click)="scrollToTarget('about-dtce')">about</a>
+            <a (click)="scrollToTarget('subunits-container')">sub units</a>
+            <a (click)="scrollToTarget('key-resources-container')">resources</a>
+            <a (click)="scrollToTarget('community-section')">community</a>
+            <a>support</a>
         </nav>
         
         <div class="actions">
@@ -25,12 +25,12 @@
     </div>
 </header>
 
-<div class="side-nav min-md:border-b min-md:border-gray-200 py-7  fixed top-[48px] w-full bg-white" #expandedNavBar>
+<div class="side-nav min-md:border-b min-md:border-gray-200 max-md:py-7 w-full fixed bg-normal" #expandedNavBar>
     <nav class="hidden gap-5 text-center max-md:flex max-md:flex-col max-md:mx-auto max-md:w-3/5">
-        <a href="" (click)="toggleNavBarVisibility()">about</a>
-        <a href="" (click)="toggleNavBarVisibility()">sub units</a>
-        <a href="" (click)="toggleNavBarVisibility()">resources</a>
-        <a href="" (click)="toggleNavBarVisibility()">community</a>
-        <a href="" (click)="toggleNavBarVisibility()">support</a>
+        <a (click)="navigateToSection('about-dtce')">about</a>
+        <a (click)="navigateToSection('subunits-container')">sub units</a>
+        <a (click)="navigateToSection('key-resources-container')">resources</a>
+        <a (click)="navigateToSection('community-section')">community</a>
+        <a (click)="navigateToSection('')">support</a>
     </nav>
 </div>
