@@ -1,5 +1,10 @@
+footer {
+    background-color: var(--neutral-foreground);
+    color: var(--neutral-background);
+}
+
 .nav-links-container {
-    flex: 1;
+    min-width: 50%;
     
     &>h2 {
         text-transform: capitalize;
@@ -12,13 +17,15 @@
     }
 
     .footer-quick-link {
+        min-width: 250px;
         display: grid;
-        grid-template-columns: 20px 1fr;
+        grid-template-columns: 25px 1fr;
         grid-template-areas: "logo content";
-        align-items: center;
+        margin-block: 5px;
     }
 
     .footer-quick-link svg {
+        font-size: 1.2rem;
         grid-area: logo;
         display: flex;
         justify-content: center;
@@ -27,6 +34,7 @@
 
     .footer-quick-link span {
         grid-area: content;
+        text-align: start;
     }
 
     /* &:nth-of-type(2) a {
@@ -42,6 +50,6 @@
         display: inline-block;
         padding: 5px ;
         border-radius: 50%;
-        border: 1px solid #000;
+        border: 1px solid var(--neutral-background);
     }
 }

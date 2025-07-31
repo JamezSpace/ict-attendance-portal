@@ -54,9 +54,13 @@ export class NavBar {
                     route: '/dashboard/visitors',
                     name: 'my visitors'
                 },
+                // {
+                //     route: '/dashboard/me',
+                //     name: 'my profile'
+                // }
                 {
-                    route: '/dashboard/me',
-                    name: 'my profile'
+                    route: '/dashboard/subunit',
+                    name: 'subunit hub'
                 }
             ]
         else 
@@ -95,7 +99,7 @@ export class NavBar {
     }
 
     toggleProfileView() {
-
+        this.router.navigate(['/dashboard/me'])
     }
 
     toggleNavBarVisibility() {
@@ -103,6 +107,6 @@ export class NavBar {
     }
 
     get isHomeRoute(): boolean {
-        return this.router.url === '/' || this.router.url === '/auth';
+        return this.router.url === '/' || this.router.url === '/auth' || this.router.url === '/admin-auth';
     }
 }

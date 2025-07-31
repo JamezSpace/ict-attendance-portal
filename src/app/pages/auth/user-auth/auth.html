@@ -1,0 +1,22 @@
+<app-nav-bar />
+
+<section class="px-5 py-5 pt-10 flex flex-col items-center custom-bg">
+    <h1>{{ authText() }}</h1>
+    <form class="w-[40%] max-md:w-3/5 max-sm:w-4/5">
+        <div class="field">
+            <label for="">Email Address</label>
+            <input type="text" matInput placeholder="Type in your email...">
+        </div>
+
+
+        <div class="field">
+            <label for="">Password</label>
+            <input type="password" placeholder="Type in your password...">
+        </div>
+        
+        <div class="mt-2">
+            <button class="capitalize hover:underline float-right font-medium">forgot password?</button>
+        </div>
+        <button class="my-button w-full mt-7.5">{{ registrationMode() }}</button>
+    </form>
+</section>

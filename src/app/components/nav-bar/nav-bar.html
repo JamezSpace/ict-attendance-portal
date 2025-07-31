@@ -1,6 +1,11 @@
 <header class="my-flex justify-between px-5 custom-box-shadow">
-    @if (!isHomeRoute) {
+    @if (!isHomeRoute && dashboard === 'user') {
         <a href="/dashboard" class="my-flex">
+            <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
+            <span>RCCG DTCE iCT</span>
+        </a>
+    } @else if (!isHomeRoute && dashboard === 'admin') {
+        <a href="/" class="my-flex">
             <img src="favicon/favicon.ico" alt="Nta ICT Logo" />
             <span>RCCG DTCE iCT</span>
         </a>

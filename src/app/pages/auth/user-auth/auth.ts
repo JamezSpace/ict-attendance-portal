@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { NavBar } from "../../components/nav-bar/nav-bar";
+import { NavBar } from "../../../components/nav-bar/nav-bar";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 
