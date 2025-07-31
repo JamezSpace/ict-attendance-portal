@@ -1,10 +1,10 @@
 <app-nav-bar-index />
 
-<section class="heros px-5 py-10 pt-20 h-[95vh] flex justify-between gap-5">
-    <article class="left w-3/5">
-        <h1 class="maxi-text">Empowering Digital Ministry <br>
+<section class="heros px-5 py-10 pt-30 h-[120vh] flex justify-between gap-5 text-[16px] max-md:flex-col max-md:items-center">
+    <article class="left w-3/5 max-md:w-3/4 max-md:flex max-md:flex-col max-md:items-center">
+        <h1 class="maxi-text max-md:text-center">Empowering Digital Ministry <br>
             with Purpose & Precision</h1>
-        <p class="my-3.5 mb-5 w-3/4">
+        <p class="my-3.5 mb-5 w-3/4 leading-6 max-md:text-center">
             The RCCG DTCE ICT platform is engineered to drive transformation across departments — equipping every teen
             and children ministry leader with tools for global impact, collaboration, and godly innovation.
         </p>
@@ -21,7 +21,7 @@
     </article>
 </section>
 
-<section class="welcome-message my-flex justify-between gap-5 px-5">
+<section class="welcome-message my-flex justify-between gap-5 px-5 max-md:flex-col">
     <img src="/mgo.jpg" alt="image of mummy G.O, the head of the hunior church"
         class="h-[50vh] object-cover rounded-2xl">
     <article>
@@ -41,7 +41,7 @@
     </article>
 </section>
 
-<section class="my-flex justify-between gap-5 px-5 py-15" id="about-dtce">
+<section class="my-flex justify-between gap-5 px-5 py-15 max-md:flex-col" id="about-dtce">
     <article>
         <h1 class="big-text">About RCCG DTCE ICT Department</h1>
         <p class="mb-3.5">RCCG DTCE ICT is the official digital innovation arm of the Junior Church. We exist to empower
@@ -59,7 +59,7 @@
 
 <section class="px-5" id="subunits-container">
     <h1 class="capitalize big-text text-center">our sub-units</h1>
-    <p class="my-3.5 text-center mx-auto w-2/4">The RCCG DTCE ICT Department is structured into focused sub-units — each
+    <p class="my-3.5 text-center mx-auto w-2/4 max-md:w-3/4">The RCCG DTCE ICT Department is structured into focused sub-units — each
         uniquely
         equipped to support digital transformation, innovation, and excellence within the Junior Church globally.</p>
 
@@ -136,7 +136,7 @@
 
 <section class="px-5" id="key-resources-container">
     <h1 class="capitalize big-text text-center">key resources</h1>
-    <p class="my-3.5 text-center mx-auto w-2/4">Explore essential materials curated to empower the RCCG DTCE ICT Sub
+    <p class="my-3.5 text-center mx-auto w-2/4 max-md:w-3/4">Explore essential materials curated to empower the RCCG DTCE ICT Sub
         Units. From training manuals and SOPs to media assets and developer guides, access everything to boost your
         ministry’s digital excellence.</p>
 
@@ -243,7 +243,7 @@
 
 <section class="px-5" id="community-section">
     <h1 class="big-text text-center">iCT Showcase</h1>
-    <p class="my-3.5 text-center mx-auto w-2/4">A visual journey through the various subunits in the RCCG DTCE ICT
+    <p class="my-3.5 text-center mx-auto w-2/4 max-md:w-3/4">A visual journey through the various subunits in the RCCG DTCE ICT
         Department. Each subunit contributes uniquely to the digital transformation and innovation across the Junior
         Church.</p>
 
@@ -271,7 +271,7 @@
 
 <section class="px-5">
     <h1 class="capitalize big-text text-center">meet our leadership team</h1>
-    <p class="my-3.5 text-center mx-auto w-2/4">A team of passionate leaders, each contributing uniquely to the digital
+    <p class="my-3.5 text-center mx-auto w-2/4 max-md:w-3/4">A team of passionate leaders, each contributing uniquely to the digital
         transformation of our ministry.</p>
 
     <div class="flex flex-wrap justify-center gap-4 my-15">
@@ -309,7 +309,7 @@
 </section>
 
 <div class="py-20">
-    <section class="w-3/4 mx-auto p-10 flex flex-col items-center subscribe-newsletter my-rounded">
+    <section class="w-3/4 max-md:w-10/12 mx-auto p-10 flex flex-col items-center subscribe-newsletter my-rounded">
         <div class="text-3xl" data-icon-package="icon-park-twotone:mail">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48">
                 <rect width="48" height="48" fill="none" />
@@ -325,14 +325,14 @@
                 <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipTMail0)" />
             </svg>
         </div>
-        <h1 class="capitalize">subscribe for updates from us</h1>
-        <p class="text-center mb-5">Subscribe to stay up-to-date with our latest news, announcements, and opportunities.
+        <h1 class="capitalize text-center">subscribe for updates from us</h1>
+        <p class="text-center mb-8">Subscribe to stay up-to-date with our latest news, announcements, and opportunities.
             Be the first to receive updates on events, projects, and resourcesfrom the RCCG DTCE iCT unit.</p>
-        <div class="flex gap-3">
-            <mat-form-field appearance="outline">
+        <div class="flex gap-3 flex-wrap">
+            <mat-form-field appearance="outline" class="max-sm:w-full">
                 <input matInput placeholder="enter your email">
             </mat-form-field>
-            <button class="my-button h-fit">subscribe</button>
+            <button class="my-button h-fit mx-auto">subscribe</button>
         </div>
     </section>
 </div>

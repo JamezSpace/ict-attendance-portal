@@ -1,5 +1,6 @@
 .nav-links-container {
-
+    flex: 1;
+    
     &>h2 {
         text-transform: capitalize;
         margin-bottom: 5px;
@@ -10,11 +11,29 @@
         padding: 1.5px 5px;
     }
 
-    &:nth-of-type(2) a {
+    .footer-quick-link {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        grid-template-areas: "logo content";
+        align-items: center;
+    }
+
+    .footer-quick-link svg {
+        grid-area: logo;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-quick-link span {
+        grid-area: content;
+    }
+
+    /* &:nth-of-type(2) a {
         display: flex;
         align-items: center;
         gap: 3px;
-    }
+    } */
 }
 
 .sm-container {

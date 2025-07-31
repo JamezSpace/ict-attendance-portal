@@ -19,6 +19,7 @@
     display: grid;
     grid-template-columns: 10% 85%;
     grid-template-areas: "icon text-container";
+    flex: 1;
     justify-content: space-between;
     background-color: aliceblue;
     width: 100%;
