@@ -56,7 +56,7 @@ export class NewUserDialog implements OnInit {
         firstName: this.userData.controls.firstName.value ?? '',
         lastName: this.userData.controls.lastName.value ?? '',
         email: this.userData.controls.email.value ?? '',
-        password: this.userData.controls.phoneNum.value ?? '',
+        phone: this.userData.controls.phoneNum.value ?? '',
         subunitId: this.selected_subunit
       })
 
@@ -66,7 +66,7 @@ export class NewUserDialog implements OnInit {
         firstName: this.userData.controls.firstName.value ?? '',
         lastName: this.userData.controls.lastName.value ?? '',
         email: this.userData.controls.email.value ?? '',
-        password: this.userData.controls.phoneNum.value ?? '',
+        phone: this.userData.controls.phoneNum.value ?? '',
         subunitId: this.data.subunitId
       })
     }

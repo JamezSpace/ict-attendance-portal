@@ -3,6 +3,8 @@ import { NavBar } from "../../../components/nav-bar/nav-bar";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar
+} from '@angular/material/snack-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthService } from '../../../services/auth/auth-service';
 import { Router } from '@angular/router';
@@ -15,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class Auth {
   private authService = inject(AuthService);
+  private snackBar = inject(MatSnackBar);
   private router = inject(Router);
 
   registrationMode = signal('login')
@@ -35,9 +38,10 @@ export class Auth {
     })
 
     this.loading.set(false);
-    if(success_status) {
+    if(success_status== 1) {
       this.router.navigate(["/dashboard"])
-    } else {
+    } else if(success_staus == 0){
+      this.snackBar.open("Invalid Email and Password Combination")
       alert("something went wrong. Relogin")
     }
   }

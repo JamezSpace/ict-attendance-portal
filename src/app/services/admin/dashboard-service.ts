@@ -185,11 +185,10 @@ export class DashboardService {
             })
 
             const result = await response.json();
-
-            if (result.message?.toLowerCase().includes('successfully')) {
+            if(result.success) {
                 // use this in prod
-                // this.users.update((prevUsers) => [...prevUsers, result.data]);
-                this.users.update((prevUsers) => [...prevUsers, user]);
+                this.users.update((prevUsers) => [...prevUsers, result.data]);
+                // this.users.update((prevUsers) => [...prevUsers, user]);
             }
         } catch (error: any) {
             console.error(error);
