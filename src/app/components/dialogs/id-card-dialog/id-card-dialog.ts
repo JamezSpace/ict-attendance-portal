@@ -53,7 +53,7 @@ export class IdCardDialog {
                 const backImgData = backCanvas.toDataURL('image/jpeg', 1.0);
                 pdf.addPage();
                 pdf.addImage(backImgData, 'JPEG', 0, 0, 4.25, 6.75);
-                pdf.save(`${this.data?.name}-id-card.pdf`);
+                pdf.save(`${this.data?.firstName}-id-card.pdf`);
             });
         });
     }

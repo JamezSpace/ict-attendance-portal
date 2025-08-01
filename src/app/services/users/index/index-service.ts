@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Environment } from '../../environments/environment';
-import { Environment as EnvironmentProd } from '../../environments/environment.prod';
+import { Environment } from '../../../environments/environment';
+import { Environment as EnvironmentProd } from '../../../environments/environment.prod';
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Environment as EnvironmentProd } from '../../environments/environment.p
 export class IndexService {
   async prepServer() {
     try {
-      const response = await fetch(EnvironmentProd.backend_url);
+      const response = await fetch(EnvironmentProd.backend_base_url);
 
       return response
     } catch (error) {

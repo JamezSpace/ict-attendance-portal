@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { DashboardService } from '../../../services/users/dashboard-service';
+import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 
 @Component({
   selector: 'app-tasks-overview',

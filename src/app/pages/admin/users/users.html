@@ -21,7 +21,7 @@
         @for (user of users(); track $index) {
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ user.name }}</td>
+                <td>{{ user.firstName + " " + user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.gender }}</td>
                 <td>{{ user.role }}</td>

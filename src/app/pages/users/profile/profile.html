@@ -6,7 +6,7 @@
         <img src="/user.svg" alt="profile picture of user" class="aspect-square w-60">
         <div class="right py-3.5 w-full text-center">
             @if (user_profile()) {
-            <h2 class="mb-3 capitalize big-text">{{ user_profile()?.name }}</h2>
+            <h2 class="mb-3 capitalize big-text">{{ user_profile()?.firstName + " " + user_profile()?.lastName }}</h2>
             <p class="capitalize">{{ user_profile()?.role }}</p>
             }
         </div>
@@ -32,9 +32,10 @@
             <div class="field">
                 <label for="">name</label>
                 @if (editMode()) {
-                <input type="text" [value]="user_profile()?.name">
+                <input type="text" [value]="user_profile()?.firstName">
+                <input type="text" [value]="user_profile()?.lastName">
                 } @else {
-                <p>{{ user_profile()?.name }}</p>
+                <p>{{ user_profile()?.firstName + " " + user_profile()?.lastName }}</p>
                 }
             </div>
             <div class="field">

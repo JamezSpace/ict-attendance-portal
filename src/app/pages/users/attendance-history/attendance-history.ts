@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Attendance } from '../../../interfaces/attendance.interface';
-import { DashboardService } from '../../../services/users/dashboard-service';
+import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 
 @Component({
   selector: 'app-attendance-history',

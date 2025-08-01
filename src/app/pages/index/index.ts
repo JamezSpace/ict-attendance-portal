@@ -4,7 +4,7 @@ import { NavBarIndex } from "../../components/nav-bar-index/nav-bar-index";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Footer } from "../../components/footer/footer";
-import { IndexService } from '../../services/users/index-service';
+import { IndexService } from '../../services/users/index/index-service';
 
 @Component({
   selector: 'app-index',

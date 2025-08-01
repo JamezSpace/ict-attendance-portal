@@ -1,1 +1,42 @@
-<p>subunit-hub works!</p>
+<mat-tab-group>
+    <mat-tab label="Members">
+        <h2 class="mt-2.5 mb-3.5">All Users</h2>
+        <button class="my-button mb-5" (click)="addNewUser()">Add user to your subunit</button>
+        <table>
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>Gender</th>
+            </thead>
+            <tbody>
+                @for (member of members(); track $index) {
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ member.firstName + " " + member.lastName }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.gender }}</td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="4" class="text-gray-700">
+                        <p class="text-center my-5">nothing here</p>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </mat-tab>
+    <mat-tab label="Teams">
+        <h2 class="mt-2.5 mb-3.5">Subunit Teams</h2>
+        <div class="text-center mt-5">
+            <p>coming in soon!</p>
+        </div>
+    </mat-tab>
+    <mat-tab label="Tasks">
+        <h2 class="mt-2.5 mb-3.5">Subunit Tasks</h2>
+        <div class="text-center mt-5">
+            <p>coming in soon!</p>
+        </div>
+    </mat-tab>
+</mat-tab-group>

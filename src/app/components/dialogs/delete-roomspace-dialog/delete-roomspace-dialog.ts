@@ -5,7 +5,7 @@ import {
     MatDialogActions,
     MatDialogClose
 } from '@angular/material/dialog';
-import { DashboardService } from '../../../services/users/dashboard-service';
+import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { Room } from '../../../interfaces/rooms.interfaces';
 
 @Component({

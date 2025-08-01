@@ -1,11 +1,8 @@
-export interface UserProfile {
-    _id: string;
-    name: string;
-    email: string;
-    gender: 'male' | 'female';
-    role: 'member' | 'executive' | 'official';
-    region: string;
-    province: string;
+import { Users } from "./users.interfaces";
+
+export interface UserProfile extends Users {
+    gender?: 'male' | 'female';
+    region?: string;
+    province?: string;
     subunit?: string;
-    passport_url: string;
 }

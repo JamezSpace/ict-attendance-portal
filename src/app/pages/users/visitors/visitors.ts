@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal, Signal } from '@angular/core';
-import { DashboardService } from '../../../services/users/dashboard-service';
+import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';

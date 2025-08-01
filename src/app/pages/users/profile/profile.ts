@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { DashboardService } from '../../../services/users/dashboard-service';
+import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { UserProfile } from '../../../interfaces/profile.interface';
 import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card-dialog';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,12 +17,16 @@ export class Profile implements OnInit {
         _id: 'a',
         email: 'sam@abc',
         gender: 'female',
-        name: 'sarah',
+        firstName: 'sarah',
+        lastName: 'ubiebi',
         province: 'lp109',
         region: 'rg37',
-        role: 'executive',
+        role: 'user',
+        departmentalRole: 'executive',
         subunit: 'technical',
-        passport_url: 'url'
+        avatar: 'url',
+        isActive: true,
+        isSubunitLeader: true
     });
 
     async ngOnInit(): Promise<void> {
