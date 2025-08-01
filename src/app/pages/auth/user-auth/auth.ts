@@ -38,10 +38,11 @@ export class Auth {
     })
 
     this.loading.set(false);
-    if(success_status== 1) {
+    if(success_status == 1) {
       this.router.navigate(["/dashboard"])
-    } else if(success_staus == 0){
+    } else if(success_status == 0){
       this.snackBar.open("Invalid Email and Password Combination")
+    } else {
       alert("something went wrong. Relogin")
     }
   }
