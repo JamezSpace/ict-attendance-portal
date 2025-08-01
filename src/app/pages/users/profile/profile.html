@@ -33,7 +33,7 @@
                 <label for="">name</label>
                 @if (editMode()) {
                 <input type="text" [value]="user_profile()?.firstName" name="firstName" [(ngModel)]="firstName">
-                <br>
+                <br><br>
                 <input type="text" [value]="user_profile()?.lastName" name="lastName" [(ngModel)]="lastName">
                 } @else {
                 <p>{{ user_profile()?.firstName + " " + user_profile()?.lastName }}</p>
