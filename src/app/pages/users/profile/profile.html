@@ -32,8 +32,9 @@
             <div class="field">
                 <label for="">name</label>
                 @if (editMode()) {
-                <input type="text" [value]="user_profile()?.firstName">
-                <input type="text" [value]="user_profile()?.lastName">
+                <input type="text" [value]="user_profile()?.firstName" name="firstName" [(ngModel)]="firstName">
+                <br>
+                <input type="text" [value]="user_profile()?.lastName" name="lastName" [(ngModel)]="lastName">
                 } @else {
                 <p>{{ user_profile()?.firstName + " " + user_profile()?.lastName }}</p>
                 }
@@ -45,7 +46,7 @@
             <div class="field">
                 <label for="">province</label>
                 @if (editMode()) {
-                <input type="text" [value]="user_profile()?.province">
+                <input type="text" [value]="user_profile()?.province || ''" name="province" [(ngModel)]="province">
                 } @else {
                 <p>{{ user_profile()?.province }}</p>
                 }
@@ -53,7 +54,7 @@
             <div class="field">
                 <label for="">region</label>
                 @if (editMode()) {
-                <input type="text" [value]="user_profile()?.region">
+                <input type="text" [value]="user_profile()?.region || ''" name="region" [(ngModel)]="region">
                 } @else {
                 <p>{{ user_profile()?.region }}</p>
                 }
@@ -71,7 +72,7 @@
         </article>
         <div class="my-flex gap-3 5 mt-14">
             @if (editMode()) {
-            <button class="my-button secondary">Save data</button>
+            <button class="my-button secondary" (click)="editUserData()">Save data</button>
             <button class="my-button disabled" (click)="generateId()">Generate My ID card</button>
             } @else {
             <button class="my-button w-full" (click)="generateId()">Generate My ID card</button>

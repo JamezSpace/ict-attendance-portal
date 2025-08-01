@@ -189,4 +189,28 @@ export class DashboardService {
             console.error(error);
         }
     }
+
+    async editUser(user: UserProfile) {
+        try {
+            const response = await fetch(`${Environment.backend_api_url}/user/${userLoggedIn()._id}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+
+            const result = await response.json()
+            if (result.success) {
+                const members = this.subunit_members();
+                const updated = members.map(member => 
+                  member._id === result.user._id ? result.user : member
+                  );
+                this.subunit_members.set(updated);
+            }
+        } catch (error: any) {
+            console.error(error);
+        }
+    }
 }

@@ -4,10 +4,11 @@ import { UserProfile } from '../../../interfaces/profile.interface';
 import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card-dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../services/auth/auth-service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
     selector: 'app-profile',
-    imports: [],
+    imports: [FormsModule],
     templateUrl: './profile.html',
     styleUrl: './profile.css'
 })
@@ -35,6 +36,19 @@ export class Profile implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The id card dialog was closed');
+        });
+    }
+    
+    province = ''
+    region = ''
+    firstName = ''
+    lastName = ''
+    editUserData() {
+        await this.dashboardService.editUser({
+            province: this.province,
+            region: this.region,
+            firstName: this.firstName,
+            lastName: this.lastName
         });
     }
 }
