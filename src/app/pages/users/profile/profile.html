@@ -72,7 +72,13 @@
         </article>
         <div class="my-flex gap-3 5 mt-14">
             @if (editMode()) {
-            <button class="my-button secondary" (click)="editUserData()">Save data</button>
+            <button class="my-button secondary" (click)="editUserData()">
+              @if(loading()) {
+                <mat-spinner [diameter]="15" class="mx-auto"></mat-spinner>
+              } @else {
+                Save data
+              }
+            </button>
             <button class="my-button disabled" (click)="generateId()">Generate My ID card</button>
             } @else {
             <button class="my-button w-full" (click)="generateId()">Generate My ID card</button>
