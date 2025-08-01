@@ -7,7 +7,7 @@
         <div class="right py-3.5 w-full text-center">
             @if (user_profile()) {
             <h2 class="mb-3 capitalize big-text">{{ user_profile()?.firstName + " " + user_profile()?.lastName }}</h2>
-            <p class="capitalize">{{ user_profile()?.role }}</p>
+            <p class="capitalize">{{ user_profile()?.departmentalRole }}</p>
             }
         </div>
     </section>
@@ -67,7 +67,7 @@
             <div class="field">
                 <label for="">role</label>
 
-                <p>{{ user_profile()?.role }}</p>
+                <p>{{ user_profile()?.departmentalRole }}</p>
             </div>
         </article>
         <div class="my-flex gap-3 5 mt-14">
