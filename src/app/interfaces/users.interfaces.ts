@@ -5,7 +5,7 @@ export interface Users {
     email: string;
     role?: 'user' | 'admin';
     departmentalRole? : 'member' | 'executive' | 'official';
-    password?: string;
+    phone?: string;
     isActive?: boolean;
     __v?: number,
     qrCode?: string;
