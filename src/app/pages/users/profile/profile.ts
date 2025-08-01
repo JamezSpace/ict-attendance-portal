@@ -54,6 +54,7 @@ export class Profile implements OnInit {
         });
 
       this.loading.set(false);
+      this.toggleEditMode();
     }
 
   loading = signal(false);
