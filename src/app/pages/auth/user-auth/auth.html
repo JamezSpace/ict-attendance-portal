@@ -19,7 +19,7 @@
         </div>
         <button class="my-button w-full mt-7.5" (click)="login()">
             @if (loading()) {
-                <mat-spinner [diameter]="15"></mat-spinner>
+                <mat-spinner [diameter]="15" class="mx-auto"></mat-spinner>
             } @else {
             {{ registrationMode() }}
             }

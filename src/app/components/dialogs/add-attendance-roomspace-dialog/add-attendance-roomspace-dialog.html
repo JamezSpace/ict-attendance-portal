@@ -16,7 +16,7 @@
             @if (locationAttached() && roomspace_name().length > 2) {
                 <button class="my-button" (click)="addRoom()">
                     @if (loading()) {
-                        <mat-spinner [diameter]="15"></mat-spinner>
+                        <mat-spinner [diameter]="15" class="mx-auto"></mat-spinner>
                     } @else {
                         save room
                     }
