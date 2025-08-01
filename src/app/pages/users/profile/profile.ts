@@ -5,10 +5,11 @@ import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../services/auth/auth-service';
 import {FormsModule} from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
     selector: 'app-profile',
-    imports: [FormsModule],
+    imports: [FormsModule, MatProgressSpinnerModule],
     templateUrl: './profile.html',
     styleUrl: './profile.css'
 })
@@ -44,11 +45,17 @@ export class Profile implements OnInit {
     firstName = this.user_profile()?.firstName
     lastName = this.user_profile()?.lastName
     async editUserData() {
+        this.loading.set(true);
         await this.dashboardService.editUser({
             province: this.province,
             region: this.region,
             firstName: this.firstName,
             lastName: this.lastName
         });
+
+      this.loading.set(false);
     }
+
+  loading = signal(false);
+  
 }
