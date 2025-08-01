@@ -59,8 +59,6 @@ export class NewUserDialog implements OnInit {
         phone: this.userData.controls.phoneNum.value ?? '',
         subunitId: this.selected_subunit
       })
-
-      this.dialogRef.close()
     } else if (this.data.openedBy === 'subunitLeader') {
       await this.userDashboardService.addUserAsSubunitLeader({
         firstName: this.userData.controls.firstName.value ?? '',
@@ -70,5 +68,7 @@ export class NewUserDialog implements OnInit {
         subunitId: this.data.subunitId
       })
     }
+
+    this.dialogRef.close()
   }
 }
