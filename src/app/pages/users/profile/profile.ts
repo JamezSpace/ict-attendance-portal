@@ -41,8 +41,8 @@ export class Profile implements OnInit {
     
     province = ''
     region = ''
-    firstName = ''
-    lastName = ''
+    firstName = this.user_profile()?.firstName
+    lastName = this.user_profile()?.lastName
     async editUserData() {
         await this.dashboardService.editUser({
             province: this.province,
