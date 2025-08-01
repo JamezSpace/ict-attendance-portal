@@ -3,6 +3,7 @@ import { DashboardService } from '../../../services/users/dashboard/dashboard-se
 import { UserProfile } from '../../../interfaces/profile.interface';
 import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card-dialog';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../../services/auth/auth-service';
 
 @Component({
     selector: 'app-profile',
@@ -13,21 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class Profile implements OnInit {
     private dashboardService = inject(DashboardService);
     readonly dialog = inject(MatDialog);
-    user_profile = signal<UserProfile | null>({
-        _id: 'a',
-        email: 'sam@abc',
-        gender: 'female',
-        firstName: 'sarah',
-        lastName: 'ubiebi',
-        province: 'lp109',
-        region: 'rg37',
-        role: 'user',
-        departmentalRole: 'executive',
-        subunit: 'technical',
-        avatar: 'url',
-        isActive: true,
-        isSubunitLeader: true
-    });
+    user_profile = AuthService.userLoggedIn
 
     async ngOnInit(): Promise<void> {
         await this.dashboardService.getProfileData();

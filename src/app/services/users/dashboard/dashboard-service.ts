@@ -6,6 +6,7 @@ import { Tasks } from '../../../interfaces/tasks.interfaces';
 import { UserProfile } from '../../../interfaces/profile.interface';
 import { Users } from '../../../interfaces/users.interfaces';
 import { Teams } from '../../../pages/admin/teams/teams';
+import { AuthService } from '../../auth/auth-service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,7 @@ export class DashboardService {
     constructor() { }
 
     accessToken = localStorage.getItem('access_token')
+    userLoggedIn = AuthService.userLoggedIn
     attendances = signal<Attendance[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])
@@ -101,7 +103,7 @@ export class DashboardService {
 
     async getProfileData() {
         try {
-            const response = await fetch(`${Environment.backend_base_url}/profile`, {
+            const response = await fetch(`${Environment.backend_api_url}/subunits/${this.userLoggedIn()?.subunitId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -110,8 +112,12 @@ export class DashboardService {
 
             const result = await response.json();
 
-            if (result.success) {
-                this.profile_data.set(result.data);
+            const user = this.userLoggedIn();
+            if (user && result.success) {
+                this.profile_data.set({
+                    ...user,
+                    subunit: result.subunit.name
+                });
             } else {
                 console.error('Failed to fetch profile data:', result.message);
             }

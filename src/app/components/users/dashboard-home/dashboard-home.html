@@ -1,5 +1,5 @@
 <h1 class="big-text pt-7">Welcome back,
-    <span class="capitalize">{{ username() }}</span>!
+    <span class="capitalize">{{ user()?.firstName }}</span>!
 </h1>
 
 <section class="">
@@ -11,9 +11,12 @@
 </section>
 
 <div class="sign-in-status my-5 pattern h-50 my-rounded relative">
-    <h2 class="absolute left-5 bottom-5 z-[2] text-white">{{ signInStatusText() }}</h2>
+    <h2 class="absolute left-5 bottom-5 z-[2] text-white">
+        <!-- {{ signInStatusText() }} -->
+
+    </h2>
     <button class="capitalize px-5 py-3 my-rounded sign-in-btn text-white absolute right-5 bottom-5 z-[2]">
-        {{ signInActionText() }}
+        <!-- {{ signInActionText() }} -->
     </button>
 </div>
 

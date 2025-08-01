@@ -1,7 +1,8 @@
-import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { TasksOverview } from "../tasks-overview/tasks-overview";
+import { AuthService } from '../../../services/auth/auth-service';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -13,7 +14,7 @@ export class DashboardHome {
   private router = inject(Router);
   private dashboardService = inject(DashboardService)
 
-  username = signal('sarah');
+  user = AuthService.userLoggedIn;
   previous_attendances = this.dashboardService.attendances()
 
   get todayDay() {
@@ -29,24 +30,24 @@ export class DashboardHome {
     });
   }
 
-  currentTime: WritableSignal<string>;
+//   currentTime: WritableSignal<string>;
 
-  private intervalId: any;
+//   private intervalId: any;
 
-  constructor() {
-    this.currentTime = signal(new Date().toLocaleTimeString());
+//   constructor() {
+//     this.currentTime = signal(new Date().toLocaleTimeString());
 
-    this.intervalId = setInterval(() => {
-      this.currentTime.set(new Date().toLocaleTimeString());
-    }, 1000);
+//     this.intervalId = setInterval(() => {
+//       this.currentTime.set(new Date().toLocaleTimeString());
+//     }, 1000);
 
-    this.dashboardService.getAttendance()
+//     this.dashboardService.getAttendance()
 
-  }
+//   }
 
-  ngOnDestroy(): void {
-    clearInterval(this.intervalId); // cleanup to avoid memory leak
-  }
+//   ngOnDestroy(): void {
+//     clearInterval(this.intervalId); // cleanup to avoid memory leak
+//   }
 
   signedIn = signal(true);
   signInStatusText = computed(() => {
