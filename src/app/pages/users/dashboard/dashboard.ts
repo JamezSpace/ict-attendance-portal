@@ -2,6 +2,7 @@ import { Component, computed, OnInit, Signal, signal, WritableSignal } from '@an
 import { NavBar } from "../../../components/nav-bar/nav-bar";
 import { RouterModule } from '@angular/router';
 import { UserProfile } from '../../../interfaces/profile.interface';
+import { AuthService } from '../../../services/auth/auth-service';
 
 @Component({
     selector: 'app-dashboard',
