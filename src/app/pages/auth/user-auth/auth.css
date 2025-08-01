@@ -4,8 +4,10 @@
 
 .custom-bg {
     height: calc(100dvh - 83px);
-    background: linear-gradient(rgba(249, 249, 249, 0.95), rgba(249, 249, 249, 0.95)), url('/logo.PNG');
-    /* background-image: url('/logo.PNG'); */
+    background: linear-gradient(
+        rgb(from var(--neutral-foreground) r g b/ 0.95),
+        rgb(from var(--neutral-foreground) r g b/ 0.95)
+    ), url('/logo.PNG');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
@@ -29,7 +31,7 @@
         width: 100%;
         padding: 10px;
         border-radius: 0.5rem;
-        background-color: var(--color-gray-50);
+        background-color: rgb(from var(--neutral-foreground) r g b/ 0.95);
     }
 
     & > input::placeholder {
