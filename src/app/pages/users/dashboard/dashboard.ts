@@ -14,7 +14,7 @@ export class Dashboard implements OnInit {
     public userLoggedIn = signal<UserProfile | null>(null)
 
     async ngOnInit(): Promise<void> {
-        const user = AuthService.userLoggedIn;
+        const user = AuthService.userLoggedIn();
         if (user) {
             this.userLoggedIn.set(user);
         }
