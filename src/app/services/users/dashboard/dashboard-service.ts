@@ -25,7 +25,7 @@ export class DashboardService {
 
     async getAttendance() {
         try {
-            const response = await fetch(`${Environment.backend_base_url}/attendance`, {
+            const response = await fetch(`${Environment.backend_api_url}/attendance`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -46,7 +46,7 @@ export class DashboardService {
 
     async getGuests() {
         try {
-            const response = await fetch(`${Environment.backend_base_url}/guests`, {
+            const response = await fetch(`${Environment.backend_api_url}/guests`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -82,7 +82,7 @@ export class DashboardService {
                 ])
             }, 3000)
 
-            const response = await fetch(`${Environment.backend_base_url}/tasks`, {
+            const response = await fetch(`${Environment.backend_api_url}/tasks`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -128,7 +128,7 @@ export class DashboardService {
 
     async getSubunitMembers() {
         try {
-            const response = await fetch(`${Environment.backend_base_url}/subunits`, {
+            const response = await fetch(`${Environment.backend_api_url}/subunits`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -149,7 +149,7 @@ export class DashboardService {
 
     async getSubunitTeams(team: string) {
         try {
-            const response = await fetch(`${Environment.backend_base_url}/subunits/${encodeURIComponent(team)}`, {
+            const response = await fetch(`${Environment.backend_api_url}/subunits/${encodeURIComponent(team)}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`

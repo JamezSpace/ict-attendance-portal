@@ -22,7 +22,7 @@ export class AuthService {
         if(result.token && result.user) {
           localStorage.setItem('access_token', result.token)
 
-          sessionStorage.setItem('user', JSON.parse(result.user))
+          sessionStorage.setItem('user', JSON.stringify(result.user))
 
           AuthService.userLoggedIn.set(result.user)
         } else return 0

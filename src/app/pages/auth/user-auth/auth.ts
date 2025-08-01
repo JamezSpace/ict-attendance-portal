@@ -3,7 +3,7 @@ import { NavBar } from "../../../components/nav-bar/nav-bar";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { MatSnackBar
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBar
 } from '@angular/material/snack-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthService } from '../../../services/auth/auth-service';
@@ -13,7 +13,10 @@ import { Router } from '@angular/router';
   selector: 'app-auth',
   imports: [NavBar, MatFormFieldModule, MatInputModule, FormsModule, MatProgressSpinnerModule],
   templateUrl: './auth.html',
-  styleUrl: './auth.css'
+  styleUrl: './auth.css',
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue:{duration: 2500}}
+  ]
 })
 export class Auth {
   private authService = inject(AuthService);
