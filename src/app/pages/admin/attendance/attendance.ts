@@ -60,7 +60,7 @@ export class Attendance implements OnInit {
 
     openAttendanceQrDialog(): void {
         const dialogRef = this.dialog.open(AttendanceQrDialog, {
-            data: { 
+            data: {
                 qrValue: this.qrValue()
             },
         });
@@ -76,5 +76,21 @@ export class Attendance implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             console.log('The add attendance qr code dialog was closed');
         });
+    }
+
+    duration(timeIn: any, timeOut: any): string {
+        const diffMs = new Date(timeOut).getTime() - new Date(timeIn).getTime();
+
+        if (isNaN(diffMs) || diffMs < 0) {
+            return "Invalid or negative time range";
+        }
+
+        const totalSeconds = Math.floor(diffMs / 1000);
+        const days = Math.floor(totalSeconds / (60 * 60 * 24));
+        const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        return `${days > 0 ? days + "d " : ""}${hours}h ${minutes}m ${seconds}s`;
     }
 }

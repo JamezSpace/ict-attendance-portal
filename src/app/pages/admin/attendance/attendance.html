@@ -74,10 +74,10 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ attendance.day }}</td>
-                <td>{{ attendance.in }}</td>
-                <td>{{ attendance.out }}</td>
-                <td>{{ attendance.duration }}</td>
-                <td>{{ attendance.status }}</td>
+                <td>{{ attendance.clockInTime }}</td>
+                <td>{{ attendance.clockOutTime }}</td>
+                <td>{{ duration(attendance.clockInTime, attendance.clockOutTime) }}</td>
+                <td>null</td>
             </tr>
         } @empty {
             <tr>
