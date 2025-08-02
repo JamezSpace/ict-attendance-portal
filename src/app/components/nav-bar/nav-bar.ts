@@ -2,6 +2,7 @@ import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../services/auth/auth-service';
+import { Dashboard } from '../../pages/users/dashboard/dashboard';
 
 interface NavMenu {
     route: string;
@@ -17,34 +18,14 @@ interface NavMenu {
 export class NavBar {
     private router = inject(Router)
     private authService = inject(AuthService)
-    userLoggedIn = AuthService.userLoggedIn;
+    userLoggedIn = Dashboard.userLoggedIn;
     @ViewChild('expandedNavBar') side_nav !: ElementRef<HTMLDivElement>;
-
-    //   nav_menus = [
-    //     {
-    //       route: '/dashboard',
-    //       name: 'overview'
-    //     },
-    //     {
-    //       route: '/dashboard/attendance',
-    //       name: 'attendance'
-    //     },
-    //     {
-    //       route: '/dashboard/visitors',
-    //       name: 'my visitors'
-    //     },
-    //     {
-    //       route: '/dashboard/me',
-    //       name: 'my profile'
-    //     }
-    //   ]
 
     @Input('dashboard')
     dashboard: string = 'user';
 
     get nav_menus(): NavMenu[] {
-        if (this.dashboard === 'user')
-            return [
+        let user_navs = [
                 {
                     route: '/dashboard',
                     name: 'overview'
@@ -66,7 +47,13 @@ export class NavBar {
                     name: 'subunit hub'
                 }
             ]
-        else 
+        if (this.dashboard === 'user') {
+            if(this.userLoggedIn().isSubunitLeader) return user_navs
+            else {
+                user_navs.pop()
+                return user_navs
+            }
+        } else 
             return [
                 {
                     route: '/admin',
