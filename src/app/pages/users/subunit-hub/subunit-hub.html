@@ -2,6 +2,9 @@
     <mat-tab label="Members">
         <h2 class="mt-2.5 mb-3.5">All Users</h2>
         <button class="my-button mb-5" (click)="addNewUser()">Add user to your subunit</button>
+        @if (loading()) {
+            <mat-spinner [diameter]="30" class="mx-auto"></mat-spinner>
+        } @else {
         <table>
             <thead>
                 <th>id</th>
@@ -26,6 +29,7 @@
                 }
             </tbody>
         </table>
+    }
     </mat-tab>
     <mat-tab label="Teams">
         <h2 class="mt-2.5 mb-3.5">Subunit Teams</h2>

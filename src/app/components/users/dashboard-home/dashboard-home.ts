@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { TasksOverview } from "../tasks-overview/tasks-overview";
@@ -12,7 +12,7 @@ import { Dashboard } from '../../../pages/users/dashboard/dashboard';
   templateUrl: './dashboard-home.html',
   styleUrl: './dashboard-home.css'
 })
-export class DashboardHome implements OnInit {
+export class DashboardHome implements AfterViewInit {
   private dashboardService = inject(DashboardService)
   readonly dialog = inject(MatDialog);
   private router = inject(Router);
@@ -21,13 +21,13 @@ export class DashboardHome implements OnInit {
   previous_attendances = this.dashboardService.attendances()
   user_profile = this.dashboardService.profile_data
 
-  async ngOnInit(): Promise<void> {    
+  async ngAfterViewInit(): Promise<void> {    
     console.log("in function");
     
     if (this.dashboardService.complete_profile_loaded()) return
 
     console.log(this.userData());
-    
+
     const subunitId = this.userData()?.subunitId
     
     console.log("SubunitId gotten", subunitId);
