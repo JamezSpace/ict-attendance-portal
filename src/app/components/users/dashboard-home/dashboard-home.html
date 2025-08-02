@@ -10,7 +10,7 @@
 @if (!userData()?.gender) {
 <div class="my-flex flex-col items-center">
     <h1 class="big-text pt-10">Hello there,
-        <span class="capitalize">{{ user()?.firstName }}</span>!
+        <span class="capitalize">{{ userData()?.firstName }}</span>!
     </h1>
 
     <p class="semi-big-text mb-3.5">Let's get started with updating your profile</p>
@@ -19,7 +19,7 @@
 </div>
 } @else {
 <h1 class="big-text pt-7">Welcome back,
-    <span class="capitalize">{{ user()?.firstName }}</span>!
+    <span class="capitalize">{{ userData()?.firstName }}</span>!
 </h1>
 
 <div class="sign-in-status my-5 pattern h-50 my-rounded relative">
