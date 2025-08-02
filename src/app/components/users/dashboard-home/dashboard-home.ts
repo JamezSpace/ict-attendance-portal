@@ -26,7 +26,10 @@ export class DashboardHome implements OnInit {
     
     if (this.dashboardService.complete_profile_loaded()) return
 
+    console.log(this.userData());
+    
     const subunitId = this.userData()?.subunitId
+    
     console.log("SubunitId gotten", subunitId);
     
     if (subunitId) {
