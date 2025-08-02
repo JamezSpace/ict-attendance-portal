@@ -25,10 +25,10 @@
             @for (data of attendances(); track $index) {
             <tr>
                 <td>{{ data.day }}</td>
-                <td>{{ data.in || 'null' }}</td>
-                <td>{{ data.out || 'null' }}</td>
-                <td>{{ data.duration || 'null' }}</td>
-                <td>{{ data.status || 'null' }}</td>
+                <td>{{ data.clockInTime || 'null' }}</td>
+                <td>{{ data.clockOutTime || 'null' }}</td>
+                <td>{{ duration(data.clockInTime, data.clockOutTime) }}</td>
+                <td>null</td>
             </tr>
             } @empty {
             <tr>
