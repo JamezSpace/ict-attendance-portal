@@ -4,6 +4,7 @@
         rgb(from var(--neutral-foreground) r g b/0.2)
     ), url('/heros-bg.jpg');
     background-size: cover;
+    color: var(--neutral-background);
 }
 
 .sub-unit {

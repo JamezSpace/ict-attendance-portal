@@ -20,6 +20,8 @@ export class DashboardHome implements OnInit {
   previous_attendances = this.dashboardService.attendances()
 
   async ngOnInit(): Promise<void> {
+    console.log(this.user());
+    
     if (this.dashboardService.complete_profile_loaded()) return
 
     const subunitId = this.user_profile()?.subunitId
