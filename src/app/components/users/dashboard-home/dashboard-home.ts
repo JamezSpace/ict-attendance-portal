@@ -22,9 +22,13 @@ export class DashboardHome implements OnInit {
   user_profile = this.dashboardService.profile_data
 
   async ngOnInit(): Promise<void> {    
+    console.log("in function");
+    
     if (this.dashboardService.complete_profile_loaded()) return
 
     const subunitId = this.userData()?.subunitId
+    console.log("SubunitId gotten", subunitId);
+    
     if (subunitId) {
       await this.dashboardService.getProfileData(subunitId)
 
@@ -92,9 +96,9 @@ export class DashboardHome implements OnInit {
   openUpdateProfileData() {
     const dialogRef = this.dialog.open(UpdateProfileDialog, {
       data: {
-        firstName: this.user_profile()?.firstName,
-        lastName: this.user_profile()?.lastName,
-        gender: this.user_profile()?.gender
+        firstName: this.userData()?.firstName,
+        lastName: this.userData()?.lastName,
+        gender: this.userData()?.gender
       },
     });
 
