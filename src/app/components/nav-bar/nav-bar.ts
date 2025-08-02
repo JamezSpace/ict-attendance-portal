@@ -48,7 +48,7 @@ export class NavBar {
                 }
             ]
         if (this.dashboard === 'user') {
-            if(this.userLoggedIn().isSubunitLeader) return user_navs
+            if(this.userLoggedIn()?.isSubunitLeader) return user_navs
             else {
                 user_navs.pop()
                 return user_navs
