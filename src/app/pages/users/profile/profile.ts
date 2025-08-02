@@ -22,8 +22,10 @@ export class Profile implements OnInit {
         effect(() => {
             // only run when userLoaded is true
             if (AuthService.userLoaded()) {
-                const user = AuthService.userLoggedIn();
+                const user = this.user_profile();
                 if (user && user.subunitId) {
+                    console.log(user);
+                    
                     this.dashboardService.getProfileData(user.subunitId);
                 } else {
                     console.warn('User or subunitId missing');
