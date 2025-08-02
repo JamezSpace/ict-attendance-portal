@@ -137,7 +137,7 @@ export class DashboardService {
 
     async getSubunitMembers(subunitId: string) {
         try {
-            const response = await fetch(`${Environment.backend_api_url}//users/subunits/${subunitId}`, {
+            const response = await fetch(`${Environment.backend_api_url}/users/subunits/${subunitId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`

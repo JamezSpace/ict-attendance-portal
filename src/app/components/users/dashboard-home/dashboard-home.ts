@@ -12,7 +12,7 @@ import { Dashboard } from '../../../pages/users/dashboard/dashboard';
   templateUrl: './dashboard-home.html',
   styleUrl: './dashboard-home.css'
 })
-export class DashboardHome implements AfterViewInit {
+export class DashboardHome {
   private dashboardService = inject(DashboardService)
   readonly dialog = inject(MatDialog);
   private router = inject(Router);
@@ -20,25 +20,6 @@ export class DashboardHome implements AfterViewInit {
   userData = Dashboard.userLoggedIn;
   previous_attendances = this.dashboardService.attendances()
   user_profile = this.dashboardService.profile_data
-
-  async ngAfterViewInit(): Promise<void> {    
-    console.log("in function");
-    
-    if (this.dashboardService.complete_profile_loaded()) return
-
-    console.log(this.userData());
-
-    const subunitId = this.userData()?.subunitId
-    
-    console.log("SubunitId gotten", subunitId);
-    
-    if (subunitId) {
-      await this.dashboardService.getProfileData(subunitId)
-
-      // loaded complete profile notif
-      this.dashboardService.complete_profile_loaded.set(!this.dashboardService.complete_profile_loaded())
-    }
-  }
 
   get todayDay() {
     return this.previous_attendances[this.previous_attendances.length - 1].day + 1
