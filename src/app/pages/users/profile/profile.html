@@ -3,7 +3,11 @@
 
 <div class="grid-container">
     <section class="personal flex flex-col items-center gap-3.5 pl-5 pr-10 py-2 rounded-2xl my-2">
-        <img src="/user.svg" alt="profile picture of user" class="aspect-square w-60">
+        @if (user_profile()?.avatar) {
+            <img [src]="user_profile()?.avatar" alt="profile picture of user" class="aspect-square w-60 profile-pic">
+        } @else {
+            <img src="/user.svg" alt="profile picture of user" class="aspect-square w-60 profile-pic">
+        }
         <div class="right py-3.5 w-full text-center">
             @if (user_profile()) {
             <h2 class="mb-3 capitalize big-text">{{ user_profile()?.firstName + " " + user_profile()?.lastName }}</h2>

@@ -101,9 +101,9 @@ export class DashboardService {
         }
     }
 
-    async getProfileData() {
+    async getProfileData(subunitId: string) {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/subunits/${this.userLoggedIn()?.subunitId}`, {
+            const response = await fetch(`${Environment.backend_api_url}/subunits/${subunitId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`

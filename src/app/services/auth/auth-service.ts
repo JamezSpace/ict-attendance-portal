@@ -7,6 +7,7 @@ import { UserProfile } from '../../interfaces/profile.interface';
 })
 export class AuthService {
   public static userLoggedIn = signal<UserProfile | null>(null);
+  public static userLoaded = signal(false);
 
   async loginUser(login_data: any) {
     try {
@@ -29,6 +30,8 @@ export class AuthService {
     } catch (error) {
       console.error(error);
       return 0
+    } finally {
+      AuthService.userLoaded.set(true); // <-- signal ready whether it worked or not
     }
   }
 
@@ -51,6 +54,9 @@ export class AuthService {
       console.error("Failed to load user from token", err);
     }
   }
+
+
+
 
   logout() {
     localStorage.removeItem('access_token');
