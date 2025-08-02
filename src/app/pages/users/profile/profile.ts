@@ -16,9 +16,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class Profile implements OnInit {
     private dashboardService = inject(DashboardService);
     readonly dialog = inject(MatDialog);
+    readonly authService = inject(AuthService);
     user_profile = AuthService.userLoggedIn
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+        await this.authService.loadUserFromToken()
+
         effect(() => {
             // only run when userLoaded is true
             if (AuthService.userLoaded() && !this.user_profile()?.subunit) {

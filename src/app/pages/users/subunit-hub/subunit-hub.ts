@@ -6,20 +6,24 @@ import { NewUserDialog } from '../../../components/dialogs/new-user-dialog/new-u
 import { AuthService } from '../../../services/auth/auth-service';
 
 @Component({
-  selector: 'app-subunit-hub',
-  imports: [MatTabsModule],
-  templateUrl: './subunit-hub.html',
-  styleUrl: './subunit-hub.css'
+    selector: 'app-subunit-hub',
+    imports: [MatTabsModule],
+    templateUrl: './subunit-hub.html',
+    styleUrl: './subunit-hub.css'
 })
 export class SubunitHub implements OnInit {
-  private dashboardService = inject(DashboardService);
-  readonly dialog = inject(MatDialog);
-  members = this.dashboardService.subunit_members;
-  teams = this.dashboardService.subunit_teams;
-  user_profile = AuthService.userLoggedIn;
+    private dashboardService = inject(DashboardService);
+    readonly dialog = inject(MatDialog);
+    readonly authService = inject(AuthService);
+    members = this.dashboardService.subunit_members;
+    teams = this.dashboardService.subunit_teams;
+    user_profile = AuthService.userLoggedIn;
 
-  async ngOnInit(): Promise<void> {
-    effect(() => {
+    async ngOnInit(): Promise<void> {
+        
+        await this.authService.loadUserFromToken()
+
+        effect(() => {
             // only run when userLoaded is true
             if (AuthService.userLoaded()) {
                 const user = this.user_profile();
@@ -30,16 +34,16 @@ export class SubunitHub implements OnInit {
                 }
             }
         });
-  }
+    }
 
-  addNewUser() {
-    const dialogRef = this.dialog.open(NewUserDialog, {
-      data: { openedBy: 'subunitLeader' }
-    });
+    addNewUser() {
+        const dialogRef = this.dialog.open(NewUserDialog, {
+            data: { openedBy: 'subunitLeader' }
+        });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The new user dialog was closed');
-    });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The new user dialog was closed');
+        });
 
-  }
+    }
 }
