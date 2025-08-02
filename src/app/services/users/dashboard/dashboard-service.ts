@@ -126,6 +126,14 @@ export class DashboardService {
         }
     }
 
+    async loadProfileData(subunitId: string): Promise<void> {
+        try {
+            await this.getProfileData(subunitId);
+        } catch (err) {
+            console.error('Failed to load profile data:', err);
+        }
+    }
+
     async getSubunitMembers() {
         try {
             const response = await fetch(`${Environment.backend_api_url}/subunits`, {

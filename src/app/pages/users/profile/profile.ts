@@ -21,12 +21,10 @@ export class Profile implements OnInit {
     ngOnInit(): void {
         effect(() => {
             // only run when userLoaded is true
-            if (AuthService.userLoaded()) {
+            if (AuthService.userLoaded() && !this.user_profile()?.subunit) {
                 const user = this.user_profile();
                 if (user && user.subunitId) {
-                    console.log(user);
-                    
-                    this.dashboardService.getProfileData(user.subunitId);
+                    this.dashboardService.loadProfileData(user.subunitId);
                 } else {
                     console.warn('User or subunitId missing');
                 }

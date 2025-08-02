@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewUserDialog } from '../../../components/dialogs/new-user-dialog/new-user-dialog';
+import { AuthService } from '../../../services/auth/auth-service';
 
 @Component({
   selector: 'app-subunit-hub',
@@ -15,9 +16,20 @@ export class SubunitHub implements OnInit {
   readonly dialog = inject(MatDialog);
   members = this.dashboardService.subunit_members;
   teams = this.dashboardService.subunit_teams;
+  user_profile = AuthService.userLoggedIn;
 
   async ngOnInit(): Promise<void> {
-    await this.dashboardService.getSubunitMembers();
+    effect(() => {
+            // only run when userLoaded is true
+            if (AuthService.userLoaded()) {
+                const user = this.user_profile();
+                if (user && user.subunitId) {
+                    this.dashboardService.loadProfileData(user.subunitId);
+                } else {
+                    console.warn('User or subunitId missing');
+                }
+            }
+        });
   }
 
   addNewUser() {
