@@ -17,14 +17,14 @@ export class DashboardHome implements OnInit {
   readonly dialog = inject(MatDialog);
   private router = inject(Router);
 
-  user = this.dashboardService.profile_data;
   userData = Dashboard.userLoggedIn;
   previous_attendances = this.dashboardService.attendances()
+  user_profile = this.dashboardService.profile_data
 
   async ngOnInit(): Promise<void> {    
     if (this.dashboardService.complete_profile_loaded()) return
 
-    const subunitId = this.user_profile()?.subunitId
+    const subunitId = this.userData()?.subunitId
     if (subunitId) {
       await this.dashboardService.getProfileData(subunitId)
 
@@ -89,7 +89,6 @@ export class DashboardHome implements OnInit {
     this.router.navigate(['dashboard/attendance']);
   }
 
-  user_profile = this.dashboardService.profile_data
   openUpdateProfileData() {
     const dialogRef = this.dialog.open(UpdateProfileDialog, {
       data: {
