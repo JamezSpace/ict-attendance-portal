@@ -178,7 +178,6 @@ export class DashboardService {
     }
 
     async addUserAsSubunitLeader(user: Users) {
-      console.log("user from service",user)  
       try {
             const response = await fetch(`${Environment.backend_api_url}/user/auth/signup`, {
                 method: 'POST',
