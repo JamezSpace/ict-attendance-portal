@@ -17,6 +17,7 @@ interface NavMenu {
 export class NavBar {
     private router = inject(Router)
     private authService = inject(AuthService)
+    userLoggedIn = AuthService.userLoggedIn;
     @ViewChild('expandedNavBar') side_nav !: ElementRef<HTMLDivElement>;
 
     //   nav_menus = [

@@ -26,7 +26,11 @@
         </button>
         <button (click)="toggleProfileView()" class="p-2.5 cursor-pointer" [class.pointer-events-none]="isHomeRoute"
             [class.hidden]="isHomeRoute" [disabled]="isHomeRoute" [matMenuTriggerFor]="profileMenu">
-            <img src="/passport.jpg" alt="user profile passport" class="aspect-square h-9 object-cover rounded-full">
+            @if (userLoggedIn() && userLoggedIn()?.avatar) {
+                <img [src]="userLoggedIn()?.avatar" alt="user profile passport" class="aspect-square h-9 object-cover rounded-full">
+            } @else {
+                <img src="/user.svg" alt="user profile passport" class="aspect-square h-9 object-cover rounded-full">
+            }
         </button>
         <button (click)="toggleNavBarVisibility()" class="hidden max-md:inline-flex">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
