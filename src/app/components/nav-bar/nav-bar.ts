@@ -1,6 +1,7 @@
 import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
+import { AuthService } from '../../services/auth/auth-service';
 
 interface NavMenu {
     route: string;
@@ -15,6 +16,7 @@ interface NavMenu {
 })
 export class NavBar {
     private router = inject(Router)
+    private authService = inject(AuthService)
     @ViewChild('expandedNavBar') side_nav !: ElementRef<HTMLDivElement>;
 
     //   nav_menus = [
@@ -94,8 +96,8 @@ export class NavBar {
 
 
     logout() {
-        // call service mothod to logout
-
+        this.authService.logout()
+        this.router.navigate(['/auth'])
     }
 
     toggleProfileView() {
