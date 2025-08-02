@@ -22,6 +22,7 @@ export class DashboardService {
     profile_data = signal<UserProfile | null>(null)
     subunit_members = signal<UserProfile[]>([])
     subunit_teams = signal<Teams[]>([])
+    complete_profile_loaded = signal(false);
 
     async getAttendance() {
         try {
@@ -191,7 +192,7 @@ export class DashboardService {
 
             if (result.success) {
                 // use this in prod
-                this.subunit_members.update((prevMembers) => [...prevMembers, result.data]);
+                this.subunit_members.update((prevMembers) => [...prevMembers, result.user]);
             }
         } catch (error: any) {
             console.error(error);

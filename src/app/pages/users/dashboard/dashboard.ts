@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { NavBar } from "../../../components/nav-bar/nav-bar";
 import { RouterModule } from '@angular/router';
 import { UserProfile } from '../../../interfaces/profile.interface';
@@ -11,11 +11,12 @@ import { AuthService } from '../../../services/auth/auth-service';
     styleUrl: './dashboard.css'
 })
 export class Dashboard implements OnInit {
-    public userLoggedIn = signal<UserProfile | null>(null)
+    public static userLoggedIn = signal<UserProfile | null>(null)
+    readonly authService = inject(AuthService);
 
     async ngOnInit(): Promise<void> {
-        await new AuthService().loadUserFromToken(); 
+        await this.authService.loadUserFromToken(); 
         const user = AuthService.userLoggedIn();
-        if (user) this.userLoggedIn.set(user);
+        if (user) Dashboard.userLoggedIn.set(user);
     }
 }

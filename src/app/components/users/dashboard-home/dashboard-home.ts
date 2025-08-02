@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { TasksOverview } from "../tasks-overview/tasks-overview";
-import { AuthService } from '../../../services/auth/auth-service';
+import { Dashboard } from '../../../pages/users/dashboard/dashboard';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -14,7 +14,7 @@ export class DashboardHome {
   private router = inject(Router);
   private dashboardService = inject(DashboardService)
 
-  user = AuthService.userLoggedIn;
+  user = Dashboard.userLoggedIn;
   previous_attendances = this.dashboardService.attendances()
 
   get todayDay() {

@@ -4,6 +4,7 @@ import { DashboardService } from '../../../services/users/dashboard/dashboard-se
 import { MatDialog } from '@angular/material/dialog';
 import { NewUserDialog } from '../../../components/dialogs/new-user-dialog/new-user-dialog';
 import { AuthService } from '../../../services/auth/auth-service';
+import { Dashboard } from '../dashboard/dashboard';
 
 @Component({
     selector: 'app-subunit-hub',
@@ -14,26 +15,20 @@ import { AuthService } from '../../../services/auth/auth-service';
 export class SubunitHub implements OnInit {
     private dashboardService = inject(DashboardService);
     readonly dialog = inject(MatDialog);
-    readonly authService = inject(AuthService);
     members = this.dashboardService.subunit_members;
     teams = this.dashboardService.subunit_teams;
-    user_profile = AuthService.userLoggedIn;
+    user_profile = Dashboard.userLoggedIn;
 
     async ngOnInit(): Promise<void> {
+        if(this.dashboardService.complete_profile_loaded()) return
         
-        await this.authService.loadUserFromToken()
-
-        effect(() => {
-            // only run when userLoaded is true
-            if (AuthService.userLoaded()) {
-                const user = this.user_profile();
-                if (user && user.subunitId) {
-                    this.dashboardService.loadProfileData(user.subunitId);
-                } else {
-                    console.warn('User or subunitId missing');
-                }
-            }
-        });
+        const subunitId = this.user_profile()?.subunitId
+        if (subunitId) {
+            await this.dashboardService.getProfileData(subunitId)
+            
+            // loaded complete profile notif
+            this.dashboardService.complete_profile_loaded.set(!this.dashboardService.complete_profile_loaded())
+        }
     }
 
     addNewUser() {
