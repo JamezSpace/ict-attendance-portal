@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { NavBar } from "../../../components/nav-bar/nav-bar";
 import { RouterModule } from '@angular/router';
 import { UserProfile } from '../../../interfaces/profile.interface';

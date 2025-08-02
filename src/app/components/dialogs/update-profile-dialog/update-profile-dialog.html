@@ -15,7 +15,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Select your gender</mat-label>
-        <mat-select formControlName="gender">
+        <mat-select [(ngModel)]="selectedGender" name="gender">
             <mat-option></mat-option>
             <mat-option value="male">Male</mat-option>
             <mat-option value="female">Female</mat-option>

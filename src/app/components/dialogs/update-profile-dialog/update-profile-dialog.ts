@@ -7,10 +7,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserProfile } from '../../../interfaces/profile.interface';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-update-profile-dialog',
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
   templateUrl: './update-profile-dialog.html',
   styleUrl: './update-profile-dialog.css'
 })
@@ -20,10 +21,11 @@ export class UpdateProfileDialog {
   readonly dialogRef = inject(MatDialogRef<UpdateProfileDialog>);
   readonly data = inject<UserProfile>(MAT_DIALOG_DATA);
 
+  selectedGender = ''
   updatedForm = new FormGroup({
     firstName: new FormControl(this.data.firstName, Validators.required),
     lastName: new FormControl(this.data.lastName, Validators.required),
-    gender: new FormControl(null, Validators.required),
+    gender: new FormControl(this.selectedGender, Validators.required),
     province: new FormControl('', Validators.required),
     region: new FormControl('', Validators.required)
   })
