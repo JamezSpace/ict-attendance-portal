@@ -1,9 +1,8 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { TasksOverview } from "../tasks-overview/tasks-overview";
-import { Dashboard } from '../../../pages/users/dashboard/dashboard';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UpdateProfileDialog } from '../../dialogs/update-profile-dialog/update-profile-dialog';
 
 @Component({
@@ -12,13 +11,25 @@ import { UpdateProfileDialog } from '../../dialogs/update-profile-dialog/update-
   templateUrl: './dashboard-home.html',
   styleUrl: './dashboard-home.css'
 })
-export class DashboardHome {
+export class DashboardHome implements OnInit {
   private dashboardService = inject(DashboardService)
   readonly dialog = inject(MatDialog);
   private router = inject(Router);
 
   user = this.dashboardService.profile_data;
   previous_attendances = this.dashboardService.attendances()
+
+  async ngOnInit(): Promise<void> {
+    if (this.dashboardService.complete_profile_loaded()) return
+
+    const subunitId = this.user_profile()?.subunitId
+    if (subunitId) {
+      await this.dashboardService.getProfileData(subunitId)
+
+      // loaded complete profile notif
+      this.dashboardService.complete_profile_loaded.set(!this.dashboardService.complete_profile_loaded())
+    }
+  }
 
   get todayDay() {
     return this.previous_attendances[this.previous_attendances.length - 1].day + 1
@@ -76,9 +87,14 @@ export class DashboardHome {
     this.router.navigate(['dashboard/attendance']);
   }
 
+  user_profile = this.dashboardService.profile_data
   openUpdateProfileData() {
     const dialogRef = this.dialog.open(UpdateProfileDialog, {
-      data: { },
+      data: {
+        firstName: this.user_profile()?.firstName,
+        lastName: this.user_profile()?.lastName,
+        gender: this.user_profile()?.gender
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -1,12 +1,9 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
-import { UserProfile } from '../../../interfaces/profile.interface';
 import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card-dialog';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from '../../../services/auth/auth-service';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Dashboard } from '../dashboard/dashboard';
 import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-dialog/update-profile-dialog';
 
 @Component({
@@ -15,28 +12,17 @@ import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-
     templateUrl: './profile.html',
     styleUrl: './profile.css'
 })
-export class Profile implements OnInit {
+export class Profile {
     private dashboardService = inject(DashboardService);
     readonly dialog = inject(MatDialog);
     user_profile = this.dashboardService.profile_data
-
-    async ngOnInit(): Promise<void> {
-        if (this.dashboardService.complete_profile_loaded()) return
-
-        const subunitId = this.user_profile()?.subunitId
-        if (subunitId) {
-            await this.dashboardService.getProfileData(subunitId)
-
-            // loaded complete profile notif
-            this.dashboardService.complete_profile_loaded.set(!this.dashboardService.complete_profile_loaded())
-        }
-    }
 
     openUpdateUserDialog() {
         const dialogRef = this.dialog.open(UpdateProfileDialog, {
             data: {
                 firstName: this.user_profile()?.firstName,
-                lastName: this.user_profile()?.lastName
+                lastName: this.user_profile()?.lastName,
+                gender: this.user_profile()?.gender
             },
         });
 
@@ -68,7 +54,7 @@ export class Profile implements OnInit {
             this.changeProfilePic(); // optionally call upload immediately
         }
     }
-    
+
     changeProfilePic() {
         if (!this.selectedFile) return;
 

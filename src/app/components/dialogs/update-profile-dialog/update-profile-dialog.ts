@@ -27,8 +27,12 @@ export class UpdateProfileDialog {
     region: new FormControl('', Validators.required)
   })
 
-  async saveData() {
-    if (this.updatedForm.invalid) return;
+  async saveData() {    
+    if (this.updatedForm.invalid) {
+      console.log(this.updatedForm);
+      
+      return;
+    }
 
     await this.dashboardService.editUser({
       firstName: this.updatedForm.controls.firstName.value ?? '',
