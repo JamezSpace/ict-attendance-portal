@@ -19,6 +19,7 @@ export class SubunitHub {
     user_profile = Dashboard.userLoggedIn;
 
     addNewUser() {
+        console.log("subunit id" : this.user_profile().subunitId;
         const dialogRef = this.dialog.open(NewUserDialog, {
             data: {
                 openedBy: 'subunitLeader',
