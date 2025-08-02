@@ -7,6 +7,7 @@ import { AuthService } from '../../../services/auth/auth-service';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Dashboard } from '../dashboard/dashboard';
+import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-dialog/update-profile-dialog';
 
 @Component({
     selector: 'app-profile',
@@ -25,16 +26,23 @@ export class Profile implements OnInit {
         const subunitId = this.user_profile()?.subunitId
         if (subunitId) {
             await this.dashboardService.getProfileData(subunitId)
-            
+
             // loaded complete profile notif
             this.dashboardService.complete_profile_loaded.set(!this.dashboardService.complete_profile_loaded())
         }
     }
 
+    openUpdateUserDialog() {
+        const dialogRef = this.dialog.open(UpdateProfileDialog, {
+            data: {
+                firstName: this.user_profile()?.firstName,
+                lastName: this.user_profile()?.lastName
+            },
+        });
 
-    editMode = signal(false);
-    toggleEditMode() {
-        this.editMode.set(!this.editMode())
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The update dialog dialog was closed');
+        });
     }
 
     generateId() {
@@ -50,23 +58,6 @@ export class Profile implements OnInit {
         });
     }
 
-    province = ''
-    region = ''
-    firstName = this.user_profile()?.firstName
-    lastName = this.user_profile()?.lastName
-    async editUserData() {
-        this.loading.set(true);
-        await this.dashboardService.editUser({
-            province: this.province,
-            region: this.region,
-            firstName: this.firstName,
-            lastName: this.lastName
-        });
-
-        this.loading.set(false);
-        this.toggleEditMode();
-    }
-
     loading = signal(false);
     selectedFile: File | null = null;
 
@@ -77,6 +68,7 @@ export class Profile implements OnInit {
             this.changeProfilePic(); // optionally call upload immediately
         }
     }
+    
     changeProfilePic() {
         if (!this.selectedFile) return;
 

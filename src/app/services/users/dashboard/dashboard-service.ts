@@ -201,7 +201,7 @@ export class DashboardService {
 
     async editUser(user: Partial<UserProfile>) {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/user/${this.userLoggedIn()?._id}`, {
+            const response = await fetch(`${Environment.backend_api_url}/users/${this.userLoggedIn()?._id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`,

@@ -1,14 +1,26 @@
-<h1 class="big-text pt-7">Welcome back,
-    <span class="capitalize">{{ user()?.firstName }}</span>!
-</h1>
-
-<section class="">
-    <!-- <p>This is Day {{ todayDay }} of the convention</p> -->
+<!-- <section class="">
+    <p>This is Day {{ todayDay }} of the convention</p>
 
     <h2>This is Day 3 of the
         <span class="uppercase primary">convention</span>
     </h2>
-</section>
+</section> -->
+
+<!-- that is, user hasnt updated his profile, mostly still a fresh login -->
+@if (!user()?.gender) {
+<div class="my-flex flex-col items-center">
+    <h1 class="big-text pt-10">Hello there,
+        <span class="capitalize">{{ user()?.firstName }}</span>!
+    </h1>
+
+    <p class="semi-big-text mb-3.5">Let's get started with updating your profile</p>
+
+    <button class="my-button" (click)="openUpdateProfileData()">update my profile data</button>
+</div>
+} @else {
+<h1 class="big-text pt-7">Welcome back,
+    <span class="capitalize">{{ user()?.firstName }}</span>!
+</h1>
 
 <div class="sign-in-status my-5 pattern h-50 my-rounded relative">
     <h2 class="absolute left-5 bottom-5 z-[2] text-white">
@@ -26,3 +38,5 @@
     (click)="navigateToAttendance()">view my
     attendance
     history</p>
+
+}
