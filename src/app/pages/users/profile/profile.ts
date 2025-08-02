@@ -20,6 +20,8 @@ export class Profile implements OnInit {
     user_profile = Dashboard.userLoggedIn
 
     async ngOnInit(): Promise<void> {
+        console.log(this.user_profile());
+        
         if (this.dashboardService.complete_profile_loaded()) return
 
         const subunitId = this.user_profile()?.subunitId

@@ -29,8 +29,6 @@ export class SubunitHub implements OnInit {
             // loaded complete profile notif
             this.dashboardService.complete_profile_loaded.set(!this.dashboardService.complete_profile_loaded())
         }
-
-        console.log(this.user_profile());
     }
 
     addNewUser() {
