@@ -7,7 +7,7 @@
 </section> -->
 
 <!-- that is, user hasnt updated his profile, mostly still a fresh login -->
-@if (!user()?.gender) {
+@if (!userData()?.gender) {
 <div class="my-flex flex-col items-center">
     <h1 class="big-text pt-10">Hello there,
         <span class="capitalize">{{ user()?.firstName }}</span>!

@@ -18,8 +18,6 @@ export class Index implements OnInit {
   async ngOnInit(): Promise<void> {
   {
     const result = await this.indexService.prepServer()
-
-    console.log(result);    
   }
   }
 }

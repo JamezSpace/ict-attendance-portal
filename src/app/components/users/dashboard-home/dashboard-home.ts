@@ -4,6 +4,7 @@ import { DashboardService } from '../../../services/users/dashboard/dashboard-se
 import { TasksOverview } from "../tasks-overview/tasks-overview";
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateProfileDialog } from '../../dialogs/update-profile-dialog/update-profile-dialog';
+import { AuthService } from '../../../services/auth/auth-service';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -17,11 +18,10 @@ export class DashboardHome implements OnInit {
   private router = inject(Router);
 
   user = this.dashboardService.profile_data;
+  userData = AuthService.userLoggedIn;
   previous_attendances = this.dashboardService.attendances()
 
-  async ngOnInit(): Promise<void> {
-    console.log(this.user());
-    
+  async ngOnInit(): Promise<void> {    
     if (this.dashboardService.complete_profile_loaded()) return
 
     const subunitId = this.user_profile()?.subunitId
