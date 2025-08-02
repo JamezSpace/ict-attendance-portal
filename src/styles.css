@@ -20,8 +20,8 @@
 html,
 body {
     height: 100%;
-    color: light-dark(var(--neutral-foreground), var(--neutral-background));
-    background-color: light-dark(var(--neutral-background), var(--neutral-foreground));
+    color: var(--neutral-foreground);
+    background-color: var(--neutral-background);
     font-family: "Outfit", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -182,12 +182,9 @@ table {
 }
 
 @media (prefers-color-scheme: dark) {
-
-    html,
-    body {
-        color: var(--neutral-background);
-        background-color: var(--neutral-foreground);
-        color-scheme: dark;
+    :root {
+        --neutral-foreground: #f9f9f9;
+        --neutral-background: #1a1c2c;
     }
 
     .custom-box-shadow {
