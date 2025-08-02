@@ -18,18 +18,18 @@ export class Profile implements OnInit {
     readonly dialog = inject(MatDialog);
     user_profile = AuthService.userLoggedIn
 
-     ngOnInit():void {
+    ngOnInit(): void {
         effect(() => {
-      // only run when userLoaded is true
-      if (AuthService.userLoaded()) {
-        const user = AuthService.userLoggedIn();
-        if (user && user.subunitId) {
-          this.dashboardService.getProfileData(user.subunitId);
-        } else {
-          console.warn('User or subunitId missing');
-        }
-      }
-    });
+            // only run when userLoaded is true
+            if (AuthService.userLoaded()) {
+                const user = AuthService.userLoggedIn();
+                if (user && user.subunitId) {
+                    this.dashboardService.getProfileData(user.subunitId);
+                } else {
+                    console.warn('User or subunitId missing');
+                }
+            }
+        });
     }
 
     editMode = signal(false);
@@ -68,5 +68,21 @@ export class Profile implements OnInit {
     }
 
     loading = signal(false);
+    selectedFile: File | null = null;
 
+    onFileSelected(event: Event): void {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files[0]) {
+            this.selectedFile = input.files[0];
+            this.changeProfilePic(); // optionally call upload immediately
+        }
+    }
+    changeProfilePic() {
+        if (!this.selectedFile) return;
+
+        const formData = new FormData();
+        formData.append('avatar', this.selectedFile); // 'avatar' should match the backend field
+
+        this.dashboardService.updateProfile(formData)
+    }
 }

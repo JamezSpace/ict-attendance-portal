@@ -204,13 +204,38 @@ export class DashboardService {
             const result = await response.json()
             if (result.success) {
                 const members = this.subunit_members();
-                const updated = members.map(member => 
-                  member._id === result.user._id ? result.user : member
-                  );
+                const updated = members.map(member =>
+                    member._id === result.user._id ? result.user : member
+                );
                 this.subunit_members.set(updated);
             }
         } catch (error: any) {
             console.error(error);
+        }
+    }
+
+    async updateProfile(formData: FormData) {
+        try {
+            const response = await fetch(`${Environment.backend_api_url}/upload/profile/user`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.accessToken}`
+                    // ❗️Do NOT set Content-Type manually. Let browser set it for FormData.
+                },
+                body: formData
+            });
+
+            const result = await response.json();
+            console.log('Upload result:', result);
+
+            if (result.success) {
+                // Optionally update the user signal with new avatar URL
+                const updatedUser = { ...this.userLoggedIn()!, avatar: result.avatarUrl };
+                this.userLoggedIn.set(updatedUser);
+            }
+
+        } catch (error) {
+            console.error('Upload failed:', error);
         }
     }
 }
