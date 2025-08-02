@@ -35,7 +35,10 @@ export class SubunitHub implements OnInit {
 
     addNewUser() {
         const dialogRef = this.dialog.open(NewUserDialog, {
-            data: { openedBy: 'subunitLeader' }
+            data: {
+                openedBy: 'subunitLeader',
+                subunitId: this.user_profile()?.subunitId
+            }
         });
 
         dialogRef.afterClosed().subscribe(result => {

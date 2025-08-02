@@ -4,5 +4,5 @@ export interface UserProfile extends Users {
     gender?: 'male' | 'female';
     region?: string;
     province?: string;
-    subunit?: string;
+    subunit?: any;
 }

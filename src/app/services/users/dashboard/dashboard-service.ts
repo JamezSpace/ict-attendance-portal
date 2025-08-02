@@ -117,7 +117,7 @@ export class DashboardService {
             if (user && result.success) {
                 this.profile_data.set({
                     ...user,
-                    subunit: result.subunit.name
+                    subunit: result.data
                 });
             } else {
                 console.error('Failed to fetch profile data:', result.message);
