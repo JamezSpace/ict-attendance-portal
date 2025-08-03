@@ -12,14 +12,10 @@ import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-
     templateUrl: './profile.html',
     styleUrl: './profile.css'
 })
-export class Profile implements OnInit {
+export class Profile {
     private dashboardService = inject(DashboardService);
     readonly dialog = inject(MatDialog);
     user_profile = this.dashboardService.profile_data
-
-    ngOnInit(): void {
-        console.log("user profile", this.user_profile());        
-    }
 
     openUpdateUserDialog() {
         const dialogRef = this.dialog.open(UpdateProfileDialog, {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { TasksOverview } from "../tasks-overview/tasks-overview";
