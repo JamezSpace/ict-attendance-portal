@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { TasksOverview } from "../tasks-overview/tasks-overview";
@@ -12,17 +12,17 @@ import { Dashboard } from '../../../pages/users/dashboard/dashboard';
     templateUrl: './dashboard-home.html',
     styleUrl: './dashboard-home.css'
 })
-export class DashboardHome {
+export class DashboardHome implements OnInit {
     private dashboardService = inject(DashboardService)
     readonly dialog = inject(MatDialog);
     private router = inject(Router);
 
     userData = Dashboard.userLoggedIn;
-    previous_attendances = this.dashboardService.attendances()
+    previous_attendances = this.dashboardService.attendance_history()
     user_profile = this.dashboardService.profile_data
 
-    get todayDay() {
-        return this.previous_attendances[this.previous_attendances.length - 1].day + 1
+    async ngOnInit(): Promise<void> {
+        this.dashboardService.getAttendanceHistory()    
     }
 
     get currentDate() {
@@ -34,7 +34,7 @@ export class DashboardHome {
         });
     }
 
-    referenceDate ="2025-08-03";
+    referenceDate = "2025-08-03";
 
     get dayOfConvention(): number {
         const today = new Date();
@@ -52,60 +52,60 @@ export class DashboardHome {
 
 
 
-//   currentTime: WritableSignal<string>;
+    //   currentTime: WritableSignal<string>;
 
-//   private intervalId: any;
+    //   private intervalId: any;
 
-//   constructor() {
-//     this.currentTime = signal(new Date().toLocaleTimeString());
+    //   constructor() {
+    //     this.currentTime = signal(new Date().toLocaleTimeString());
 
-//     this.intervalId = setInterval(() => {
-//       this.currentTime.set(new Date().toLocaleTimeString());
-//     }, 1000);
+    //     this.intervalId = setInterval(() => {
+    //       this.currentTime.set(new Date().toLocaleTimeString());
+    //     }, 1000);
 
-//     this.dashboardService.getAttendance()
+    //     this.dashboardService.getAttendanceHistory()
 
-//   }
+    //   }
 
-//   ngOnDestroy(): void {
-//     clearInterval(this.intervalId); // cleanup to avoid memory leak
-//   }
+    //   ngOnDestroy(): void {
+    //     clearInterval(this.intervalId); // cleanup to avoid memory leak
+    //   }
 
-signedIn = signal(true);
-signInStatusText = computed(() => {
-    return this.signedIn() ? 'You clocked in today at 8:12AM' : "You haven't clocked in yet"
-})
-signInActionText = computed(() => {
-    return this.signedIn() ? 'clock out' : 'clock in'
-})
-// officeTiming = {
-//   start_time: new Date().toLocaleTimeString('en-NG', {
-//     hour: 'numeric',
-//     minute: '2-digit',
-//     hour12: true
-//   }),
-//   end_time: new Date().toLocaleTimeString('en-NG', {
-//     hour: 'numeric',
-//     minute: '2-digit',
-//     hour12: true
-//   })
-// }
+    signedIn = signal(true);
+    signInStatusText = computed(() => {
+        return this.signedIn() ? 'You clocked in today at 8:12AM' : "You haven't clocked in yet"
+    })
+    signInActionText = computed(() => {
+        return this.signedIn() ? 'clock out' : 'clock in'
+    })
+    // officeTiming = {
+    //   start_time: new Date().toLocaleTimeString('en-NG', {
+    //     hour: 'numeric',
+    //     minute: '2-digit',
+    //     hour12: true
+    //   }),
+    //   end_time: new Date().toLocaleTimeString('en-NG', {
+    //     hour: 'numeric',
+    //     minute: '2-digit',
+    //     hour12: true
+    //   })
+    // }
 
-navigateToAttendance() {
-    this.router.navigate(['dashboard/attendance']);
-}
+    navigateToAttendance() {
+        this.router.navigate(['dashboard/attendance']);
+    }
 
-openUpdateProfileData() {
-    const dialogRef = this.dialog.open(UpdateProfileDialog, {
-        data: {
-            firstName: this.userData()?.firstName,
-            lastName: this.userData()?.lastName,
-            gender: this.userData()?.gender
-        },
-    });
+    openUpdateProfileData() {
+        const dialogRef = this.dialog.open(UpdateProfileDialog, {
+            data: {
+                firstName: this.userData()?.firstName,
+                lastName: this.userData()?.lastName,
+                gender: this.userData()?.gender
+            },
+        });
 
-    dialogRef.afterClosed().subscribe(result => {
-        console.log('The update dialog dialog was closed');
-    });
-}
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The update dialog dialog was closed');
+        });
+    }
 }

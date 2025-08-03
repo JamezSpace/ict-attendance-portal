@@ -12,11 +12,11 @@ export class AttendanceHistory implements OnInit {
   private dashboardService = inject(DashboardService);
   statuses = ['late', 'on time', 'absent']
 
-  attendances = this.dashboardService.attendances
+  attendances = this.dashboardService.attendance_history
 
   async ngOnInit() {
     this.loading.set(!this.loading())
-    await this.dashboardService.getAttendance();
+    await this.dashboardService.getAttendanceHistory();
     this.loading.set(!this.loading())
   }
 

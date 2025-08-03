@@ -16,7 +16,7 @@ export class DashboardService {
 
     accessToken = localStorage.getItem('access_token')
     userLoggedIn = AuthService.userLoggedIn
-    attendances = signal<Attendance[]>([])
+    attendance_history = signal<Attendance[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])
     profile_data = signal<UserProfile | null>(null)
@@ -24,9 +24,9 @@ export class DashboardService {
     subunit_teams = signal<Teams[]>([])
     complete_profile_loaded = signal(false);
 
-    async getAttendance() {
+    async getAttendanceHistory() {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/attendance/${this.userLoggedIn()?._id}`, {
+            const response = await fetch(`${Environment.backend_api_url}/attendance/me`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -36,9 +36,9 @@ export class DashboardService {
             const result = await response.json();
 
             if (result.success) {
-                this.attendances.set(result.data);
+                this.attendance_history.set(result.data);
             } else {
-                console.error('Failed to fetch attendances:', result.message);
+                console.error('Failed to fetch attendance history:', result.message);
             }
         } catch (error: any) {
             console.error(error);

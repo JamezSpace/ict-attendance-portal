@@ -34,7 +34,7 @@ export class Attendance implements OnInit {
     private dialog = inject(MatDialog);
 
     async ngOnInit() {
-        if (!this.adminDashboardService.attendances()) await this.adminDashboardService.getAttendances()
+        if (!this.adminDashboardService.attendances()) await this.adminDashboardService.getAttendanceHistories()
         if (!this.adminDashboardService.rooms()) await this.adminDashboardService.getRooms()
     }
 

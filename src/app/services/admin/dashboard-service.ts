@@ -87,9 +87,9 @@ export class DashboardService {
         }
     }
 
-    async getAttendances() {
+    async getAttendanceHistories() {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/attendance`, {
+            const response = await fetch(`${Environment.backend_api_url}/attendance/all`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
