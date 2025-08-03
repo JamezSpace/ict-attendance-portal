@@ -2,13 +2,13 @@
     <div id="print-card" class="flex flex-wrap items-center gap-3.5" #printCard>
         <section class="flex flex-col gap-2 items-center">
             <div class="image-bg front-part px-10 py-3.5 flex flex-col items-center" id="id-card" #front>
-                <img [src]="data.avatar" alt="" class="w-25">
+                <img src="/logo.PNG" alt="" class="w-25">
 
                 <h3 class="uppercase mt-4 mb-2">workers id card</h3>
 
                 <article class="box-container">
                     <div class="passport-container">
-                        <img src="/passport.jpg" alt="person's passport or face card">
+                        <img [src]="data.avatar" alt="person's passport or face card">
                     </div>
                     <div class="pseudo-box"></div>
                     <div class="gender-box">{{ genderInitial }}</div>
