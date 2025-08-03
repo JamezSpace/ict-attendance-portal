@@ -55,12 +55,14 @@ export class Profile {
         }
     }
 
-    changeProfilePic() {
+    async changeProfilePic() {
         if (!this.selectedFile) return;
 
+        this.loading.set(!this.loading())
         const formData = new FormData();
         formData.append('avatar', this.selectedFile); // 'avatar' should match the backend field
 
-        this.dashboardService.updateProfile(formData)
+        await this.dashboardService.updateProfile(formData)
+        this.loading.set(!this.loading())
     }
 }

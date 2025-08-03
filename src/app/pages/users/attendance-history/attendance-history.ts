@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Attendance } from '../../../interfaces/attendance.interface';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-attendance-history',
-  imports: [],
+  imports: [MatProgressSpinnerModule],
   templateUrl: './attendance-history.html',
   styleUrl: './attendance-history.css'
 })
@@ -15,7 +15,9 @@ export class AttendanceHistory implements OnInit {
   attendances = this.dashboardService.attendances
 
   async ngOnInit() {
+    this.loading.set(!this.loading())
     await this.dashboardService.getAttendance();
+    this.loading.set(!this.loading())
   }
 
   duration(timeIn: any, timeOut: any): string {
@@ -34,4 +36,5 @@ export class AttendanceHistory implements OnInit {
     return `${days > 0 ? days + "d " : ""}${hours}h ${minutes}m ${seconds}s`;
   }
   
+  loading = signal(false);
 }

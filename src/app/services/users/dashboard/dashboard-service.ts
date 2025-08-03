@@ -26,7 +26,7 @@ export class DashboardService {
 
     async getAttendance() {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/attendance`, {
+            const response = await fetch(`${Environment.backend_api_url}/attendance/${this.userLoggedIn()?._id}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -225,7 +225,7 @@ export class DashboardService {
 
     async updateProfile(formData: FormData) {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/upload/profile/user`, {
+            const response = await fetch(`${Environment.backend_api_url}/upload/profile/user/${this.userLoggedIn()?._id}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`

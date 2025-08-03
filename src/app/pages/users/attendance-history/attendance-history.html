@@ -22,6 +22,9 @@
             </tr>
         </thead>
         <tbody>
+            @if (loading()) {
+                <mat-spinner [diameter]="30" class="mx-auto"></mat-spinner>
+            } @else {
             @for (data of attendances(); track $index) {
             <tr>
                 <td>{{ data.day }}</td>
@@ -37,6 +40,7 @@
                 </td>
             </tr>
             }
+        }
         </tbody>
 
     </table>
