@@ -2,7 +2,7 @@
     <div id="print-card" class="flex flex-wrap items-center gap-3.5" #printCard>
         <section class="flex flex-col gap-2 items-center">
             <div class="image-bg front-part px-10 py-3.5 flex flex-col items-center" id="id-card" #front>
-                <img src="/logo.PNG" alt="" class="w-25">
+                <img [src]="data.avatar" alt="" class="w-25">
 
                 <h3 class="uppercase mt-4 mb-2">workers id card</h3>
 
@@ -46,7 +46,7 @@
                     For verification, scan the QR code or visit the official website
                 </p>
 
-                <img src="" alt="qr code of the department">
+                <img src="/ict-website.svg" alt="qr code of the department" class="w-25">
 
                 <section id="coordinators-sign">
                     <img src="/coord-signature.png" alt="pst john kusimo's, coordinators signature"
