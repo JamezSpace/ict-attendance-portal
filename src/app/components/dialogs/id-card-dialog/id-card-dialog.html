@@ -15,12 +15,12 @@
                 </article>
 
                 <article class="information-section">
-                    <p class="text-center uppercase mt-1">{{ data.role }}</p>
+                    <p class="text-center uppercase mt-1">{{ data.departmentalRole }}</p>
                     <p>
                         Name: <span class="capitalize">{{ data.firstName + " " + data.lastName }}</span>
                     </p>
                     <p>
-                        Subunit: <span class="capitalize">{{ data.subunit }}</span>
+                        Subunit: <span class="capitalize">{{ data.subunit.name }}</span>
                     </p>
                     <p>
                         Province: <span class="uppercase">{{ data.province }}</span>

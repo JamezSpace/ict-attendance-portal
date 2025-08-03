@@ -102,7 +102,7 @@ export class DashboardService {
         }
     }
 
-    async getProfileData(subunitId: string) {
+    async getSubunitDetails(subunitId: string) {
         try {
             const response = await fetch(`${Environment.backend_api_url}/subunits/${subunitId}`, {
                 method: 'GET',
@@ -129,7 +129,7 @@ export class DashboardService {
 
     async loadProfileData(subunitId: string): Promise<void> {
         try {
-            await this.getProfileData(subunitId);
+            await this.getSubunitDetails(subunitId);
         } catch (err) {
             console.error('Failed to load profile data:', err);
         }

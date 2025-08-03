@@ -23,7 +23,7 @@ export class Dashboard implements OnInit {
 
         const subunitId = user?.subunitId
         if (subunitId) {
-            await this.dashboardService.getProfileData(subunitId)
+            await this.dashboardService.getSubunitDetails(subunitId)
 
             // loaded complete profile notif
             this.dashboardService.complete_profile_loaded.set(!this.dashboardService.complete_profile_loaded())
