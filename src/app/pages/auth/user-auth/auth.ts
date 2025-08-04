@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { NavBar } from "../../../components/nav-bar/nav-bar";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,10 +14,15 @@ import { Router } from '@angular/router';
     templateUrl: './auth.html',
     styleUrl: './auth.css',
 })
-export class Auth {
+export class Auth implements OnInit {
     private authService = inject(AuthService);
     private snackBar = inject(MatSnackBar);
     private router = inject(Router);
+
+    ngOnInit(): void {
+        if(localStorage.getItem("access_token")) 
+            localStorage.removeItem("access_token")
+    }
 
     registrationMode = signal('login')
     authText = computed(() => {

@@ -31,6 +31,11 @@
                 }
             </tbody>
         </table>
+
+        <!-- Pagination -->
+        <mat-paginator [length]="pagination().total" [pageIndex]="pagination().page" [pageSize]="pagination().limit"
+            [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)">
+        </mat-paginator>
     </mat-tab>
     <mat-tab label="Teams">
         <h2 class="mt-2.5 mb-3.5">Subunit Teams</h2>

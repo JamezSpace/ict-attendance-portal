@@ -135,26 +135,30 @@ export class DashboardService {
         }
     }
 
-    async getSubunitMembers(subunitId: string) {
-        try {
-            const response = await fetch(`${Environment.backend_api_url}/users/subunits/${subunitId}`, {
+    async getSubunitMembers(subunitId: string, page = 1, limit = 10) {
+    try {
+        const response = await fetch(
+            `${Environment.backend_api_url}/users/subunits/${subunitId}?page=${page}&limit=${limit}`,
+            {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
                 }
-            })
-
-            const result = await response.json();
-
-            if (result.success) {
-                this.subunit_members.set(result.data);
-            } else {
-                console.error('Failed to fetch profile data:', result.message);
             }
-        } catch (error: any) {
-            console.error(error);
+        );
+
+        const result = await response.json();
+
+        if (result.success) {
+            this.subunit_members.set(result.data);
+            return result; // Important: return pagination too
+        } else {
+            console.error('Failed to fetch subunit members:', result.message);
         }
+    } catch (error: any) {
+        console.error(error);
     }
+}
 
     async getSubunitTeams(team: string) {
         try {
