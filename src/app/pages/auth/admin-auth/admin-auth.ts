@@ -38,13 +38,13 @@ export class AdminAuth {
 
         this.loading.set(false);
         if (success_status == 1) {
-            this.router.navigate(["/dashboard"])
+          this.router.navigate(["/admin"])
         } else if (success_status == 0) {
-            this.snackBar.open("Invalid Email and Password Combination", "", {
-                duration: 3000
-            })
+          this.snackBar.open("Invalid Email and Password Combination", "", {
+              duration: 3000
+          })
         } else {
-            alert("something went wrong. Relogin")
+          alert("something went wrong. Relogin")
         }
     }
 }
