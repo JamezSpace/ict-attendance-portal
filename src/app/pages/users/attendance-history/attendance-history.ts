@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { dayOfConvention } from '../../../utils/date.util';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-attendance-history',
@@ -11,10 +12,11 @@ import { dayOfConvention } from '../../../utils/date.util';
 })
 export class AttendanceHistory implements OnInit {
   private dashboardService = inject(DashboardService);
+  private snackBar = inject(MatSnackBar);
   statuses = ['late', 'on time', 'absent']
 
   attendances = this.dashboardService.attendance_history
-  roomspaces= this.dashboardService.attendance_roomspaces
+  roomspaces = this.dashboardService.attendance_roomspaces
   clocked_in_today = signal(false);
 
   async ngOnInit() {
@@ -64,18 +66,31 @@ export class AttendanceHistory implements OnInit {
   async toggleClockState() {
     try {
       const coords = await this.getCurrentLocation();
-      const distance = this.getDistanceFromLatLonInMeters(
-        coords.latitude,
-        coords.longitude,
-        this.validRoomLat,
-        this.validRoomLong
-      );
+      const userLat = coords.latitude;
+      const userLong = coords.longitude;
 
-      if (distance > this.maxDistanceMeters) {
-        alert(`You are not within the allowed location. Move closer to the attendance area.`);
+      const allowedRooms = this.roomspaces();
+      const maxDistanceMeters = 100;
+
+      // Find a room the user is within range of
+      const isInValidRoom = allowedRooms.some(room => {
+        const distance = this.getDistanceFromLatLonInMeters(
+          userLat,
+          userLong,
+          room.lat,
+          room.long
+        );
+        return distance <= maxDistanceMeters;
+      });
+
+      if (!isInValidRoom) {
+        this.snackBar.open('You are not within any approved attendance area. Move closer to a valid room space.', '', {
+          duration: 5000
+        });
         return;
       }
 
+      // Proceed with clock in/out
       if (!this.clocked_in_today()) {
         localStorage.setItem('clocked_in', 'true');
         await this.dashboardService.clockIn(this.day_of_convention);
@@ -85,7 +100,9 @@ export class AttendanceHistory implements OnInit {
       }
 
     } catch (error) {
-      alert("Failed to get location. Please enable GPS or grant permission.");
+      this.snackBar.open("Failed to get your location. Please enable location permission.", 'close', {
+        duration: 5000
+      });
       console.error(error);
     }
   }
