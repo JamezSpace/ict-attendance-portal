@@ -39,7 +39,7 @@ export class Auth implements OnInit {
         const success_status = await this.authService.loginUser({
             email: this.email.toLowerCase(),
             password: this.password
-        })
+        }, 'user')
 
         this.loading.set(false);
         if (success_status == 1) {

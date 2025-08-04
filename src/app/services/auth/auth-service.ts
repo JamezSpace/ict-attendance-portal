@@ -9,9 +9,9 @@ export class AuthService {
   public static userLoggedIn = signal<UserProfile | null>(null);
   public static userLoaded = signal(false);
 
-  async loginUser(login_data: any) {
+  async loginUser(login_data: any, user: string) {
     try {
-      const response = await fetch(`${Environment.backend_api_url}/user/auth/login`, {
+      const response = await fetch(`${Environment.backend_api_url}/${user}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
