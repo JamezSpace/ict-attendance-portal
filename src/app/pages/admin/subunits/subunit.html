@@ -1,0 +1,35 @@
+<h1 class="capitalize pt-7">subunits</h1>
+<button class="my-button mb-5">new subunit</button>
+
+<table>
+    <thead>
+        <th>sn</th>
+        <th>name</th>
+        <th>description</th>
+        <th>leader</th>
+        <th>Members Count</th>
+    </thead>
+    <tbody>
+        @for (subunit of subunits(); track $index) {
+        <tr>
+            <td>{{$index + 1}}</td>
+            <td>{{ subunit.name }}</td>
+            <td>{{ subunit.description }}</td>
+            <td>{{ subunit.leaderIds }}</td>
+            <td>{{ subunit.members?.length }}</td>
+            <td class="flex gap-2">
+                <button class="my-button secondary">
+                    assign task
+                </button>
+                <button class="my-button red">
+                    delete subunit
+                </button>
+            </td>
+        </tr>
+        } @empty {
+            <tr>
+                <td colspan="3">no existing team</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -26,8 +26,8 @@ export class Attendance implements OnInit {
     private dialog = inject(MatDialog);
 
     async ngOnInit() {
-        if (!this.adminDashboardService.attendances()) await this.adminDashboardService.getAttendanceHistories()
-        if (!this.adminDashboardService.rooms()) await this.adminDashboardService.getRooms()
+        if (this.adminDashboardService.attendances().length === 0) await this.adminDashboardService.getAttendanceHistories()
+        if (this.adminDashboardService.rooms().length === 0) await this.adminDashboardService.getRooms()
     }
 
     qrValue = signal('')

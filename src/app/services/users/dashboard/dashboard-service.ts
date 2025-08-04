@@ -5,8 +5,8 @@ import { Guests } from '../../../interfaces/visitors.interface';
 import { Tasks } from '../../../interfaces/tasks.interfaces';
 import { UserProfile } from '../../../interfaces/profile.interface';
 import { Users } from '../../../interfaces/users.interfaces';
-import { Teams } from '../../../pages/admin/teams/teams';
 import { AuthService } from '../../auth/auth-service';
+import { Teams } from '../../../interfaces/team.interface';
 
 @Injectable({
     providedIn: 'root'

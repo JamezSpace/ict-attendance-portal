@@ -19,7 +19,7 @@ export class Users implements OnInit {
     readonly dialog = inject(MatDialog);
 
     async ngOnInit() {
-        if (!this.adminDashboardService.users()) await this.adminDashboardService.getUsers()
+        if (this.adminDashboardService.users().length === 0) await this.adminDashboardService.getUsers()
     }
 
     openDialog(): void {

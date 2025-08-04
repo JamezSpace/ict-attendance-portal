@@ -4,7 +4,7 @@ import { Attendance } from '../../interfaces/attendance.interface';
 import { UserProfile } from '../../interfaces/profile.interface';
 import { Tasks } from '../../interfaces/tasks.interfaces';
 import { Guests } from '../../interfaces/visitors.interface';
-import { Team } from '../../interfaces/team.interface';
+import { Teams } from '../../interfaces/team.interface';
 import { Room } from '../../interfaces/rooms.interfaces';
 import { Users } from '../../interfaces/users.interfaces';
 import { Subunit } from '../../interfaces/subunits.interfaces';
@@ -19,7 +19,7 @@ export class DashboardService {
     attendances = signal<Attendance[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])
-    teams = signal<Team[]>([])
+    teams = signal<Teams[]>([])
     users = signal<UserProfile[]>([])
     rooms = signal<Room[]>([])
     subunits = signal<Subunit[]>([])

@@ -10,7 +10,7 @@ import { Dashboard as UserDashboard } from './pages/users/dashboard/dashboard';
 import { Profile } from './pages/users/profile/profile';
 import { authGuard } from './guard/auth-guard';
 import { Users } from './pages/admin/users/users';
-import { Teams } from './pages/admin/teams/teams';
+import { Subunits } from './pages/admin/subunits/subunit';
 import { Tasks } from './pages/admin/tasks/tasks';
 import { Attendance } from './pages/admin/attendance/attendance';
 import { Index } from './pages/index';
@@ -75,8 +75,8 @@ export const routes: Routes = [
                 component: AdminVisitors
             },
             {
-                path: 'teams',
-                component: Teams
+                path: 'subunit',
+                component: Subunits
             },
             {
                 path: 'tasks',
@@ -85,7 +85,11 @@ export const routes: Routes = [
             {
                 path: 'attendance',
                 component: Attendance
-            }
+            },
+            {
+                path: 'me',
+                component: Profile
+            },
         ]
     }
 ];

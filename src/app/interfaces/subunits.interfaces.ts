@@ -4,7 +4,7 @@ export interface Subunit {
     _id: string;
     name: string;
     description?: string;
-    leaderId: string; 
+    leaderIds: string[]; 
     members?: Users[]; 
     createdAt?: string;
     updatedAt?: string;

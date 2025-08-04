@@ -68,8 +68,8 @@ export class NavBar {
                     name: 'guests'
                 },
                 {
-                    route: '/admin/teams',
-                    name: 'teams'
+                    route: '/admin/subunits',
+                    name: 'subunits'
                 },
                 {
                     route: '/admin/tasks',
@@ -90,6 +90,10 @@ export class NavBar {
 
     toggleProfileView() {
         this.router.navigate(['/dashboard/me'])
+    }
+
+    toggleAdminProfileView() {
+        this.router.navigate(['/admin/me'])
     }
 
     toggleNavBarVisibility() {
