@@ -20,7 +20,7 @@ export class AuthService {
       })
 
       const result = await response.json()
-      if (result.token && result.user) {
+      if (result.token && (result.user || result.admin)) {
         localStorage.setItem('access_token', result.token)
 
         AuthService.userLoggedIn.set(result.user)
