@@ -13,14 +13,10 @@ import { NewUserDialog } from '../../../components/dialogs/new-user-dialog/new-u
     styleUrl: './users.css',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Users implements OnInit {
+export class Users {
     private adminDashboardService = inject(DashboardService);
     users = this.adminDashboardService.users
     readonly dialog = inject(MatDialog);
-
-    async ngOnInit() {
-        if (this.adminDashboardService.users().length === 0) await this.adminDashboardService.getUsers()
-    }
 
     openDialog(): void {
         const dialogRef = this.dialog.open(NewUserDialog, {

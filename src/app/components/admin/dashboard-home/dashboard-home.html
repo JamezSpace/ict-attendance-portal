@@ -3,19 +3,23 @@
 <section class="my-flex gap-3">
     <article class="tab custom-box-shadow">
         <h2 class="capitalize">Total users</h2>
-        <p class="big-text">--</p>
+        <p class="big-text">{{ users().length }}</p>
     </article>
     <article class="tab custom-box-shadow">
         <h2 class="capitalize">active guests</h2>
         <p class="big-text">--</p>
     </article>
     <article class="tab custom-box-shadow">
-        <h2 class="capitalize">teams</h2>
-        <p class="big-text">--</p>
+        <h2 class="capitalize">Subunits</h2>
+        <p class="big-text">{{ subunits().length }}</p>
     </article>
     <article class="tab custom-box-shadow">
-        <h2 class="capitalize">attendance today</h2>
-        <p class="big-text">--</p>
+        <h2 class="capitalize">Early Clock-in</h2>
+        <p class="big-text">{{ getClockInStats.early }}</p>
+    </article>
+    <article class="tab custom-box-shadow">
+        <h2 class="capitalize">Late Clock-in</h2>
+        <p class="big-text">{{ getClockInStats.late }}</p>
     </article>
 </section>
 

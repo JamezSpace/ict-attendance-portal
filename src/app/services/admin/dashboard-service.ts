@@ -36,7 +36,7 @@ export class DashboardService {
             const result = await response.json();
 
             if (result.success) {
-                this.users.set(result.data);
+                this.users.set(result.users);
             } else {
                 console.error('Failed to fetch users:', result.message);
             }

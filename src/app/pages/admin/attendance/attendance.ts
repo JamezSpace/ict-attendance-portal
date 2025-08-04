@@ -17,18 +17,13 @@ import { DeleteRoomspaceDialog } from '../../../components/dialogs/delete-roomsp
     templateUrl: './attendance.html',
     styleUrl: './attendance.css'
 })
-export class Attendance implements OnInit {
+export class Attendance  {
     selectedDay!: string;
     selectedStatus!: string;
     private adminDashboardService = inject(DashboardService);
     attendances = this.adminDashboardService.attendances;
     rooms = this.adminDashboardService.rooms
     private dialog = inject(MatDialog);
-
-    async ngOnInit() {
-        if (this.adminDashboardService.attendances().length === 0) await this.adminDashboardService.getAttendanceHistories()
-        if (this.adminDashboardService.rooms().length === 0) await this.adminDashboardService.getRooms()
-    }
 
     qrValue = signal('')
     generateQrCode(room: Room) {

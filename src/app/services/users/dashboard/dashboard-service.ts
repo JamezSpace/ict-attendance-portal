@@ -7,6 +7,7 @@ import { UserProfile } from '../../../interfaces/profile.interface';
 import { Users } from '../../../interfaces/users.interfaces';
 import { AuthService } from '../../auth/auth-service';
 import { Teams } from '../../../interfaces/team.interface';
+import { Room } from '../../../interfaces/rooms.interfaces';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,7 @@ export class DashboardService {
     accessToken = localStorage.getItem('access_token')
     userLoggedIn = AuthService.userLoggedIn
     attendance_history = signal<Attendance[]>([])
+    attendance_roomspaces = signal<Room[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])
     profile_data = signal<UserProfile | null>(null)
@@ -136,29 +138,29 @@ export class DashboardService {
     }
 
     async getSubunitMembers(subunitId: string, page = 1, limit = 10) {
-    try {
-        const response = await fetch(
-            `${Environment.backend_api_url}/users/subunits/${subunitId}?page=${page}&limit=${limit}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${this.accessToken}`
+        try {
+            const response = await fetch(
+                `${Environment.backend_api_url}/users/subunits/${subunitId}?page=${page}&limit=${limit}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${this.accessToken}`
+                    }
                 }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.subunit_members.set(result.data);
+                return result; // Important: return pagination too
+            } else {
+                console.error('Failed to fetch subunit members:', result.message);
             }
-        );
-
-        const result = await response.json();
-
-        if (result.success) {
-            this.subunit_members.set(result.data);
-            return result; // Important: return pagination too
-        } else {
-            console.error('Failed to fetch subunit members:', result.message);
+        } catch (error: any) {
+            console.error(error);
         }
-    } catch (error: any) {
-        console.error(error);
     }
-}
 
     async getSubunitTeams(team: string) {
         try {
@@ -182,7 +184,7 @@ export class DashboardService {
     }
 
     async addUserAsSubunitLeader(user: Users) {
-      try {
+        try {
             const response = await fetch(`${Environment.backend_api_url}/user/auth/signup`, {
                 method: 'POST',
                 headers: {
@@ -251,4 +253,80 @@ export class DashboardService {
             console.error('Upload failed:', error);
         }
     }
+
+    async clockIn(day: number) {
+        try {
+            const response = await fetch(`${Environment.backend_api_url}/attendance/clock-in`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ day })
+            });
+
+            const result = await response.json();
+
+            if (result.success && Array.isArray(result.data)) {
+                this.attendance_history.update(prev => [...prev, ...result.data]);
+            }
+
+        } catch (error) {
+            console.error('Clock-in failed:', error);
+        }
+    }
+
+
+    async clockOut(day: number) {
+        try {
+            const response = await fetch(`${Environment.backend_api_url}/attendance/clock-out`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ day })
+            });
+
+            const result = await response.json();
+
+            if (result.success && result.data) {
+                const updatedAttendance: Attendance = result.data;
+
+                this.attendance_history.update((prev) =>
+                    prev.map(att =>
+                        att._id === updatedAttendance._id ? updatedAttendance : att
+                    )
+                );
+            }
+
+        } catch (error) {
+            console.error('Clock-out failed:', error);
+        }
+    }
+
+    async getAttendanceRooms() {
+        try {
+            const response = await fetch(
+                `${Environment.backend_api_url}/rooms`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${this.accessToken}`
+                    }
+                }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.attendance_roomspaces.set(result.data);
+            } else {
+                console.error('Failed to fetch attendance room spaces:', result.message);
+            }
+        } catch (error: any) {
+            console.error(error);
+        }
+    }
+
 }

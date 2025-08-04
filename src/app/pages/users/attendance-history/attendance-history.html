@@ -1,4 +1,16 @@
-<h1 class="pt-7 uppercase">Attendance History</h1>
+<h1 class="pt-7 uppercase">Attendance</h1>
+<div class="my-3 5">
+    @if (clocked_in_today()) {
+    <button class="my-button" (click)="toggleClockState()">
+        Clock Out
+    </button>
+    } @else {
+    <button class="my-button" (click)="toggleClockState()">
+        Clock In
+    </button>
+    }
+</div>
+
 <p>View you attendance records and filter by status</p>
 
 
@@ -23,7 +35,7 @@
         </thead>
         <tbody>
             @if (loading()) {
-                <mat-spinner [diameter]="30" class="mx-auto"></mat-spinner>
+            <mat-spinner [diameter]="30" class="mx-auto"></mat-spinner>
             } @else {
             @for (data of attendances(); track $index) {
             <tr>
@@ -40,7 +52,7 @@
                 </td>
             </tr>
             }
-        }
+            }
         </tbody>
 
     </table>

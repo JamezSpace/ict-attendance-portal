@@ -75,7 +75,7 @@ export const routes: Routes = [
                 component: AdminVisitors
             },
             {
-                path: 'subunit',
+                path: 'subunits',
                 component: Subunits
             },
             {
