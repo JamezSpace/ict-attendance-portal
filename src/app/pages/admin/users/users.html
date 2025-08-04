@@ -28,7 +28,7 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.region }}</td>
                 <td>{{ user.province }}</td>
-                <td>{{ user.subunit.name }}</td>
+                <td>{{ user.subunit?.name }}</td>
             </tr>
         } @empty {
             <tr>
@@ -39,3 +39,10 @@
         }
     </tbody>
 </table>
+
+<mat-paginator
+  [length]="pagination().total"
+  [pageSize]="pagination().limit"
+  [pageSizeOptions]="[5, 10, 20]"
+  (page)="onPageChange($event)">
+</mat-paginator>

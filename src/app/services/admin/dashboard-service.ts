@@ -24,19 +24,25 @@ export class DashboardService {
     rooms = signal<Room[]>([])
     subunits = signal<Subunit[]>([])
 
-    async getUsers() {
+    pagination = signal({ page: 1, limit: 10, total: 0 });
+    async getUsers(page: number = 1, limit: number = 10) {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/users`, {
+            const response = await fetch(`${Environment.backend_api_url}/users?page=${page}&limit=${limit}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
                 }
-            })
+            });
 
             const result = await response.json();
 
             if (result.success) {
                 this.users.set(result.users);
+                this.pagination.set({
+                    page: result.pagination.page,
+                    limit: result.pagination.limit,
+                    total: result.pagination.total
+                });
             } else {
                 console.error('Failed to fetch users:', result.message);
             }
@@ -44,6 +50,7 @@ export class DashboardService {
             console.error(error);
         }
     }
+
 
     async getGuests() {
         try {
@@ -185,7 +192,7 @@ export class DashboardService {
             })
 
             const result = await response.json();
-            if(result.success) {
+            if (result.success) {
                 // use this in prod
                 this.users.update((prevUsers) => [...prevUsers, result.data]);
                 // this.users.update((prevUsers) => [...prevUsers, user]);
