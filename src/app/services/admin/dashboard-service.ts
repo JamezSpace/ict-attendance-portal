@@ -165,8 +165,8 @@ export class DashboardService {
 
             if (result.success) {
                 // use this in prod
-                // this.rooms.update((prevRooms) => [...prevRooms, result.data]);
-                this.rooms.update((prevRooms) => [...prevRooms, room]);
+                this.rooms.update((prevRooms) => [...prevRooms, result.data]);
+                // this.rooms.update((prevRooms) => [...prevRooms, room]);
             }
         } catch (error: any) {
             console.error(error);

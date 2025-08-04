@@ -23,14 +23,6 @@ export class Attendance implements OnInit {
     private adminDashboardService = inject(DashboardService);
     attendances = this.adminDashboardService.attendances;
     rooms = this.adminDashboardService.rooms
-    // rooms = signal([
-    //     {
-    //         _id: '345',
-    //         name: 'office workspace',
-    //         lat: 3.2435,
-    //         long: 4.56
-    //     }
-    // ])
     private dialog = inject(MatDialog);
 
     async ngOnInit() {

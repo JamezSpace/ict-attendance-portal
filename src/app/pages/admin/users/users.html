@@ -16,6 +16,7 @@
         <th>role</th>
         <th>region</th>
         <th>province</th>
+        <th>subunit</th>
     </thead>
     <tbody>
         @for (user of users(); track $index) {
@@ -27,6 +28,7 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.region }}</td>
                 <td>{{ user.province }}</td>
+                <td>{{ user.subunit.name }}</td>
             </tr>
         } @empty {
             <tr>
