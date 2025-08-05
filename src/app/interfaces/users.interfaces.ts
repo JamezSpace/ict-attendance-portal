@@ -4,7 +4,7 @@ export interface Users {
     lastName: string;
     email: string;
     role?: 'user' | 'admin';
-    departmentalRole? : 'member' | 'executive' | 'official';
+    departmentalRole? : string;
     phone?: string;
     isActive?: boolean;
     __v?: number,
