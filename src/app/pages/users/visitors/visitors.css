@@ -22,3 +22,10 @@ form > mat-form-field {
 mat-form-field {
     display: block;
 }
+
+@media screen and (max-width: 420px) {
+    form > mat-form-field {
+        max-width: 100%;
+    }
+    
+}

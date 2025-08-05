@@ -1,15 +1,16 @@
 <h2 class="pt-7 capitalize mb-5">attendance room spaces</h2>
 <button class="my-button mb-3" (click)="createAttendanceRoomSpace()">add a new attendance room space</button>
-<table>
-    <thead>
-        <th>id</th>
-        <th>room name</th>
-        <th>latitude</th>
-        <th>longitude</th>
-        <th>actions</th>
-    </thead>
-    <tbody>
-        @for (room of rooms(); track $index) {
+<div class="overflow-x-auto">
+    <table>
+        <thead>
+            <th>id</th>
+            <th>room name</th>
+            <th>latitude</th>
+            <th>longitude</th>
+            <th>actions</th>
+        </thead>
+        <tbody>
+            @for (room of rooms(); track $index) {
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ room.name }}</td>
@@ -20,15 +21,16 @@
                     <button class="my-button red" (click)="deleteRoomSpace(room)">delete this room space</button>
                 </td>
             </tr>
-        } @empty {
+            } @empty {
             <tr>
                 <td colspan="5" class="text-gray-700">
                     <p class="text-center my-5">no attendance room space created</p>
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+</div>
 
 <h2 class="mt-7 mb-3.5 capitalize">attendance records</h2>
 <mat-form-field appearance="outline" class="w-full">
@@ -60,17 +62,18 @@
     </mat-form-field>
 </div>
 
-<table>
-    <thead>
-        <th>id</th>
-        <th>day</th>
-        <th>In Time</th>
-        <th>out time</th>
-        <th>duration</th>
-        <th>status</th>
-    </thead>
-    <tbody>
-        @for (attendance of attendances(); track $index) {
+<div class="overflow-x-auto">
+    <table>
+        <thead>
+            <th>id</th>
+            <th>day</th>
+            <th>In Time</th>
+            <th>out time</th>
+            <th>duration</th>
+            <th>status</th>
+        </thead>
+        <tbody>
+            @for (attendance of attendances(); track $index) {
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ attendance.day }}</td>
@@ -79,12 +82,13 @@
                 <td>{{ duration(attendance.clockInTime, attendance.clockOutTime) }}</td>
                 <td>null</td>
             </tr>
-        } @empty {
+            } @empty {
             <tr>
                 <td colspan="7" class="text-gray-700">
                     <p class="text-center my-5">nothing here</p>
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+</div>

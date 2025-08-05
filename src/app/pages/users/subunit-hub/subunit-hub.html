@@ -3,34 +3,36 @@
         <h2 class="mt-2.5 mb-3.5">All Users</h2>
         <button class="my-button mb-5" (click)="addNewUser()">Add user to your subunit</button>
 
-        <table>
-            <thead>
-                <th>id</th>
-                <th>name</th>
-                <th>email</th>
-                <th>Gender</th>
-            </thead>
-            <tbody>
-                @if (loading()) {
-                <mat-spinner [diameter]="30" class="mx-auto"></mat-spinner>
-                } @else {
-                @for (member of members(); track $index) {
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ member.firstName + " " + member.lastName }}</td>
-                    <td>{{ member.email }}</td>
-                    <td>{{ member.gender }}</td>
-                </tr>
-                } @empty {
-                <tr>
-                    <td colspan="4" class="text-gray-700">
-                        <p class="text-center my-5">nothing here</p>
-                    </td>
-                </tr>
-                }
-                }
-            </tbody>
-        </table>
+        <div class="overflow-x-auto">
+            <table>
+                <thead>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>Gender</th>
+                </thead>
+                <tbody>
+                    @if (loading()) {
+                    <mat-spinner [diameter]="30" class="mx-auto"></mat-spinner>
+                    } @else {
+                    @for (member of members(); track $index) {
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ member.firstName + " " + member.lastName }}</td>
+                        <td>{{ member.email }}</td>
+                        <td>{{ member.gender }}</td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="4" class="text-gray-700">
+                            <p class="text-center my-5">nothing here</p>
+                        </td>
+                    </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
 
         <!-- Pagination -->
         <mat-paginator [length]="pagination().total" [pageIndex]="pagination().page" [pageSize]="pagination().limit"

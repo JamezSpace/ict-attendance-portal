@@ -7,19 +7,20 @@
 </mat-form-field>
 
 <h2 class="mb-2.5">All Users</h2>
-<table>
-    <thead>
-        <th>sn</th>
-        <th>name</th>
-        <th>email</th>
-        <th>Gender</th>
-        <th>role</th>
-        <th>region</th>
-        <th>province</th>
-        <th>subunit</th>
-    </thead>
-    <tbody>
-        @for (user of users(); track $index) {
+<div class="overflow-x-auto">
+    <table>
+        <thead>
+            <th>sn</th>
+            <th>name</th>
+            <th>email</th>
+            <th>Gender</th>
+            <th>role</th>
+            <th>region</th>
+            <th>province</th>
+            <th>subunit</th>
+        </thead>
+        <tbody>
+            @for (user of users(); track $index) {
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ user.firstName + " " + user.lastName }}</td>
@@ -30,19 +31,16 @@
                 <td>{{ user.province }}</td>
                 <td>{{ user.subunit?.name }}</td>
             </tr>
-        } @empty {
+            } @empty {
             <tr>
                 <td colspan="8" class="text-gray-700">
                     <p class="text-center my-5">nothing here</p>
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
-
-<mat-paginator
-  [length]="pagination().total"
-  [pageSize]="pagination().limit"
-  [pageSizeOptions]="[5, 10, 20]"
-  (page)="onPageChange($event)">
+            }
+        </tbody>
+    </table>
+</div>
+<mat-paginator [length]="pagination().total" [pageSize]="pagination().limit" [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
 </mat-paginator>
