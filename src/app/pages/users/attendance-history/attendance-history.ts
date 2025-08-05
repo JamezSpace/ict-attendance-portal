@@ -70,7 +70,7 @@ export class AttendanceHistory implements OnInit {
       const userLong = coords.longitude;
 
       const allowedRooms = this.roomspaces();
-      const maxDistanceMeters = 100;
+      const maxDistanceMeters = 500;
 
       // Find a room the user is within range of
       const isInValidRoom = allowedRooms.some(room => {
@@ -80,6 +80,8 @@ export class AttendanceHistory implements OnInit {
           room.lat,
           room.long
         );
+
+        console.log(`Distance from room ${room.name}: ${distance.toFixed(2)} meters`);
         return distance <= maxDistanceMeters;
       });
 
