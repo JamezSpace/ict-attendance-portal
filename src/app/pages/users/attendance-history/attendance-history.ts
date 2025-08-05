@@ -72,8 +72,10 @@ export class AttendanceHistory implements OnInit {
       const allowedRooms = this.roomspaces();
       const maxDistanceMeters = 500;
 
+      console.log("Current device location:", userLat, userLong);
+
       // Find a room the user is within range of
-      const isInValidRoom = allowedRooms.some(room => {
+      const isWithinAllowedRoom = allowedRooms.some(room => {
         const distance = this.getDistanceFromLatLonInMeters(
           userLat,
           userLong,
@@ -85,7 +87,7 @@ export class AttendanceHistory implements OnInit {
         return distance <= maxDistanceMeters;
       });
 
-      if (!isInValidRoom) {
+      if (!isWithinAllowedRoom) {
         this.snackBar.open('You are not within any approved attendance area. Move closer to a valid room space.', '', {
           duration: 5000
         });
