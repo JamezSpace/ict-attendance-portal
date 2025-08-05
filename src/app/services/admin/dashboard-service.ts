@@ -23,7 +23,9 @@ export class DashboardService {
     users = signal<UserProfile[]>([])
     rooms = signal<Room[]>([])
     subunits = signal<Subunit[]>([])
+    member_count = signal(0)
 
+    total_users = signal(0);
     pagination = signal({ page: 1, limit: 10, total: 0 });
     async getUsers(page: number = 1, limit: number = 10) {
         try {
@@ -37,6 +39,7 @@ export class DashboardService {
             const result = await response.json();
 
             if (result.success) {
+                this.total_users.set(result.pagination.total);
                 this.users.set(result.users);
                 this.pagination.set({
                     page: result.pagination.page,
@@ -149,6 +152,7 @@ export class DashboardService {
 
             if (result.success) {
                 this.subunits.set(result.data);
+                this.member_count.set(result.member_count)
             } else {
                 console.error('Failed to fetch subunits:', result.message);
             }
@@ -179,6 +183,29 @@ export class DashboardService {
             console.error(error);
         }
     }
+
+    async deleteRoom(roomId: string) {
+    try {
+        const response = await fetch(`${Environment.backend_api_url}/rooms/${roomId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${this.accessToken}`
+            }
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Update the local rooms list by removing the deleted one
+            this.rooms.update((prevRooms) => prevRooms.filter(room => room._id !== roomId));
+        } else {
+            console.error('Failed to delete room:', result.message);
+        }
+    } catch (error: any) {
+        console.error(error);
+    }
+}
+
 
     async addUser(user: Users) {
         try {

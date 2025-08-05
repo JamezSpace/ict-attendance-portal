@@ -12,6 +12,7 @@ export class DashboardHome implements OnInit {
   users = this.adminDashboardService.users;
   subunits = this.adminDashboardService.subunits;
   attendances = this.adminDashboardService.attendances;
+  total_users = this.adminDashboardService.total_users
 
   async ngOnInit(): Promise<void> {
     if (this.adminDashboardService.users().length === 0) await this.adminDashboardService.getUsers()
