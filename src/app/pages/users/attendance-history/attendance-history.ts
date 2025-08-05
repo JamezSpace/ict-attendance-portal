@@ -116,7 +116,8 @@ export class AttendanceHistory implements OnInit {
     const diffMs = new Date(timeOut).getTime() - new Date(timeIn).getTime();
 
     if (isNaN(diffMs) || diffMs < 0) {
-      return "Invalid or negative time range";
+      // "Invalid or negative time range"
+      return "--:--:--";
     }
 
     const totalSeconds = Math.floor(diffMs / 1000);

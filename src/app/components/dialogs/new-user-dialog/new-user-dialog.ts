@@ -53,17 +53,17 @@ export class NewUserDialog implements OnInit {
     
     if (this.data.openedBy === 'admin') {
       await this.adminDashboardService.addUser({
-        firstName: this.userData.controls.firstName.value ?? '',
-        lastName: this.userData.controls.lastName.value ?? '',
-        email: this.userData.controls.email.value ?? '',
+        firstName: this.userData.controls.firstName.value?.toLowerCase() ?? '',
+        lastName: this.userData.controls.lastName.value?.toLowerCase() ?? '',
+        email: this.userData.controls.email.value?.toLowerCase() ?? '',
         phone: this.userData.controls.phoneNum.value ?? '',
         subunitId: this.selected_subunit
       })
     } else if (this.data.openedBy === 'subunitLeader') {
       await this.userDashboardService.addUserAsSubunitLeader({
-        firstName: this.userData.controls.firstName.value ?? '',
-        lastName: this.userData.controls.lastName.value ?? '',
-        email: this.userData.controls.email.value ?? '',
+        firstName: this.userData.controls.firstName.value?.toLowerCase() ?? '',
+        lastName: this.userData.controls.lastName.value?.toLowerCase() ?? '',
+        email: this.userData.controls.email.value?.toLowerCase() ?? '',
         phone: this.userData.controls.phoneNum.value ?? '',
         subunitId: this.data.subunitId
       })
