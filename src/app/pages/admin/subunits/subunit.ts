@@ -7,11 +7,7 @@ import { DashboardService } from '../../../services/admin/dashboard-service';
   templateUrl: './subunit.html',
   styleUrl: './subunit.css'
 })
-export class Subunits implements OnInit {
+export class Subunits {
     private adminDashboardService = inject(DashboardService);
     subunits = this.adminDashboardService.subunits
-
-    async ngOnInit() {
-        if(this.adminDashboardService.subunits().length === 0) await this.adminDashboardService.getSubunits()
-    }
 }

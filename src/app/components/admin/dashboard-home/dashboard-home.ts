@@ -18,6 +18,7 @@ export class DashboardHome implements OnInit {
     if (this.adminDashboardService.users().length === 0) await this.adminDashboardService.getUsers()
     if (this.adminDashboardService.attendances().length === 0) await this.adminDashboardService.getAttendanceHistories()
     if (this.adminDashboardService.rooms().length === 0) await this.adminDashboardService.getRooms()
+    if (this.adminDashboardService.subunits().length === 0) await this.adminDashboardService.getSubunits()
   }
 
   get getClockInStats(): { early: number; late: number } {

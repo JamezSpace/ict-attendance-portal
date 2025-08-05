@@ -81,6 +81,7 @@ h2 {
     --bg-color: var(--primary);
 
     padding: 10px 20px;
+    white-space: nowrap;
     gap: 8px;
     border: 1px solid var(--bg-color);
     border-radius: 0.5rem;
