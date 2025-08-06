@@ -1,6 +1,6 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { DashboardService as UserDashboardService} from '../../../services/users/dashboard/dashboard-service';
-import { DashboardService as AdminDashboardService} from '../../../services/admin/dashboard-service';
+import { Component, inject, OnInit, Signal, signal } from '@angular/core';
+import { DashboardService as UserDashboardService } from '../../../services/users/dashboard/dashboard-service';
+import { DashboardService as AdminDashboardService } from '../../../services/admin/dashboard-service';
 import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card-dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-dialog/update-profile-dialog';
 import { Router } from '@angular/router';
 import { UserProfile } from '../../../interfaces/profile.interface';
+import { AuthService } from '../../../services/auth/auth-service';
 
 @Component({
     selector: 'app-profile',
@@ -20,8 +21,9 @@ export class Profile implements OnInit {
     private adminDashboardService = inject(AdminDashboardService);
     readonly dialog = inject(MatDialog);
     private router = inject(Router);
-    user_profile = signal<UserProfile | null>(null);
-    user_profile_with_subunit = signal<UserProfile | null>(null);
+    // user_profile = signal<UserProfile | null>(null);
+    user_profile: Signal<UserProfile | null> = signal(null);
+    user_profile_with_subunit: Signal<UserProfile | null> = signal(null);
 
     ngOnInit(): void {
         const url = this.router.url;
