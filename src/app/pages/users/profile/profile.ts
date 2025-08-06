@@ -52,10 +52,10 @@ export class Profile implements OnInit {
     }
 
     generateId() {
-        if (!this.user_profile()) return
+        if (!this.user_profile_with_subunit()) return
 
         const dialogRef = this.dialog.open(IdCardDialog, {
-            data: this.user_profile(),
+            data: this.user_profile_with_subunit(),
             panelClass: 'dialog-responsive'
         });
 
