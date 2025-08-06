@@ -24,12 +24,10 @@ export class Profile implements OnInit {
     user_profile_with_subunit = signal<UserProfile | null>(null);
 
     ngOnInit(): void {
-        // Access the previous URL using Router's getCurrentNavigation() if available
-        const navigation = this.router.getCurrentNavigation();
-        const previousUrl = navigation?.previousNavigation?.finalUrl?.toString();
+        const url = this.router.url;
 
         // Example: Toggle user_profile based on previousUrl
-        if (previousUrl && previousUrl.includes('/admin')) {
+        if (url && url.includes('/admin')) {
             this.user_profile = this.adminDashboardService.profile_data;
         } else {
             this.user_profile = this.userDashboardService.profile_data;
