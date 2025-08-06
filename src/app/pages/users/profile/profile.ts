@@ -15,7 +15,8 @@ import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-
 export class Profile {
     private dashboardService = inject(DashboardService);
     readonly dialog = inject(MatDialog);
-    user_profile = this.dashboardService.profile_data
+    user_profile = this.dashboardService.profile_data;
+    user_profile_with_subunit = this.dashboardService.profile_data_with_subunit
 
     openUpdateUserDialog() {
         const dialogRef = this.dialog.open(UpdateProfileDialog, {

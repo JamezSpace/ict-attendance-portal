@@ -68,11 +68,13 @@
 
                 <p>{{ user_profile()?.region }}</p>
             </div>
+            @if (user_profile()?.subunitId) {
             <div class="field">
                 <label for="">subunit</label>
 
-                <p>{{ user_profile()?.subunit?.name }}</p>
+                <p>{{ user_profile_with_subunit()?.subunit?.name }}</p>
             </div>
+            }
             <div class="field">
                 <label for="">role</label>
 

@@ -16,12 +16,12 @@ export class DashboardService {
     constructor() { }
 
     accessToken = localStorage.getItem('access_token')
-    userLoggedIn = AuthService.userLoggedIn
+    profile_data = AuthService.userLoggedIn;
     attendance_history = signal<Attendance[]>([])
     attendance_roomspaces = signal<Room[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])
-    profile_data = signal<UserProfile | null>(null)
+    profile_data_with_subunit = signal<UserProfile | null>(null)
     subunit_members = signal<UserProfile[]>([])
     subunit_teams = signal<Teams[]>([])
     complete_profile_loaded = signal(false);
@@ -115,9 +115,9 @@ export class DashboardService {
 
             const result = await response.json();
 
-            const user = this.userLoggedIn();
+            const user = this.profile_data();
             if (user && result.success) {
-                this.profile_data.set({
+                this.profile_data_with_subunit.set({
                     ...user,
                     subunit: result.data
                 });
@@ -207,7 +207,7 @@ export class DashboardService {
 
     async editUser(user: Partial<UserProfile>) {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/users/${this.userLoggedIn()?._id}`, {
+            const response = await fetch(`${Environment.backend_api_url}/users/${this.profile_data()?._id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`,
@@ -231,7 +231,7 @@ export class DashboardService {
 
     async updateProfile(formData: FormData) {
         try {
-            const response = await fetch(`${Environment.backend_api_url}/upload/profile/user/${this.userLoggedIn()?._id}`, {
+            const response = await fetch(`${Environment.backend_api_url}/upload/profile/user/${this.profile_data()?._id}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${this.accessToken}`
@@ -245,8 +245,8 @@ export class DashboardService {
 
             if (result.success) {
                 // Optionally update the user signal with new avatar URL
-                const updatedUser = { ...this.userLoggedIn()!, avatar: result.avatarUrl };
-                this.userLoggedIn.set(updatedUser);
+                const updatedUser = { ...this.profile_data()!, avatar: result.avatarUrl };
+                this.profile_data.set(updatedUser);
             }
 
         } catch (error) {

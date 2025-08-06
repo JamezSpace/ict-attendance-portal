@@ -20,7 +20,7 @@ export class DashboardHome implements OnInit {
 
     userData = Dashboard.userLoggedIn;
     previous_attendances = this.dashboardService.attendance_history()
-    user_profile = this.dashboardService.profile_data
+    user_profile = this.dashboardService.profile_data_with_subunit
     day_of_convention = dayOfConvention()
     
     async ngOnInit(): Promise<void> {

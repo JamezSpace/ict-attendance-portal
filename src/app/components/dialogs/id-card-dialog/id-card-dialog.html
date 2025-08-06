@@ -19,9 +19,11 @@
                     <p>
                         Name: <span class="capitalize">{{ data.firstName + " " + data.lastName }}</span>
                     </p>
+                    @if (data.subunitId) {
                     <p>
                         Subunit: <span class="capitalize">{{ data.subunit?.name }}</span>
                     </p>
+                    }
                     <p>
                         Province: <span class="uppercase">{{ data.province }}</span>
                     </p>
