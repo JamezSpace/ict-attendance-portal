@@ -21,7 +21,7 @@ export class DashboardService {
     attendance_roomspaces = signal<Room[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])
-    profile_data_with_subunit = signal<UserProfile | null>(null)
+    profile_data_with_subunit = this.profile_data
     subunit_members = signal<UserProfile[]>([])
     subunit_teams = signal<Teams[]>([])
     complete_profile_loaded = signal(false);
