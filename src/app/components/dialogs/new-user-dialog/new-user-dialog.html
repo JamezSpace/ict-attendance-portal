@@ -30,10 +30,30 @@
         <mat-select [(value)]="selected_subunit">
             <mat-option>None</mat-option>
             @for (subunit of subunits(); track $index) {
-                <mat-option [value]="subunit._id">{{ subunit.name }}</mat-option>
+            <mat-option [value]="subunit._id">{{ subunit.name }}</mat-option>
             }
         </mat-select>
     </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Departmental Role</mat-label>
+        <!-- TODO -->
+        <mat-select [(value)]="departmental_role" (selectionChange)="onSelectChange($event)">
+            <mat-option>None</mat-option>
+            <mat-option value="member">member</mat-option>
+            <mat-option value="executive">executive</mat-option>
+            <mat-option value="ambassador">ambassador</mat-option>
+            <mat-option value="official">official</mat-option>
+            <mat-option value="custom">custom</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    @if (customDeptRole()) {
+    <mat-form-field appearance="outline">
+        <mat-label>Custom Role</mat-label>
+        <input type="text" matInput placeholder="enter a custom role..." [(ngModel)]="departmental_role" name="departmental_role">
+    </mat-form-field>
+    }
     }
 
     <button class="my-button w-full mt-3" (click)="saveData()">Save User</button>
