@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Signal, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { DashboardService as UserDashboardService } from '../../../services/users/dashboard/dashboard-service';
 import { DashboardService as AdminDashboardService } from '../../../services/admin/dashboard-service';
 import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card-dialog';
@@ -21,18 +21,17 @@ export class Profile implements OnInit {
     private adminDashboardService = inject(AdminDashboardService);
     readonly dialog = inject(MatDialog);
     private router = inject(Router);
-    // user_profile = signal<UserProfile | null>(null);
-    user_profile: Signal<UserProfile | null> = signal(null);
-    user_profile_with_subunit: Signal<UserProfile | null> = signal(null);
+    user_profile = signal<UserProfile | null>(null);
+    user_profile_with_subunit = signal<UserProfile | null>(null);
 
     ngOnInit(): void {
         const url = this.router.url;
 
         // Example: Toggle user_profile based on previousUrl
         if (url && url.includes('/admin')) {
-            this.user_profile = this.adminDashboardService.profile_data;
+            this.user_profile.set(this.adminDashboardService.profile_data());
         } else {
-            this.user_profile = this.userDashboardService.profile_data;
+            this.user_profile.set(this.userDashboardService.profile_data());
             this.user_profile_with_subunit = this.userDashboardService.profile_data_with_subunit;
         }
     }
