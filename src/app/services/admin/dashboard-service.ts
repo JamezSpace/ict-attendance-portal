@@ -8,6 +8,7 @@ import { Teams } from '../../interfaces/team.interface';
 import { Room } from '../../interfaces/rooms.interfaces';
 import { Users } from '../../interfaces/users.interfaces';
 import { Subunit } from '../../interfaces/subunits.interfaces';
+import { AuthService } from '../auth/auth-service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,7 @@ export class DashboardService {
     constructor() { }
 
     accessToken = localStorage.getItem('access_token')
+    profile_data = AuthService.userLoggedIn;
     attendances = signal<Attendance[]>([])
     guests = signal<Guests[]>([])
     tasks = signal<Tasks[]>([])

@@ -1,10 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { DashboardService } from '../../../services/users/dashboard/dashboard-service';
+import { DashboardService as UserDashboardService} from '../../../services/users/dashboard/dashboard-service';
+import { DashboardService as AdminDashboardService} from '../../../services/admin/dashboard-service';
 import { IdCardDialog } from '../../../components/dialogs/id-card-dialog/id-card-dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-dialog/update-profile-dialog';
+import { Router } from '@angular/router';
+import { UserProfile } from '../../../interfaces/profile.interface';
 
 @Component({
     selector: 'app-profile',
@@ -12,11 +15,27 @@ import { UpdateProfileDialog } from '../../../components/dialogs/update-profile-
     templateUrl: './profile.html',
     styleUrl: './profile.css'
 })
-export class Profile {
-    private dashboardService = inject(DashboardService);
+export class Profile implements OnInit {
+    private userDashboardService = inject(UserDashboardService);
+    private adminDashboardService = inject(AdminDashboardService);
     readonly dialog = inject(MatDialog);
-    user_profile = this.dashboardService.profile_data;
-    user_profile_with_subunit = this.dashboardService.profile_data_with_subunit
+    private router = inject(Router);
+    user_profile = signal<UserProfile | null>(null);
+    user_profile_with_subunit = signal<UserProfile | null>(null);
+
+    ngOnInit(): void {
+        // Access the previous URL using Router's getCurrentNavigation() if available
+        const navigation = this.router.getCurrentNavigation();
+        const previousUrl = navigation?.previousNavigation?.finalUrl?.toString();
+
+        // Example: Toggle user_profile based on previousUrl
+        if (previousUrl && previousUrl.includes('/admin')) {
+            this.user_profile = this.adminDashboardService.profile_data;
+        } else {
+            this.user_profile = this.userDashboardService.profile_data;
+            this.user_profile_with_subunit = this.userDashboardService.profile_data_with_subunit;
+        }
+    }
 
     openUpdateUserDialog() {
         const dialogRef = this.dialog.open(UpdateProfileDialog, {
@@ -63,7 +82,7 @@ export class Profile {
         const formData = new FormData();
         formData.append('avatar', this.selectedFile); // 'avatar' should match the backend field
 
-        await this.dashboardService.updateProfile(formData)
+        await this.userDashboardService.updateProfile(formData)
         this.loading.set(!this.loading())
     }
 }

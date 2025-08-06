@@ -38,10 +38,10 @@ export class NavBar {
                     route: '/dashboard/visitors',
                     name: 'my visitors'
                 },
-                // {
-                //     route: '/dashboard/me',
-                //     name: 'my profile'
-                // }
+                {
+                    route: '/dashboard/me',
+                    name: 'my profile'
+                },
                 {
                     route: '/dashboard/subunit',
                     name: 'subunit hub'
@@ -78,6 +78,10 @@ export class NavBar {
                 {
                     route: '/admin/attendance',
                     name: 'attendance'
+                }, 
+                {
+                    route: '/admin/me',
+                    name: 'profile'
                 }
             ]
     }
@@ -85,7 +89,8 @@ export class NavBar {
 
     logout() {
         this.authService.logout()
-        this.router.navigate(['/auth'])
+        if(this.dashboard === 'user') this.router.navigate(['/auth'])
+        else this.router.navigate(['/admin-auth'])
     }
 
     toggleProfileView() {
